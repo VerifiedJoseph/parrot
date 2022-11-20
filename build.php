@@ -60,9 +60,12 @@ function addExternalParts($page, $files): string
 	return $page;
 }
 
-function addBuildDate(string $page): string
+function addBuildDetails(string $page): string
 {
-	$page = str_replace('{date}', date('c'), $page);
+	exec('git rev-parse --verify HEAD', $output);
+	$hash = $output[0];
+
+	$page = str_replace(['{date}', '{commit}'], [date('c'), $hash], $page);
 	return $page;
 }
 
@@ -81,13 +84,13 @@ try {
 	// All one version
 	$page = loadfile('templates/twMediaViewer.html');
 	$page = addInlineParts($page, $files);
-	$page = addBuildDate($page);
+	$page = addBuildDetails($page);
 	save($page, 'public/twMediaViewer.html');
 
 	// Main website version
 	$page = loadfile('templates/twMediaViewer.html');
 	$page = addExternalParts($page, $files);
-	$page = addBuildDate($page);
+	$page = addBuildDetails($page);
 	save($page, 'public/index.html');
 
 	output('Done.');
