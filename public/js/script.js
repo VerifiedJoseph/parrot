@@ -239,13 +239,15 @@ function filterReset(tweetCount) {
 }
 
 function clearFilterList() {
-	var elements = document.querySelectorAll('option');
+	var filter = document.getElementById('username-filter');
 
-	elements.forEach(function (element, index) {
+	filter.querySelectorAll('option').forEach(function (element, index) {
 		if (index != 0) {
 			element.parentNode.removeChild(element)
 		}
 	});
+
+	filter.getElementsByTagName('option')[0].selected = 'selected';
 }
 
 /**
