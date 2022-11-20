@@ -306,11 +306,11 @@ function hide(element) {
 	document.getElementById(element).classList.add('hide');
 }
 
-function disableButton(element) {
+function disableInput(element) {
 	document.getElementById(element).disabled = true;
 }
 
-function enableButton(element) {
+function enableInput(element) {
 	document.getElementById(element).disabled = false;
 }
 
@@ -382,6 +382,8 @@ function loadFile(fileInput) {
 		return;
 	}
 
+	hide('tweets');
+	innerText('tweets', '');
 	show('loading');
 
 	var reader = new FileReader();
@@ -399,9 +401,10 @@ function loadFile(fileInput) {
 
 			buildPage(tweets, zip, autoload);
 			show('username-filter-text');
+			show('tweets');
 
 			document.getElementById('username-filter-number').innerText = tweetCount;
-			enableButton('close-file');
+			enableInput('close-file');
 
 			document.getElementById('username-filter').addEventListener('change', function(e) {
 				filterReset(tweetCount);
@@ -418,9 +421,9 @@ function loadFile(fileInput) {
 				document.getElementById('myfile').value = '';
 
 				hide('username-filter-text');
-				disableButton('username-filter-reset');
-				disableButton('username-filter');
-				disableButton('close-file');
+				disableInput('username-filter-reset');
+				disableInput('username-filter');
+				disableInput('close-file');
 				innerText('tweets', '');
 				show('about');
 
@@ -459,5 +462,5 @@ function loadFile(fileInput) {
 	reader.readAsArrayBuffer(fileInput.files[0]);
 }
 
-enableButton('myfile');
-enableButton('autoload');
+enableInput('myfile');
+enableInput('autoload');
