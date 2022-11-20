@@ -9,6 +9,11 @@ function hideError() {
 	hide('error');
 } 
 
+function clearTweets() {
+	hide('tweets');
+	innerText('tweets', '');
+}
+
 function show(element) {
 	document.getElementById(element).classList.remove('hide');
 }
@@ -406,8 +411,7 @@ function loadFile(fileInput) {
 		return;
 	}
 
-	hide('tweets');
-	innerText('tweets', '');
+	clearTweets();
 	show('loading');
 
 	var reader = new FileReader();
@@ -448,7 +452,7 @@ function loadFile(fileInput) {
 				disableInput('username-filter-reset');
 				disableInput('username-filter');
 				disableInput('close-file');
-				innerText('tweets', '');
+				clearTweets();
 				show('about');
 
 				tweetCount = 0;
