@@ -446,11 +446,13 @@ function loadFile(fileInput) {
 			}
 		})
 		.catch(function(err) {
-			console.error(err);
+			hide('loading');
 			displayError('Failed to load tweets.');
+			console.error(err);
 		})
 	};
 	reader.onerror = function(err) {
+		hide('loading');
 		displayError('Failed to read file.');
 		console.error('Failed to read file', err);
 	}
