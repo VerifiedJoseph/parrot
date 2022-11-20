@@ -102,6 +102,10 @@ p {
 	padding: 10px;
 }
 
+#footer {
+	text-align: center;
+}
+
 .tweet {
 	max-width: 600px;
 	background-color: white;
