@@ -306,7 +306,7 @@ function filterReset(tweetCount) {
 }
 
 /**
- * Remove options username filter list
+ * Remove username options from filter list
  */
 function clearFilterList() {
 	var filter = document.getElementById('username-filter');
@@ -323,7 +323,7 @@ function clearFilterList() {
 /* -- CSV file functions -- */
 
 /**
- * Search the zip file for the CSV file
+ * Search the zip file for the required CSV file
  */
 function findCsvFile(zip) {
 	var regex = new RegExp('\\.csv$');
