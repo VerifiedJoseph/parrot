@@ -236,7 +236,6 @@ function filterReset(tweetCount) {
 	elements.forEach(function (element) {
 		element.classList.remove('hide');
 	});
-
 }
 
 function clearFilterList() {
