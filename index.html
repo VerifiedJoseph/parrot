@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta charset="UTF-8" />
+		<title>Twitter Media Viewer - a viewer for tweet archives created with twMediaDownloader</title>
+        <meta name="description" content="Twitter Media Viewer - a viewer for tweet archives created with twMediaDownloader">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+    <div id="container">
+        <div id="header">
+            <h1>Twitter Media Viewer</h1>
+            <h3>a viewer for tweet archives created with <a target="_blank" href="https://github.com/furyutei/twMediaDownloader">twMediaDownloader</a></h3>
+        </div>
+        <div id="options">
+            <div id="file">
+                Select a zip: <input type="file" id="myfile" disabled accept=".zip" onchange="loadFile(this)"/>
+                <button id="close-file" disabled>Close file</button>
+            </div>
+            <div id="file">
+                Auto load images & videos: <input type="checkbox" id="autoload" name="autoload" disabled> (high RAM usage)
+            </div>
+            <div id="filter">
+                Filter user: 
+                <select id="username-filter" disabled>
+                    <option disabled selected="" value="none" hidden="">Select a username</option>
+                </select>
+                <button id="username-filter-reset" disabled>Reset</button>
+                <p id="username-filter-text" class="hide">Showing 
+                    <span id="username-filter-number">0</span> tweets from 
+                    <span id="username-filter-name">all users</span>
+                </p>
+            </div>
+        </div>
+        <div id="error" class="hide"></div>
+        <div id="loading" class="hide">Loading...</div>
+        <div id="tweets"></div>
+        <noscript>
+            <div id="note">Enable JavaScript to use this tool</div>
+        </noscript>
+        <div id="about">
+            <h3>About</h3>
+            <p>Twitter Media Viewer is a JavaScript program for viewing tweets from zip archives created with the <a target="_blank" href="https://github.com/furyutei/twMediaDownloader">twMediaDownloader</a> browser extension.</p>
+            <h3>How to</h3>
+            <p>Simply select a zip created with twMediaDownloader by clicking the 'browse' button above and the viewer will generate a twitter style interface for viewing the tweets.</p>
+            <h3>Q & A</h3>
+
+            <p><i>Is any data upload from my device?</i><br>
+            <strong>No.</strong> The viewer runs completely within your web browser and does not collect or transmit any data.</p>
+
+            <p><i>Can I run it offline?</i><br>
+            <strong>Yes.</strong> The viewer can be run offline and a single file version is available.</p>
+            
+            <p><i>Does it use any third party JavaScript libraries?</i><br>
+            <strong>Yes.</strong> The viewer uses two third party JavaScript libraries:</p>
+            <ul>
+                <li><a target="_blank" href="https://github.com/Stuk/jszip">JSZip</a> (v3.10.1) - JavaScript class for generating and reading zip files.</li>
+                <li><a target="_blank" href="https://github.com/mholt/PapaParse">Papa Parse</a> (v5.3.2) - Fastest in-browser CSV parser for JavaScript.</li>
+            </ul>
+            <p><i>Who created this?</i><br>
+                It was created by UndefinedRachel, a programmer from the United Kingdom. Follow her on <a target="_blank" href="https://twitter.com/UndefinedRachel">Twitter</a> or <a target="_blank" href="https://mastodon.social/@UndefinedRachel">Mastodon</a>.
+            </p>
+        </div>
+    </div>
+    <script src="js/jszip.min.js" type="text/javascript"></script>
+    <script src="js/papaparse.min.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+</body>
+</html>
