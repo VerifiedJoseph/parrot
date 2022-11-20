@@ -74,22 +74,18 @@ p {
 #error {
 	background-color: red;
 	color: white;
-	padding: 5px;
-	font-weight: bold;
-	margin-bottom: 10px !important;
 }
 
 #note {
 	background-color: black;
 	color: white;
-	padding: 5px;
-	font-weight: bold;
-	margin-bottom: 10px !important;
-	text-align: center;
 }
 
 #loading {
 	background-color: white;
+}
+
+#loading, #note, #error {
 	padding: 5px;
 	font-weight: bold;
 	margin-bottom: 10px !important;
@@ -115,7 +111,8 @@ p {
 }
 
 .tweet > .header {
-	padding-bottom: 5px;}
+	padding-bottom: 5px;
+}
 
 .tweet > .header > .name {
 	float: left;
