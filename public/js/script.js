@@ -98,14 +98,6 @@ function createUrlLinks(text) {
 	return text;
 }
 
-function createLinks(text) {
-	text = createUrlLinks(text);
-	text = createUserLinks(text);
-	text = createHashtagLinks(text);
-
-	return text;
-}
-
 /* -- Build page functions */
 
 function buildPage(tweets, zip, autoload) {
@@ -136,6 +128,14 @@ function buildFilterList(tweets) {
 	button.disabled = false;
 }
 
+function buildLinks(text) {
+	text = createUrlLinks(text);
+	text = createUserLinks(text);
+	text = createHashtagLinks(text);
+
+	return text;
+}
+
 function buildTweets(tweets, zip, autoload) {
 	var items = document.getElementById('tweets');
 	items.innerHTML = '';
@@ -152,7 +152,7 @@ function buildTweets(tweets, zip, autoload) {
 
 		var body = document.createElement('div');
 		body.classList.add('body');
-		body.innerHTML = createLinks(tweet.text);
+		body.innerHTML = buildLinks(tweet.text);
 
 		var stats = document.createElement('div');
 		stats.classList.add('stats');
