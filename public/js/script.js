@@ -1,42 +1,58 @@
-function buildPage(tweets, zip, autoload) {
-	buildTweets(tweets, zip, autoload);
-	buildFilterList(tweets);
+/* -- DOM functions -- */
+function displayError(text) {
+	innerText('error', text);
+	show('error');
+} 
+
+function hideError() {
+	innerText('error', '');
+	hide('error');
+} 
+
+function show(element) {
+	document.getElementById(element).classList.remove('hide');
 }
 
-function buildFilterList(tweets) {
-	var users = [];
+function hide(element) {
+	document.getElementById(element).classList.add('hide');
+}
 
-	var select = document.getElementById('username-filter');
-	var button = document.getElementById('username-filter-reset');
-	var opt;
+function disableInput(element) {
+	document.getElementById(element).disabled = true;
+}
 
-	tweets.forEach(tweet => {
-		if (users.includes(tweet.username) === false) {
-			users.push(tweet.username);
+function enableInput(element) {
+	document.getElementById(element).disabled = false;
+}
 
-			opt = document.createElement('option');
-			opt.value = tweet.username;
-			opt.innerText = tweet.display_name + ' (' + tweet.username + ')';
+function innerText(element, text) {
+	document.getElementById(element).innerText = text;
+}
 
-			select.appendChild(opt);
-		}
-	});
+/* -- Helper functions -- */
 
-	select.disabled = false;
-	button.disabled = false;
+/**
+ * Get the array index for a Tweet via its ID
+ */
+function getTweetIndex(id, tweets) {
+	var check = (element) => element.id === id
+	return tweets.findIndex(check);
+}
+
+/**
+ * Extract tweet ID from tweet URL
+ */
+ function getIdFromUrl(url) {
+	var regex = new RegExp('https?:\\/\\/twitter\\.com\\/\\w+\\/status\\/([0-9]+)');
+	var id = url.match(regex);
+	return id[1];
 }
 
 function formatNumber(number) {
 	return new Intl.NumberFormat().format(number)
 }
 
-function createLinks(text) {
-	text = createUrlLinks(text);
-	text = createUserLinks(text);
-	text = createHashtagLinks(text);
-
-	return text;
-}
+/* -- Link create functions -- */
 
 function createUserLinks(text) {
 	var regex = new RegExp('(?:(@[\\w]+))', 'gm');
@@ -75,7 +91,45 @@ function createUrlLinks(text) {
 		})
 	}
 	return text;
-} 
+}
+
+function createLinks(text) {
+	text = createUrlLinks(text);
+	text = createUserLinks(text);
+	text = createHashtagLinks(text);
+
+	return text;
+}
+
+/* -- Build page functions */
+
+function buildPage(tweets, zip, autoload) {
+	buildTweets(tweets, zip, autoload);
+	buildFilterList(tweets);
+}
+
+function buildFilterList(tweets) {
+	var users = [];
+
+	var select = document.getElementById('username-filter');
+	var button = document.getElementById('username-filter-reset');
+	var opt;
+
+	tweets.forEach(tweet => {
+		if (users.includes(tweet.username) === false) {
+			users.push(tweet.username);
+
+			opt = document.createElement('option');
+			opt.value = tweet.username;
+			opt.innerText = tweet.display_name + ' (' + tweet.username + ')';
+
+			select.appendChild(opt);
+		}
+	});
+
+	select.disabled = false;
+	button.disabled = false;
+}
 
 function buildTweets(tweets, zip, autoload) {
 	var items = document.getElementById('tweets');
@@ -209,6 +263,11 @@ function buildMedia(items, zip) {
 	return media;
 }
 
+/* -- Filter functions -- */
+
+/**
+ * Filter tweets by username
+ */
 function filter(filter) {
 	var elements = document.querySelectorAll('[data-username]');
 	var count = 0;
@@ -227,6 +286,9 @@ function filter(filter) {
 	innerText('username-filter-name', filter);
 }
 
+/**
+ * Reset filter, show all tweets
+ */
 function filterReset(tweetCount) {
 	var elements = document.querySelectorAll('[data-username]');
 
@@ -238,6 +300,9 @@ function filterReset(tweetCount) {
 	});
 }
 
+/**
+ * Remove options username filter list
+ */
 function clearFilterList() {
 	var filter = document.getElementById('username-filter');
 
@@ -250,17 +315,7 @@ function clearFilterList() {
 	filter.getElementsByTagName('option')[0].selected = 'selected';
 }
 
-/**
- * Extract tweet ID from tweet URL
- * 
- * @param {string} url 
- * @returns Tweet ID
- */
-function getIdFromUrl(url) {
-	var regex = new RegExp('https?:\\/\\/twitter\\.com\\/\\w+\\/status\\/([0-9]+)');
-	var id = url.match(regex);
-	return id[1];
-}
+/* -- CSV file functions -- */
 
 /**
  * Search the zip file for the CSV file
@@ -282,41 +337,6 @@ function findCsvFile(zip) {
 	console.log('Found csv file: ' + filename);
 
 	return filename;
-}
-
-function getTweetIndex(id, tweets) {
-	var check = (element) => element.id === id
-	return tweets.findIndex(check);
-}
-
-function displayError(text) {
-	innerText('error', text);
-	show('error');
-} 
-
-function hideError() {
-	innerText('error', '');
-	hide('error');
-} 
-
-function show(element) {
-	document.getElementById(element).classList.remove('hide');
-}
-
-function hide(element) {
-	document.getElementById(element).classList.add('hide');
-}
-
-function disableInput(element) {
-	document.getElementById(element).disabled = true;
-}
-
-function enableInput(element) {
-	document.getElementById(element).disabled = false;
-}
-
-function innerText(element, text) {
-	document.getElementById(element).innerText = text;
 }
 
 /**
@@ -375,6 +395,9 @@ async function processCsvFile(filename, zip) {
 	});  
 }
 
+/**
+ * Load a zip archive and display tweets
+ */
 function loadFile(fileInput) {
 	hideError();
 	clearFilterList();
