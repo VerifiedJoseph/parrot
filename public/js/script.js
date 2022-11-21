@@ -94,7 +94,7 @@ function createHashtagLinks(text) {
 }
 
 function createUrlLinks(text) {
-    var regex = new RegExp('(?:(https?:\\/\\/[\\w.\\/-]+))', 'gm');
+    var regex = new RegExp('(?:(https?:\\/\\/[\\w.\\/-?&]+))', 'gm');
     var found = text.match(regex);
 
     if (found !== null) {
@@ -111,6 +111,12 @@ function createUrlLinks(text) {
 function buildPage(data, zip, autoload) {
     buildTweets(data.tweets, zip, autoload);
     buildFilterList(data.users);
+
+    innerText('username-filter-number', data.tweets.length);
+    innerText('username-filter-name', data.users.length + ' users');
+
+    show('username-filter-text');
+    show('tweets');
 }
 
 function buildFilterList(users) {
@@ -320,10 +326,10 @@ function filter(users, filter) {
 /**
  * Reset filter, show all tweets
  */
-function filterReset(tweetCount) {
+function filterReset(count) {
     var elements = document.querySelectorAll('[data-username]');
 
-    innerText('username-filter-number', tweetCount);
+    innerText('username-filter-number', count);
     innerText('username-filter-name', 'all users');
 
     elements.forEach(function (element) {
@@ -380,7 +386,13 @@ async function processCsvFile(filename, zip) {
 
             var data = {
                 tweets: [],
-                users: []
+                users: [],
+                stats: {
+                    users: 0,
+                    tweets: 0,
+                    images: 0,
+                    videos: 0
+                }
             };
 
             results.data.forEach((row, index) => {
@@ -393,6 +405,7 @@ async function processCsvFile(filename, zip) {
                             tweets: 0
                         }
 
+                        data.stats.users++;
                         data.users.push(user);
                     }
 
@@ -427,12 +440,15 @@ async function processCsvFile(filename, zip) {
                             tweet.media.push(media);
 
                             if (row[5] === 'Image') {
+                                data.stats.images++;
                                 tweet.stats.images++;
                             } else {
+                                data.stats.videos++;
                                 tweet.stats.videos++;
                             }
                         }
 
+                        data.stats.tweets++;
                         data.users[userIndex].tweets++;
 
                         data.tweets.push(tweet);
@@ -444,8 +460,10 @@ async function processCsvFile(filename, zip) {
                         }
 
                         if (row[5] === 'Image') {
+                            data.stats.images++;
                             data.tweets[tweetIndex].stats.images++;
                         } else {
+                            data.stats.videos++;
                             data.tweets[tweetIndex].stats.videos++;
                         }
 
@@ -472,6 +490,7 @@ function loadFile(fileInput) {
 
     clearTweets();
     show('loading');
+    enableInput('close-file');
 
     console.log('File: ' + fileInput.files[0].name);
 
@@ -481,42 +500,25 @@ function loadFile(fileInput) {
         .then(async function(zip) {
             var csvFilename = findCsvFile(zip);
             var data = await processCsvFile(csvFilename, zip);
-            tweetCount = data.tweets.length;
 
             var autoload = document.getElementById('autoload').checked;
+
+            console.log(data);
 
             hide('loading');
             hide('about');
 
             buildPage(data, zip, autoload);
-            show('username-filter-text');
-            show('tweets');
-
-            document.getElementById('username-filter-number').innerText = tweetCount;
-            document.getElementById('username-filter-name').innerText = data.users.length + ' users';
-            enableInput('close-file');
 
             document.getElementById('username-filter').addEventListener('change', function(e) {
-                filterReset(tweetCount);
+                filterReset(data.stats.tweets);
                 filter(data.users, e.target.value);
             });
 
             document.getElementById('username-filter-reset').addEventListener('click', function(e) {
                 document.getElementById('username-filter').getElementsByTagName('option')[0].selected = 'selected';
 
-                filterReset(tweetCount);
-            });
-
-            document.getElementById('close-file').addEventListener('click', function(e) {
-                document.getElementById('myfile').value = '';
-
-                hide('username-filter-text');
-                disableInput('username-filter-reset');
-                disableInput('username-filter');
-                disableInput('close-file');
-                clearTweets();
-                clearFilterList();
-                show('about');
+                filterReset(data.stats.tweets);
             });
 
             if (autoload === false) {
@@ -526,7 +528,6 @@ function loadFile(fileInput) {
                     placeholders[i].addEventListener('click', function(e) {
                         var id = e.target.getAttribute('data-tweet-id');
                         var index = getTweetIndex(id, data.tweets);
-
                         var media = buildMedia(data.tweets[index].media, zip);
 
                         e.target.parentNode.replaceChild(media, e.target);
@@ -547,6 +548,19 @@ function loadFile(fileInput) {
     }
     reader.readAsArrayBuffer(fileInput.files[0]);
 }
+
+document.getElementById('close-file').addEventListener('click', function(e) {
+    document.getElementById('myfile').value = '';
+
+    hide('username-filter-text');
+    disableInput('username-filter-reset');
+    disableInput('username-filter');
+    disableInput('close-file');
+    clearTweets();
+    clearFilterList();
+    show('about');
+    hide('error');
+});
 
 enableInput('myfile');
 enableInput('autoload');
