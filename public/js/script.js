@@ -260,41 +260,51 @@ function buildMedia(items, zip) {
     gallery.classList.add('gallery');
 
     items.forEach(item => {
-        zip.file(item.filename)
-        .async("arraybuffer")
-        .then(function(content) {
-            var buffer = new Uint8Array(content);
-            var blob = new Blob([buffer.buffer]);
-            var url = URL.createObjectURL(blob);
+        if (zip.file(item.filename) !== null) {
+            zip.file(item.filename)
+            .async("arraybuffer")
+            .then(function(content) {
+                var buffer = new Uint8Array(content);
+                var blob = new Blob([buffer.buffer]);
+                var url = URL.createObjectURL(blob);
+    
+                if (item.type === 'Image') {
+                    var image = new Image;
+                    image.src = url;
+                    image.setAttribute('loading', 'lazy');
+    
+                    var element = document.createElement('a');
+                    element.setAttribute('href', url);
+                    element.setAttribute('target', '_blank');
+    
+                    element.appendChild(image);
+                }
+    
+                if (item.type === 'Video' || item.type == 'GIF') {
+                    var element = document.createElement('video');
+                    element.src = url;
+                    element.setAttribute('controls', '');
+                }
+    
+                var div = document.createElement('div')
+                div.appendChild(element)
+    
+                gallery.appendChild(div)
+            })
+            .catch(function(err) {
+                console.error(err);
+            })
 
-            if (item.type === 'Image') {
-                var image = new Image;
-                image.src = url;
-                image.setAttribute('loading', 'lazy');
+            media.appendChild(gallery)
+        } else {
+            console.log('file not found: ' + item.filename);
 
-                var element = document.createElement('a');
-                element.setAttribute('href', url);
-                element.setAttribute('target', '_blank');
+            var error = document.createElement('div');
+            error.classList.add('error');
+            error.innerText = 'File not found: ' + item.filename;
 
-                element.appendChild(image);
-            }
-
-            if (item.type === 'Video' || item.type == 'GIF') {
-                var element = document.createElement('video');
-                element.src = url;
-                element.setAttribute('controls', '');
-            }
-
-            var div = document.createElement('div')
-            div.appendChild(element)
-
-            gallery.appendChild(div)
-        },
-        function(e) {
-            console.log("Error reading " + file.name + " : " + e.message);
-        });
-
-        media.appendChild(gallery)
+            media.appendChild(error)
+        }
     })
 
     return media;

@@ -143,6 +143,14 @@ p {
 	cursor: pointer;
 }
 
+.tweet > .media > .error {
+	text-align: center;
+	font-weight: bold;
+	padding: 4px;
+	background-color: red;
+	color: white;
+}
+
 .tweet > .media > .gallery {
 	display: grid;
     grid-template-columns: auto fit-content(600px) auto;
