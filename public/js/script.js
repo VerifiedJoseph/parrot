@@ -485,8 +485,6 @@ function loadFile(fileInput) {
 			var data = await processCsvFile(csvFilename, zip);
 			tweetCount = data.tweets.length;
 
-			console.log(data);
-
 			var autoload = document.getElementById('autoload').checked;
 
 			hide('loading');
