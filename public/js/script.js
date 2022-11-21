@@ -221,7 +221,7 @@ function buildTweets(tweets, zip, autoload) {
 }
 
 function buildMediaPlaceholder(tweetId, stats) {
-    var placeholder = document.createElement('div');
+    var placeholder = document.createElement('button');
     placeholder.classList.add('placeholder');
     placeholder.setAttribute('data-tweet-id', tweetId);
 
