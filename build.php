@@ -82,13 +82,13 @@ function save(string $page, string $path)
 
 try {
 	// All one version
-	$page = loadfile('templates/twMediaViewer.html');
+	$page = loadfile('templates/parrot-tweet-viewer.html');
 	$page = addInlineParts($page, $files);
 	$page = addBuildDetails($page);
-	save($page, 'public/twMediaViewer.html');
+	save($page, 'public/parrot-tweet-viewer.html');
 
 	// Main website version
-	$page = loadfile('templates/twMediaViewer.html');
+	$page = loadfile('templates/parrot-tweet-viewer.html');
 	$page = addExternalParts($page, $files);
 	$page = addBuildDetails($page);
 	save($page, 'public/index.html');
