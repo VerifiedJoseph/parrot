@@ -518,6 +518,7 @@ function loadFile(fileInput) {
 				disableInput('username-filter');
 				disableInput('close-file');
 				clearTweets();
+				clearFilterList();
 				show('about');
 			});
 
