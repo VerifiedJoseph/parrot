@@ -3,6 +3,12 @@
 /**
  * Script for building the single file version
  */
+
+$texts = [
+	'name' => 'Parrot',
+	'description' => 'A viewer for tweet archives created with the Twitter Media Downloader'
+];
+
 $files = [
 	'css' => 'style.css',
 	'jszip' => 'js/jszip.min.js',
@@ -10,7 +16,7 @@ $files = [
 	'script' => 'js/script.js'
 ];
 
-function output(string $text)
+function output(string $text): void
 {
 	echo $text . " \n";
 }
@@ -60,6 +66,15 @@ function addExternalParts($page, $files): string
 	return $page;
 }
 
+function addText($page, $texts): string
+{
+	foreach ($texts as $id => $text) {
+		$page = str_replace('{'. $id .'}', $text, $page);
+	}
+
+	return $page;
+}
+
 function addBuildDetails(string $page): string
 {
 	exec('git rev-parse --verify HEAD', $output);
@@ -69,7 +84,7 @@ function addBuildDetails(string $page): string
 	return $page;
 }
 
-function save(string $page, string $path)
+function save(string $page, string $path): void
 {
 	$status = file_put_contents($path, $page);
 
@@ -84,12 +99,14 @@ try {
 	// All one version
 	$page = loadfile('templates/parrot-tweet-viewer.html');
 	$page = addInlineParts($page, $files);
+	$page = addText($page, $texts);
 	$page = addBuildDetails($page);
 	save($page, 'public/parrot-tweet-viewer.html');
 
 	// Main website version
 	$page = loadfile('templates/parrot-tweet-viewer.html');
 	$page = addExternalParts($page, $files);
+	$page = addText($page, $texts);
 	$page = addBuildDetails($page);
 	save($page, 'public/index.html');
 
