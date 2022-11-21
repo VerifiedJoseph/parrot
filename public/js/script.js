@@ -395,8 +395,16 @@ async function processCsvFile(filename, zip) {
                 }
             };
 
+            var rowsAfter = 0;
+            for (var index = 0; index < results.data.length; index++) {
+                if (results.data[index][0] == 'Tweet date') {
+                    rowsAfter = index;
+                    break;
+                }
+            }
+
             results.data.forEach((row, index) => {
-                if (index > 4) {
+                if (index > rowsAfter) {
 
                     if (getUserIndex(row[3], data.users) === -1) {
                         var user = {
