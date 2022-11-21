@@ -378,9 +378,10 @@ async function processCsvFile(filename, zip) {
 		zip.file(filename).async('text').then(function(content) {
 			var results = Papa.parse(content);
 
-			var data = {};
-			data.tweets = [];
-			data.users = [];
+			var data = {
+				tweets: [],
+				users: []
+			};
 
 			results.data.forEach((row, index) => {
 				if (index > 4) {
@@ -429,9 +430,9 @@ async function processCsvFile(filename, zip) {
 							},
 							remarks: row[8],
 							text: row[9],
-							replies: row[10],
-							retweets: row[11],
-							likes: row[12],
+							replies: Number(row[10]),
+							retweets: Number(row[11]),
+							likes: Number(row[12]),
 						};
 
 						var media = {}
