@@ -45,6 +45,14 @@ function getTweetIndex(id, tweets) {
 }
 
 /**
+ * Get the array index for a User via its username
+ */
+ function getUserIndex(username, users) {
+	var check = (element) => element.username === username
+	return users.findIndex(check);
+}
+
+/**
  * Extract tweet ID from tweet URL
  */
  function getIdFromUrl(url) {
