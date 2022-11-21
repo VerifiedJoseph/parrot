@@ -108,28 +108,23 @@ function createUrlLinks(text) {
 
 /* -- Build page functions */
 
-function buildPage(tweets, zip, autoload) {
-	buildTweets(tweets, zip, autoload);
-	buildFilterList(tweets);
+function buildPage(data, zip, autoload) {
+	buildTweets(data.tweets, zip, autoload);
+	buildFilterList(data.users);
 }
 
-function buildFilterList(tweets) {
-	var users = [];
-
+function buildFilterList(users) {
 	var select = document.getElementById('username-filter');
 	var button = document.getElementById('username-filter-reset');
 	var opt;
 
-	tweets.forEach(tweet => {
-		if (users.includes(tweet.username) === false) {
-			users.push(tweet.username);
-
+	users.forEach(user => {
 			opt = document.createElement('option');
-			opt.value = tweet.username;
-			opt.innerText = tweet.display_name + ' (' + tweet.username + ')';
+			opt.value = user.username;
+			opt.innerText = user.display_name + ' (' + user.username + ') - '
+				+ formatNumber(user.tweets) + ' tweets';
 
 			select.appendChild(opt);
-		}
 	});
 
 	select.disabled = false;
@@ -281,22 +276,22 @@ function buildMedia(items, zip) {
 /**
  * Filter tweets by username
  */
-function filter(filter) {
+function filter(users, filter) {
+	var index = getUserIndex(filter, users);
+	var user = users[index];
+
 	var elements = document.querySelectorAll('[data-username]');
-	var count = 0;
 
 	elements.forEach(function (element) {
 		var username = element.getAttribute('data-username');
 
 		if (username !== filter) {
 			element.classList.add('hide');
-		} else {
-			count++;
 		}
 	});
 
-	innerText('username-filter-number', count);
-	innerText('username-filter-name', filter);
+	innerText('username-filter-number', user.tweets);
+	innerText('username-filter-name', user.username);
 }
 
 /**
@@ -344,10 +339,10 @@ function findCsvFile(zip) {
 	}
 
 	if (filename === null) {
-		throw Error('CSV file not found in zip file.');
+		throw Error('No CSV file not found in zip file.');
 	}
 
-	console.log('Found csv file: ' + filename);
+	console.log('CSV file: ' + filename);
 
 	return filename;
 }
@@ -357,33 +352,54 @@ function findCsvFile(zip) {
  */
 async function processCsvFile(filename, zip) {
 	return new Promise((resolve) => {
-		zip.file(filename).async('text').then(function(data) {
-			var results = Papa.parse(data);
-			var tweets = [];
+		zip.file(filename).async('text').then(function(content) {
+			var results = Papa.parse(content);
+
+			var data = {};
+			data.tweets = [];
+			data.users = [];
 
 			results.data.forEach((row, index) => {
 				if (index > 4) {
-					var id = getIdFromUrl(row[4]);
-					var index = getTweetIndex(id, tweets);
 
-					if (index !== -1) {
-						var media = {}
-
-						if (row[5] !== 'No media') {
-							media.type = row[5];
-							media.url = row[6];
-							media.filename = row[7];
-							tweets[index].media.push(media);
+					if (getUserIndex(row[3], data.users) === -1) {
+						var user = {
+							display_name: row[2],
+							username: row[3],
+							tweets: 0
 						}
 
+						data.users.push(user);
+					}
+
+					var id = getIdFromUrl(row[4]);
+					var tweetIndex = getTweetIndex(id, data.tweets);
+					var userIndex = getUserIndex(row[3], data.users);
+
+					if (tweetIndex !== -1) {
+						if (row[5] !== 'No media') {
+							var media = {
+								type: row[5],
+								url: row[6],
+								filename: row[7]
+							}
+
+							data.tweets[tweetIndex].media.push(media);
+						}
 					} else {
-						var tweet = {};
-						tweet.date = row[0];
-						tweet.display_name = row[2];
-						tweet.username = row[3];
-						tweet.url = row[4];
-						tweet.id = id;
-						tweet.media = [];
+						var tweet = {
+							date: row[0],
+							display_name: row[2],
+							username: row[3],
+							url: row[4],
+							id: id,
+							media: [],
+							remarks: row[8],
+							text: row[9],
+							replies: row[10],
+							retweets: row[11],
+							likes: row[12],
+						};
 
 						var media = {}
 						if (row[5] !== 'No media') {
@@ -393,17 +409,14 @@ async function processCsvFile(filename, zip) {
 							tweet.media.push(media);
 						}
 
-						tweet.remarks = row[8];
-						tweet.text = row[9];
-						tweet.replies = row[10];
-						tweet.retweets = row[11];
-						tweet.likes = row[12];
-						tweets.push(tweet);
+						data.users[userIndex].tweets++;
+
+						data.tweets.push(tweet);
 					}
 				}
 			});
 
-			resolve(tweets)
+			resolve(data)
 		})
 	});  
 }
@@ -422,29 +435,34 @@ function loadFile(fileInput) {
 	clearTweets();
 	show('loading');
 
+	console.log('File: ' + fileInput.files[0].name);
+
 	var reader = new FileReader();
 	reader.onload = function(ev) {
 		JSZip.loadAsync(ev.target.result)
 		.then(async function(zip) {
 			var csvFilename = findCsvFile(zip);
-			var tweets = await processCsvFile(csvFilename, zip);
-			tweetCount = tweets.length;
+			var data = await processCsvFile(csvFilename, zip);
+			tweetCount = data.tweets.length;
+
+			console.log(data);
 
 			var autoload = document.getElementById('autoload').checked;
 
 			hide('loading');
 			hide('about');
 
-			buildPage(tweets, zip, autoload);
+			buildPage(data, zip, autoload);
 			show('username-filter-text');
 			show('tweets');
 
 			document.getElementById('username-filter-number').innerText = tweetCount;
+			document.getElementById('username-filter-name').innerText = data.users.length + ' users';
 			enableInput('close-file');
 
 			document.getElementById('username-filter').addEventListener('change', function(e) {
 				filterReset(tweetCount);
-				filter(e.target.value);
+				filter(data.users, e.target.value);
 			});
 
 			document.getElementById('username-filter-reset').addEventListener('click', function(e) {
@@ -475,9 +493,9 @@ function loadFile(fileInput) {
 				for (var i = 0; i < placeholders.length; i++) {
 					placeholders[i].addEventListener('click', function(e) {
 						var id = e.target.getAttribute('data-tweet-id');
-						var index = getTweetIndex(id, tweets);
+						var index = getTweetIndex(id, data.tweets);
 
-						var media = buildMedia(tweets[index].media, zip);
+						var media = buildMedia(data.tweets[index].media, zip);
 
 						e.target.parentNode.replaceChild(media, e.target);
 					});
