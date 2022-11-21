@@ -445,8 +445,6 @@ function loadFile(fileInput) {
 			var data = await processCsvFile(csvFilename, zip);
 			tweetCount = data.tweets.length;
 
-			console.log(data);
-
 			var autoload = document.getElementById('autoload').checked;
 
 			hide('loading');
@@ -480,11 +478,6 @@ function loadFile(fileInput) {
 				disableInput('close-file');
 				clearTweets();
 				show('about');
-
-				tweetCount = 0;
-
-				filterReset(0);
-				loadFile();
 			});
 
 			if (autoload === false) {
