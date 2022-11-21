@@ -94,7 +94,7 @@ function createHashtagLinks(text) {
 }
 
 function createUrlLinks(text) {
-    var regex = new RegExp('(?:(https?:\\/\\/[\\w.\\/-?&]+))', 'gm');
+    var regex = new RegExp('(https?:\\/\\/(?:www\\.)?(?:[a-zA-Z0-9-.]{1,256}\\.[a-z]{2,20})(\\:[0-9]{2,4})?(?:\\/[a-zA-Z0-9@:%_\\+.,~#"\\\'!?&\\/\\/=\\-*]+|\\/)?)', 'gm');
     var found = text.match(regex);
 
     if (found !== null) {
