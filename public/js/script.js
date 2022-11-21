@@ -155,6 +155,8 @@ function buildTweets(tweets, zip, autoload) {
         var item = document.createElement('div');
         item.classList.add('tweet');
         item.setAttribute('data-username', tweet.username);
+        item.setAttribute('data-id', tweet.id);
+        item.setAttribute('data-timestamp', tweet.date);
     
         var header = document.createElement('div');
         header.classList.add('header');
