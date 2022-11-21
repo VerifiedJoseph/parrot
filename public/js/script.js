@@ -400,23 +400,7 @@ async function processCsvFile(filename, zip) {
                     var tweetIndex = getTweetIndex(id, data.tweets);
                     var userIndex = getUserIndex(row[3], data.users);
 
-                    if (tweetIndex !== -1) {
-                        if (row[5] !== 'No media') {
-                            var media = {
-                                type: row[5],
-                                url: row[6],
-                                filename: row[7]
-                            }
-
-                            if (row[5] === 'Image') {
-                                data.tweets[tweetIndex].stats.images++;
-                            } else {
-                                data.tweets[tweetIndex].stats.videos++;
-                            }
-
-                            data.tweets[tweetIndex].media.push(media);
-                        }
-                    } else {
+                    if (tweetIndex === -1) {
                         var tweet = {
                             date: row[0],
                             display_name: row[2],
@@ -452,6 +436,20 @@ async function processCsvFile(filename, zip) {
                         data.users[userIndex].tweets++;
 
                         data.tweets.push(tweet);
+                    } else if (tweetIndex !== -1 && row[5] !== 'No media') {
+                        var media = {
+                            type: row[5],
+                            url: row[6],
+                            filename: row[7]
+                        }
+
+                        if (row[5] === 'Image') {
+                            data.tweets[tweetIndex].stats.images++;
+                        } else {
+                            data.tweets[tweetIndex].stats.videos++;
+                        }
+
+                        data.tweets[tweetIndex].media.push(media);
                     }
                 }
             });
