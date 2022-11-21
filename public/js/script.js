@@ -205,7 +205,7 @@ function buildTweets(tweets, zip, autoload) {
 			if (autoload === true) {
 				item.appendChild(buildMedia(tweet.media, zip));
 			} else {
-				item.appendChild(buildMediaPlaceholder(tweet.id));
+				item.appendChild(buildMediaPlaceholder(tweet.id, tweet.stats));
 			}
 		}
 
@@ -214,11 +214,34 @@ function buildTweets(tweets, zip, autoload) {
 	});
 }
 
-function buildMediaPlaceholder(tweetId) {
+function buildMediaPlaceholder(tweetId, stats) {
 	var placeholder = document.createElement('div');
 	placeholder.classList.add('placeholder');
 	placeholder.setAttribute('data-tweet-id', tweetId);
-	placeholder.innerText = 'Load media';
+
+	var text = 'Load media ';
+
+	if (stats.images > 0) {
+		var word = ' images';
+
+		if (stats.images === 1) {
+			word = ' image';
+		}
+
+		text += '('+ stats.images + word +')';
+	}
+
+	if (stats.videos > 0) {
+		var word = ' videos';
+
+		if (stats.videos === 1) {
+			word = ' video';
+		}
+
+		text += '('+ stats.videos + word +')';
+	}
+
+	placeholder.innerText = text;
 	
 	return placeholder;
 }
@@ -384,6 +407,12 @@ async function processCsvFile(filename, zip) {
 								filename: row[7]
 							}
 
+							if (row[5] === 'Image') {
+								data.tweets[tweetIndex].stats.images++;
+							} else {
+								data.tweets[tweetIndex].stats.videos++;
+							}
+
 							data.tweets[tweetIndex].media.push(media);
 						}
 					} else {
@@ -394,6 +423,10 @@ async function processCsvFile(filename, zip) {
 							url: row[4],
 							id: id,
 							media: [],
+							stats: {
+								images: 0,
+								videos: 0
+							},
 							remarks: row[8],
 							text: row[9],
 							replies: row[10],
@@ -407,6 +440,12 @@ async function processCsvFile(filename, zip) {
 							media.url = row[6];
 							media.filename = row[7];
 							tweet.media.push(media);
+
+							if (row[5] === 'Image') {
+								tweet.stats.images++;
+							} else {
+								tweet.stats.videos++;
+							}
 						}
 
 						data.users[userIndex].tweets++;
@@ -444,6 +483,8 @@ function loadFile(fileInput) {
 			var csvFilename = findCsvFile(zip);
 			var data = await processCsvFile(csvFilename, zip);
 			tweetCount = data.tweets.length;
+
+			console.log(data);
 
 			var autoload = document.getElementById('autoload').checked;
 
