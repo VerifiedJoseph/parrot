@@ -299,15 +299,19 @@ function buildMedia(items, zip) {
         } else {
             console.log('file not found: ' + item.filename);
 
-            var error = document.createElement('div');
-            error.classList.add('error');
-            error.innerText = 'File not found: ' + item.filename;
-
-            media.appendChild(error)
+            media.appendChild(buildMediaError(item.filename))
         }
     })
 
     return media;
+}
+
+function buildMediaError(filename) {
+    var error = document.createElement('div');
+    error.classList.add('error');
+    error.innerText = 'File not found: ' + filename;
+
+    return error;
 }
 
 /* -- Filter functions -- */
