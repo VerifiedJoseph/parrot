@@ -15,7 +15,6 @@ $jsFiles = [
     'libraries/autolinker.min.js',
     'dom.js',
     'helper.js',
-    'links.js',
     'build.js',
     'filter.js',
     'script.js'
