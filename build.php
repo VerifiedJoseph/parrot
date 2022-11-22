@@ -12,6 +12,7 @@ $texts = [
 $jsFiles = [
     'libraries/jszip.min.js',
     'libraries/papaparse.min.js',
+    'libraries/autolinker.min.js',
     'dom.js',
     'helper.js',
     'links.js',
