@@ -13,6 +13,7 @@ $jsFiles = [
     'libraries/jszip.min.js',
     'libraries/papaparse.min.js',
     'dom.js',
+    'helper.js',
     'build.js',
     'script.js'
 ];
