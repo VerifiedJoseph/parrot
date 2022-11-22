@@ -16,6 +16,7 @@ $jsFiles = [
     'helper.js',
     'links.js',
     'build.js',
+    'filter.js',
     'script.js'
 ];
 

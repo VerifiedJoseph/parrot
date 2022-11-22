@@ -47,7 +47,7 @@ function buildTweets(tweets, zip, autoload) {
         item.setAttribute('data-username', tweet.username);
         item.setAttribute('data-id', tweet.id);
         item.setAttribute('data-timestamp', tweet.date);
-    
+
         var header = document.createElement('div');
         header.classList.add('header');
 
