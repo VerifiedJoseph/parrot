@@ -28,7 +28,7 @@ function buildFilterList(users) {
 }
 
 function buildLinks(text) {
-    var autoLinker = new Autolinker( {
+    var autoLinker = new Autolinker({
         urls: {
             schemeMatches: true,
             tldMatches: true,
@@ -37,9 +37,9 @@ function buildLinks(text) {
         email: true,
         mention: 'twitter',
         hashtag: 'twitter',
-        stripPrefix : false,
+        stripPrefix: false,
         stripTrailingSlash : false,
-        newWindow   : true,
+        newWindow: true,
     });
     
     return autoLinker.link(text);
