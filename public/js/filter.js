@@ -54,20 +54,6 @@
 }
 
 /**
- * Reset filter, show all tweets
- */
-/*function filterReset(count) {
-    var elements = document.querySelectorAll('[data-username]');
-
-    innerText('username-filter-number', count);
-    innerText('username-filter-name', 'all users');
-
-    elements.forEach(function (element) {
-        element.classList.remove('hide');
-    });
-}*/
-
-/**
  * Remove username options from user filter list
  */
 function clearFilterList() {
