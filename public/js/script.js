@@ -1,55 +1,3 @@
-/* -- Filter functions -- */
-
-/**
- * Filter tweets by username
- */
-function filter(users, filter) {
-    var index = getUserIndex(filter, users);
-    var user = users[index];
-
-    var elements = document.querySelectorAll('[data-username]');
-
-    elements.forEach(function (element) {
-        var username = element.getAttribute('data-username');
-
-        if (username !== filter) {
-            element.classList.add('hide');
-        }
-    });
-
-    innerText('username-filter-number', user.tweets);
-    innerText('username-filter-name', user.username);
-}
-
-/**
- * Reset filter, show all tweets
- */
-function filterReset(count) {
-    var elements = document.querySelectorAll('[data-username]');
-
-    innerText('username-filter-number', count);
-    innerText('username-filter-name', 'all users');
-
-    elements.forEach(function (element) {
-        element.classList.remove('hide');
-    });
-}
-
-/**
- * Remove username options from filter list
- */
-function clearFilterList() {
-    var filter = document.getElementById('username-filter');
-
-    filter.querySelectorAll('option').forEach(function (element, index) {
-        if (index != 0) {
-            element.parentNode.removeChild(element)
-        }
-    });
-
-    filter.getElementsByTagName('option')[0].selected = 'selected';
-}
-
 /* -- CSV file functions -- */
 
 /**
@@ -216,15 +164,25 @@ function loadFile(fileInput) {
 
             buildPage(data, zip, autoload);
 
+            enableInput('media-filter-reset');
+            enableInput('media-filter');
+
             document.getElementById('username-filter').addEventListener('change', function(e) {
-                filterReset(data.stats.tweets);
-                filter(data.users, e.target.value);
+                filter(data);
+            });
+
+            document.getElementById('media-filter').addEventListener('change', function(e) {
+                filter(data);
             });
 
             document.getElementById('username-filter-reset').addEventListener('click', function(e) {
                 document.getElementById('username-filter').getElementsByTagName('option')[0].selected = 'selected';
+                filter(data);
+            });
 
-                filterReset(data.stats.tweets);
+            document.getElementById('media-filter-reset').addEventListener('click', function(e) {
+                document.getElementById('media-filter').getElementsByTagName('option')[0].selected = 'selected';
+                filter(data);
             });
 
             if (autoload === false) {
@@ -262,6 +220,9 @@ document.getElementById('close-file').addEventListener('click', function(e) {
     hide('username-filter-text');
     disableInput('username-filter-reset');
     disableInput('username-filter');
+    disableInput('media-filter-reset');
+    disableInput('media-filter');
+
     disableInput('close-file');
     clearTweets();
     clearFilterList();
