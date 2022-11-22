@@ -9,11 +9,16 @@ $texts = [
     'description' => 'A viewer for tweet archives created with the Twitter Media Downloader'
 ];
 
-$files = [
-    'css' => 'style.css',
-    'jszip' => 'js/jszip.min.js',
-    'papaparse' => 'js/papaparse.min.js',
-    'script' => 'js/script.js'
+$jsFiles = [
+    'libraries/jszip.min.js',
+    'libraries/papaparse.min.js',
+    'dom.js',
+    'build.js',
+    'script.js'
+];
+
+$cssFiles = [
+    'style.css'
 ];
 
 function output(string $text): void
@@ -32,36 +37,38 @@ function loadfile($path): string
     return $page;
 }
 
-function addInlineParts($page, $files): string
+function addCssFiles($page, array $files, bool $embed = false): string
 {
-    foreach ($files as $id => $file) {
-        $data = loadfile('public/' . $file);
+    $data = '';
 
-        if ($id === 'css') {
-            $data = '<style>' . $data . '</style>';
+    foreach ($files as $file) {
+        if ($embed === true) {
+            $data .= '<style>' . loadfile('public/' . $file) . '</style>';
 
         } else {
-            $data = '<script>' . $data . '</script>';
+            $data .= '<link rel="stylesheet" type="text/css" href="'. $file .'" />';
         }
-
-        $page = str_replace('{'. $id .'}', $data, $page);
     }
+
+    $page = str_replace('{css}', $data, $page);
 
     return $page;
 }
 
-function addExternalParts($page, $files): string
+function addJsFiles($page, array $files, bool $embed = false): string
 {
-    foreach ($files as $id => $file) {
-        if ($id === 'css') {
-            $data = '<link rel="stylesheet" type="text/css" href="'. $file .'" />';
+    $data = '';
+
+    foreach ($files as $file) {
+        if ($embed === true) {
+            $data .= '<script>' . loadfile('public/js/' . $file) . '</script>';
 
         } else {
-            $data = '<script src="'. $file .'" type="text/javascript"></script>';
+            $data .= '<script src="js/'. $file .'" type="text/javascript"></script>';
         }
-
-        $page = str_replace('{'. $id .'}', $data, $page);
     }
+
+    $page = str_replace('{js}', $data, $page);
 
     return $page;
 }
@@ -98,14 +105,18 @@ function save(string $page, string $path): void
 try {
     // All one version
     $page = loadfile('templates/parrot-tweet-viewer.html');
-    $page = addInlineParts($page, $files);
+    $page = addCssFiles($page, $cssFiles, true);
+    $page = addJsFiles($page, $jsFiles, true);
+    
+    //$page = addInlineParts($page, $files);
     $page = addText($page, $texts);
     $page = addBuildDetails($page);
     save($page, 'public/parrot-tweet-viewer.html');
 
     // Main website version
     $page = loadfile('templates/parrot-tweet-viewer.html');
-    $page = addExternalParts($page, $files);
+    $page = addCssFiles($page, $cssFiles, false);
+    $page = addJsFiles($page, $jsFiles, false);
     $page = addText($page, $texts);
     $page = addBuildDetails($page);
     save($page, 'public/index.html');
