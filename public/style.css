@@ -54,8 +54,13 @@ p {
 	margin-bottom: 10px;
 }
 
-#options > #file {
+#options > .item {
 	margin-bottom: 4px;	
+}
+
+#options > .item > label > span {
+	width: 75px;
+	display: inline-block;
 }
 
 #close-file {
