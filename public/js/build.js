@@ -28,11 +28,21 @@ function buildFilterList(users) {
 }
 
 function buildLinks(text) {
-    text = createUrlLinks(text);
-    text = createUserLinks(text);
-    text = createHashtagLinks(text);
-
-    return text;
+    var autoLinker = new Autolinker({
+        urls: {
+            schemeMatches: true,
+            tldMatches: true,
+            ipV4Matches: true
+        },
+        email: true,
+        mention: 'twitter',
+        hashtag: 'twitter',
+        stripPrefix: false,
+        stripTrailingSlash : false,
+        newWindow: true,
+    });
+    
+    return autoLinker.link(text);
 }
 
 function buildTweets(tweets, zip, autoload) {
