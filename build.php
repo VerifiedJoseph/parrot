@@ -107,7 +107,7 @@ try {
     $base = addText($base, $texts);
     $base = addBuildDetails($base);
 
-    // All one version
+    // Single page version
     $page = addCssFiles($base, $cssFiles, true);
     $page = addJsFiles($page, $jsFiles, true);
     save($page, 'public/parrot-tweet-viewer.html');
