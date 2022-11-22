@@ -103,22 +103,18 @@ function save(string $page, string $path): void
 }
 
 try {
+    $base = loadfile('templates/parrot-tweet-viewer.html');
+    $base = addText($base, $texts);
+    $base = addBuildDetails($base);
+
     // All one version
-    $page = loadfile('templates/parrot-tweet-viewer.html');
-    $page = addCssFiles($page, $cssFiles, true);
+    $page = addCssFiles($base, $cssFiles, true);
     $page = addJsFiles($page, $jsFiles, true);
-    
-    //$page = addInlineParts($page, $files);
-    $page = addText($page, $texts);
-    $page = addBuildDetails($page);
     save($page, 'public/parrot-tweet-viewer.html');
 
     // Main website version
-    $page = loadfile('templates/parrot-tweet-viewer.html');
-    $page = addCssFiles($page, $cssFiles, false);
+    $page = addCssFiles($base, $cssFiles, false);
     $page = addJsFiles($page, $jsFiles, false);
-    $page = addText($page, $texts);
-    $page = addBuildDetails($page);
     save($page, 'public/index.html');
 
     output('Done.');
