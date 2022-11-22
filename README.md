@@ -6,6 +6,7 @@ A browser-based viewer for tweet archives created with the [Twitter Media Downlo
 ## Dependencies
 - [JSZip](https://github.com/Stuk/jszip) (v3.10.1) - JavaScript class for generating and reading zip files.
 - [Papa Parse](https://github.com/mholt/PapaParse) (v5.3.2) - Fastest in-browser CSV parser for JavaScript.
+- [Autolinker.js](https://github.com/gregjacobs/Autolinker.js) (v4.0.0) - Utility to Automatically Link URLs.
 
 ## Building
 
