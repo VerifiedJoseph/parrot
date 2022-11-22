@@ -14,6 +14,7 @@ $jsFiles = [
     'libraries/papaparse.min.js',
     'dom.js',
     'helper.js',
+    'links.js',
     'build.js',
     'script.js'
 ];
