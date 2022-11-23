@@ -186,6 +186,10 @@ function buildMedia(items, zip) {
                     var element = document.createElement('video');
                     element.src = url;
                     element.setAttribute('controls', '');
+
+                    if (item.type == 'GIF') {
+                        element.setAttribute('loop', '');
+                    }
                 }
     
                 var div = document.createElement('div')
