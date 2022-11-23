@@ -2,8 +2,8 @@ function buildPage(data, zip, autoload) {
     buildTweets(data.tweets, zip, autoload);
     buildFilterList(data.users);
 
-    innerText('username-filter-number', formatNumber(data.tweets.length));
-    innerText('username-filter-name', formatNumber(data.users.length) + ' users');
+    innerText('username-filter-number', formatNumber(data.stats.tweets));
+    innerText('username-filter-name', formatNumber(data.stats.users) + ' users');
 
     show('username-filter-text');
     show('tweets');
