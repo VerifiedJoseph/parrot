@@ -41,12 +41,12 @@
         return true;
     })
 
-    innerText('username-filter-number', filtered.length);
+    innerText('username-filter-number', formatNumber(filtered.length));
 
     var name = userFilter;
     if (userFilter !== 'none') {
         if (userFilter ==='all') {
-            name =  data.stats.users + ' users';
+            name =  formatNumber(data.stats.users) + ' users';
         }
 
         innerText('username-filter-name', name);
