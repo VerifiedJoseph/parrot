@@ -50,11 +50,11 @@ p {
 	margin-bottom: 10px;
 }
 
-#options > .item {
+#options .item {
 	margin-bottom: 8px;
 }
 
-#options > .item.last {
+#options .item.last {
 	margin-bottom: 0px;
 }
 
@@ -65,6 +65,30 @@ p {
 
 #options > .item > label > select {
 	width: 200px;
+}
+
+details > .item {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.date-name {
+	display: block;
+	width: 75px;
+	float: left;
+}
+
+.date-options {
+	display: inline-block;
+}
+
+.date-options > div {
+	margin-bottom: 8px;
+}
+
+.date-options > div > label > span {
+	width: 35px;
+	display: inline-block;
 }
 
 #options > .item > button {
