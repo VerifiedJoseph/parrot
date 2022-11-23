@@ -93,7 +93,7 @@ async function processCsvFile(filename, zip) {
                             media.filename = row[7];
                             tweet.media.push(media);
 
-                            if (row[5] === 'Image') {
+                            if (row[5] === 'Image' || row[5] === 'GIF') {
                                 data.stats.images++;
                                 tweet.stats.images++;
                             } else {
@@ -113,7 +113,7 @@ async function processCsvFile(filename, zip) {
                             filename: row[7]
                         }
 
-                        if (row[5] === 'Image') {
+                        if (row[5] === 'Image' || row[5] === 'GIF') {
                             data.stats.images++;
                             data.tweets[tweetIndex].stats.images++;
                         } else {
