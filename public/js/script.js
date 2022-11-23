@@ -77,13 +77,13 @@ async function processCsvFile(filename, zip) {
                             media: [],
                             stats: {
                                 images: 0,
-                                videos: 0
+                                videos: 0,
+                                replies: Number(row[10]),
+                                retweets: Number(row[11]),
+                                likes: Number(row[12])
                             },
                             remarks: row[8],
                             text: row[9],
-                            replies: Number(row[10]),
-                            retweets: Number(row[11]),
-                            likes: Number(row[12]),
                         };
 
                         var media = {}

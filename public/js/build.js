@@ -67,9 +67,9 @@ function buildTweets(tweets, zip, autoload) {
 
         var stats = document.createElement('div');
         stats.classList.add('stats');
-        stats.innerText = formatNumber(tweet.replies) + ' Replies - '
-            + formatNumber(tweet.retweets) +' Retweets - '
-            + formatNumber(tweet.likes) + ' Likes';
+        stats.innerText = formatNumber(tweet.stats.replies) + ' Replies - '
+            + formatNumber(tweet.stats.retweets) +' Retweets - '
+            + formatNumber(tweet.stats.likes) + ' Likes';
 
         var name = document.createElement('div');
         name.classList.add('name');
