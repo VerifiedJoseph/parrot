@@ -4,6 +4,17 @@
  function filter(data) {
     var userFilter = document.getElementById('username-filter').value;
     var mediaFilter = document.getElementById('media-filter').value;
+    var dateFilterStart = document.getElementById('date-filter-start').value;
+    var dateFilterEnd = document.getElementById('date-filter-end').value;
+
+    if (dateFilterStart === '') {
+    }
+    
+    if (dateFilterEnd === '') {
+    }
+
+    var startDate = new Date(dateFilterStart);
+    var endDate = new Date(dateFilterStart);
 
     var elements = document.querySelectorAll('div.tweet');
     elements.forEach(function (element) {
@@ -33,6 +44,12 @@
                     }
                     break;
             }
+        }
+
+        var tweetDate = new Date(tweet.date);
+
+        if (start > tweetDate && end > tweetDate) {
+            return false;
         }
 
         var element = document.querySelector('div[data-id="'+ tweet.id +'"]');
