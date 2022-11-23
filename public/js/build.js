@@ -185,10 +185,11 @@ function buildMedia(items, zip) {
                 if (item.type === 'Video' || item.type == 'GIF') {
                     var element = document.createElement('video');
                     element.src = url;
-                    element.setAttribute('controls', '');
+                    element.controls = true;
 
                     if (item.type == 'GIF') {
-                        element.setAttribute('loop', '');
+                        element.loop = true;
+                        element.autoplay = true;
                     }
                 }
     
