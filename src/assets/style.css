@@ -1,0 +1,184 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+	background-color: #F3F4F6;
+	font-family: sans-serif;
+	font-size: 13px;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+h1, h3 {
+	margin: 0px;
+}
+
+p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.show {
+	visibility: visible !important;
+}
+
+.hide {
+	display: none;
+}
+
+.clear {
+	clear: both;
+}
+
+#header {
+	text-align: center;
+	margin: 10px;
+}
+
+#options {
+	position: relative;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 10px;
+	background-color: white;
+	margin-bottom: 10px;
+}
+
+#options > .item {
+	margin-bottom: 8px;
+}
+
+#options > .item.last {
+	margin-bottom: 0px;
+}
+
+#options > .item > label > span {
+	width: 75px;
+	display: inline-block;
+}
+
+#options > .item > label > select {
+	width: 200px;
+}
+
+#options > .item > button {
+	min-width: 50px;
+}
+
+#close-file {
+	position: absolute;
+	right: 10px;
+}
+
+#zip-file {
+	width: 195px;
+}
+
+#username-filter-text {
+	margin-bottom: 0px;
+}
+
+#error {
+	background-color: red;
+	color: white;
+}
+
+#note {
+	background-color: black;
+	color: white;
+}
+
+#loading {
+	background-color: white;
+}
+
+#loading, #note, #error {
+	padding: 5px;
+	font-weight: bold;
+	margin-bottom: 10px !important;
+	text-align: center;
+}
+
+#tweets, #error, #about, #loading, #note {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+#about {
+	background-color: white;
+	padding: 10px;
+}
+
+#footer {
+	text-align: center;
+}
+
+.tweet {
+	max-width: 600px;
+	background-color: white;
+	padding: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.tweet > .header {
+	padding-bottom: 5px;
+}
+
+.tweet > .header > .name {
+	float: left;
+}
+
+.tweet > .header > .name > .username {
+	font-size: 12px;
+}
+
+.tweet > .header > .date {
+	float: right;
+}
+
+.tweet > .body {
+	font-size: 14px;
+	padding-bottom: 8px;
+}
+
+.tweet > .placeholder {
+	text-align: center;
+	font-weight: bold;
+	padding: 4px;
+	height: 26px;
+	width: 100%;
+	border: 0px;
+	background-color: cornflowerblue;
+	cursor: pointer;
+}
+
+.tweet > .media > .error {
+	text-align: center;
+	font-weight: bold;
+	padding: 4px;
+	height: 26px;
+	background-color: red;
+	color: white;
+}
+
+.tweet > .media > .gallery {
+	display: grid;
+    grid-template-columns: auto fit-content(600px) auto;
+}
+
+.tweet > .media > .gallery > div > a > img,
+ .tweet > .media > .gallery > div > video {
+	width: 100%;
+}
+
+.tweet > .stats {
+	padding: 4px;
+}
+
