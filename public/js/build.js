@@ -94,8 +94,7 @@ const build = { // eslint-disable-line no-unused-vars
 
       const stats = document.createElement('div')
       stats.classList.add('stats')
-      stats.innerText = `${helper.formatNumber(tweet.stats.replies)} Replies - 
-        ${helper.formatNumber(tweet.stats.retweets)} Retweets - ${helper.formatNumber(tweet.stats.likes)} Likes`
+      stats.innerText = `${helper.formatNumber(tweet.stats.replies)} Replies - ${helper.formatNumber(tweet.stats.retweets)} Retweets - ${helper.formatNumber(tweet.stats.likes)} Likes`
 
       const name = document.createElement('div')
       name.classList.add('name')
