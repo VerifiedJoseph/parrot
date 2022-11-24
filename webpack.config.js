@@ -26,5 +26,12 @@ module.exports = {
       template: './src/assets/index.html',
       inject: false
     })
-  ]
+  ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist')
+    },
+    compress: true,
+    port: 9000
+  },
 }
