@@ -1,34 +1,76 @@
-function displayError (text) {
-  innerText('error', text)
-  show('error')
-}
+/**
+ * Control DOM elements
+ */
+const dom = { // eslint-disable-line no-unused-vars
+  /**
+   * Display error message
+   *
+   * @param {string} text
+   */
+  displayError: function (text) {
+    this.innerText('error', text)
+    this.show('error')
+  },
 
-function hideError () {
-  innerText('error', '')
-  hide('error')
-}
+  /**
+   * Hide error message
+   */
+  hideError: function () {
+    this.innerText('error', '')
+    this.hide('error')
+  },
 
-function clearTweets () {
-  hide('tweets')
-  innerText('tweets', '')
-}
+  /**
+   * Clear tweets
+   */
+  clearTweets: function () {
+    this.hide('tweets')
+    this.innerText('tweets', '')
+  },
 
-function show (element) {
-  document.getElementById(element).classList.remove('hide')
-}
+  /**
+   * Show an element
+   *
+   * @param {string} element Element id
+   */
+  show: function (element) {
+    document.getElementById(element).classList.remove('hide')
+  },
 
-function hide (element) {
-  document.getElementById(element).classList.add('hide')
-}
+  /**
+   * Hide an element
+   *
+   * @param {string} element Element id
+   */
+  hide: function (element) {
+    document.getElementById(element).classList.add('hide')
+  },
 
-function disableInput (element) {
-  document.getElementById(element).disabled = true
-}
+  /**
+   * Enable an input
+   *
+   * @param {string} element Element id
+   */
+  enableInput: function (element) {
+    document.getElementById(element).disabled = false
+  },
 
-function enableInput (element) {
-  document.getElementById(element).disabled = false
-}
+  /**
+   * Disable an input
+   *
+   * @param {string} element Element id
+   */
+  disableInput: function (element) {
+    document.getElementById(element).disabled = true
+  },
 
-function innerText (element, text) {
-  document.getElementById(element).innerText = text
+  /**
+   * Set inner text for element
+   *
+   * @param {string} element Element id
+   * @param {string} text Text
+   */
+  innerText: function (element, text) {
+    document.getElementById(element).innerText = text
+  }
 }
