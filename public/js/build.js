@@ -1,225 +1,271 @@
-function buildPage (data, zip, autoload) {
-  buildTweets(data.tweets, zip, autoload)
-  buildFilterList(data.users)
+/* global Autolinker, dom, helper */
 
-  innerText('username-filter-number', formatNumber(data.stats.tweets))
-  innerText('username-filter-name', formatNumber(data.stats.users) + ' users')
+const build = { // eslint-disable-line no-unused-vars
+  /**
+   * Build page
+   *
+   * @param {array} data
+   * @param {*} zip
+   * @param {bool} autoload Media autoload status
+   */
+  page: function (data, zip, autoload) {
+    this.tweets(data.tweets, zip, autoload)
+    this.filterList(data.users)
 
-  show('username-filter-text')
-  show('tweets')
-}
+    dom.innerText('username-filter-number', helper.formatNumber(data.stats.tweets))
+    dom.innerText('username-filter-name', helper.formatNumber(data.stats.users) + ' users')
 
-function buildFilterList (users) {
-  const select = document.getElementById('username-filter')
-  const button = document.getElementById('username-filter-reset')
-  let opt
+    dom.show('username-filter-text')
+    dom.show('tweets')
+  },
 
-  users.forEach(user => {
-    opt = document.createElement('option')
-    opt.value = user.username
-    opt.innerText = user.display_name + ' (' + user.username + ') - ' +
-                formatNumber(user.tweets) + ' tweets'
+  /**
+   * Build username filter list
+   *
+   * @param {array} users
+   */
+  filterList: function (users) {
+    const select = document.getElementById('username-filter')
+    const button = document.getElementById('username-filter-reset')
+    let opt
 
-    select.appendChild(opt)
-  })
+    users.forEach(user => {
+      opt = document.createElement('option')
+      opt.value = user.username
+      opt.innerText = `${user.display_name} (${user.username}) - ${helper.formatNumber(user.tweets)} tweets`
 
-  select.disabled = false
-  button.disabled = false
-}
+      select.appendChild(opt)
+    })
 
-function buildLinks (text) {
-  const autoLinker = new Autolinker({
-    urls: {
-      schemeMatches: true,
-      tldMatches: true,
-      ipV4Matches: true
-    },
-    email: true,
-    mention: 'twitter',
-    hashtag: 'twitter',
-    stripPrefix: false,
-    stripTrailingSlash: false,
-    newWindow: true
-  })
+    select.disabled = false
+    button.disabled = false
+  },
 
-  return autoLinker.link(text)
-}
+  /**
+   * Build links in tweet body
+   *
+   * @param {string} text
+   * @returns
+   */
+  links: function (text) {
+    const autoLinker = new Autolinker({
+      urls: {
+        schemeMatches: true,
+        tldMatches: true,
+        ipV4Matches: true
+      },
+      email: true,
+      mention: 'twitter',
+      hashtag: 'twitter',
+      stripPrefix: false,
+      stripTrailingSlash: false,
+      newWindow: true
+    })
 
-function buildTweets (tweets, zip, autoload) {
-  const items = document.getElementById('tweets')
-  items.innerHTML = ''
+    return autoLinker.link(text)
+  },
 
-  document.getElementById('tweets')
+  /**
+   * Build tweets
+   *
+   * @param {array} tweets
+   * @param {*} zip
+   * @param {bool} autoload Media autoload status
+   */
+  tweets: function (tweets, zip, autoload) {
+    const items = document.getElementById('tweets')
+    items.innerHTML = ''
 
-  tweets.forEach(tweet => {
-    const item = document.createElement('div')
-    item.classList.add('tweet')
-    item.setAttribute('data-username', tweet.username)
-    item.setAttribute('data-id', tweet.id)
-    item.setAttribute('data-timestamp', tweet.date)
+    document.getElementById('tweets')
 
-    const header = document.createElement('div')
-    header.classList.add('header')
+    tweets.forEach(tweet => {
+      const item = document.createElement('div')
+      item.classList.add('tweet')
+      item.setAttribute('data-username', tweet.username)
+      item.setAttribute('data-id', tweet.id)
+      item.setAttribute('data-timestamp', tweet.date)
 
-    const body = document.createElement('div')
-    body.classList.add('body')
-    body.innerHTML = buildLinks(tweet.text)
+      const header = document.createElement('div')
+      header.classList.add('header')
 
-    const stats = document.createElement('div')
-    stats.classList.add('stats')
-    stats.innerText = formatNumber(tweet.stats.replies) + ' Replies - ' +
-            formatNumber(tweet.stats.retweets) + ' Retweets - ' +
-            formatNumber(tweet.stats.likes) + ' Likes'
+      const body = document.createElement('div')
+      body.classList.add('body')
+      body.innerHTML = this.links(tweet.text)
 
-    const name = document.createElement('div')
-    name.classList.add('name')
+      const stats = document.createElement('div')
+      stats.classList.add('stats')
+      stats.innerText = `${helper.formatNumber(tweet.stats.replies)} Replies - ${helper.formatNumber(tweet.stats.retweets)} Retweets - ${helper.formatNumber(tweet.stats.likes)} Likes`
 
-    const nameLink = document.createElement('a')
-    nameLink.innerText = tweet.display_name
-    nameLink.setAttribute('href', 'https://twitter.com/' + tweet.username)
-    nameLink.setAttribute('target', '_blank')
-    name.appendChild(nameLink)
+      const name = document.createElement('div')
+      name.classList.add('name')
 
-    const username = document.createElement('div')
-    username.classList.add('username')
-    username.innerText = tweet.username
+      const nameLink = document.createElement('a')
+      nameLink.innerText = tweet.display_name
+      nameLink.setAttribute('href', 'https://twitter.com/' + tweet.username)
+      nameLink.setAttribute('target', '_blank')
+      name.appendChild(nameLink)
 
-    const br = document.createElement('br')
+      const username = document.createElement('div')
+      username.classList.add('username')
+      username.innerText = tweet.username
 
-    name.appendChild(br)
-    name.appendChild(username)
+      const br = document.createElement('br')
 
-    const date = document.createElement('div')
-    date.classList.add('date')
+      name.appendChild(br)
+      name.appendChild(username)
 
-    const dateLink = document.createElement('a')
-    dateLink.innerText = tweet.date
-    dateLink.setAttribute('href', tweet.url)
-    dateLink.setAttribute('target', '_blank')
+      const date = document.createElement('div')
+      date.classList.add('date')
 
-    date.appendChild(dateLink)
+      const dateLink = document.createElement('a')
+      dateLink.innerText = tweet.date
+      dateLink.setAttribute('href', tweet.url)
+      dateLink.setAttribute('target', '_blank')
 
-    const clear = document.createElement('div')
-    clear.classList.add('clear')
+      date.appendChild(dateLink)
 
-    header.appendChild(name)
-    header.appendChild(date)
-    header.appendChild(clear)
+      const clear = document.createElement('div')
+      clear.classList.add('clear')
 
-    item.appendChild(header)
-    item.appendChild(body)
+      header.appendChild(name)
+      header.appendChild(date)
+      header.appendChild(clear)
 
-    if (tweet.media.length !== 0) {
-      if (autoload === true) {
-        item.appendChild(buildMedia(tweet.media, zip))
-      } else {
-        item.appendChild(buildMediaPlaceholder(tweet.id, tweet.stats))
+      item.appendChild(header)
+      item.appendChild(body)
+
+      if (tweet.media.length !== 0) {
+        if (autoload === true) {
+          item.appendChild(this.media(tweet.media, zip))
+        } else {
+          item.appendChild(this.mediaPlaceholder(tweet.id, tweet.stats))
+        }
       }
+
+      item.appendChild(stats)
+      items.appendChild(item)
+    })
+  },
+
+  /**
+   * Build media placeholder for a tweet
+   *
+   * @param {string} tweetId Tweet ID
+   * @param {object} stats Tweet stats
+   * @returns
+   */
+  mediaPlaceholder: function (id, stats) {
+    const placeholder = document.createElement('button')
+    placeholder.classList.add('placeholder')
+    placeholder.setAttribute('data-tweet-id', id)
+
+    let text = 'Load media '
+
+    if (stats.images > 0) {
+      let word = ' images'
+
+      if (stats.images === 1) {
+        word = ' image'
+      }
+
+      text += '(' + stats.images + word + ')'
     }
 
-    item.appendChild(stats)
-    items.appendChild(item)
-  })
-}
+    if (stats.videos > 0) {
+      let word = ' videos'
 
-function buildMediaPlaceholder (tweetId, stats) {
-  const placeholder = document.createElement('button')
-  placeholder.classList.add('placeholder')
-  placeholder.setAttribute('data-tweet-id', tweetId)
+      if (stats.videos === 1) {
+        word = ' video'
+      }
 
-  let text = 'Load media '
-
-  if (stats.images > 0) {
-    let word = ' images'
-
-    if (stats.images === 1) {
-      word = ' image'
+      text += '(' + stats.videos + word + ')'
     }
 
-    text += '(' + stats.images + word + ')'
-  }
+    placeholder.innerText = text
 
-  if (stats.videos > 0) {
-    let word = ' videos'
+    return placeholder
+  },
 
-    if (stats.videos === 1) {
-      word = ' video'
-    }
+  /**
+   * Build media for a tweet
+   *
+   * @param {array} items Media items
+   * @param {*} zip
+   * @returns
+   */
+  media: function (items, zip) {
+    const media = document.createElement('div')
+    media.classList.add('media')
 
-    text += '(' + stats.videos + word + ')'
-  }
+    const gallery = document.createElement('div')
+    gallery.classList.add('gallery')
 
-  placeholder.innerText = text
+    items.forEach(item => {
+      if (zip.file(item.filename) !== null) {
+        zip.file(item.filename)
+          .async('arraybuffer')
+          .then(function (content) {
+            const buffer = new Uint8Array(content)
+            const blob = new Blob([buffer.buffer])
+            const url = URL.createObjectURL(blob)
 
-  return placeholder
-}
+            let element
+            if (item.type === 'Image') {
+              const image = new Image()
+              image.src = url
+              image.setAttribute('loading', 'lazy')
 
-function buildMedia (items, zip) {
-  const media = document.createElement('div')
-  media.classList.add('media')
+              const a = document.createElement('a')
+              a.setAttribute('href', url)
+              a.setAttribute('target', '_blank')
 
-  const gallery = document.createElement('div')
-  gallery.classList.add('gallery')
+              a.appendChild(image)
 
-  items.forEach(item => {
-    if (zip.file(item.filename) !== null) {
-      zip.file(item.filename)
-        .async('arraybuffer')
-        .then(function (content) {
-          const buffer = new Uint8Array(content)
-          const blob = new Blob([buffer.buffer])
-          const url = URL.createObjectURL(blob)
+              element = a
+            } else if (item.type === 'Video' || item.type === 'GIF') {
+              const video = document.createElement('video')
+              video.src = url
+              video.controls = true
 
-          let element
-          if (item.type === 'Image') {
-            const image = new Image()
-            image.src = url
-            image.setAttribute('loading', 'lazy')
+              if (item.type === 'GIF') {
+                video.loop = true
+                video.autoplay = true
+              }
 
-            const a = document.createElement('a')
-            a.setAttribute('href', url)
-            a.setAttribute('target', '_blank')
-
-            a.appendChild(image)
-
-            element = a
-          } else if (item.type === 'Video' || item.type === 'GIF') {
-            const video = document.createElement('video')
-            video.src = url
-            video.controls = true
-
-            if (item.type === 'GIF') {
-              video.loop = true
-              video.autoplay = true
+              element = video
             }
 
-            element = video
-          }
+            const div = document.createElement('div')
+            div.appendChild(element)
 
-          const div = document.createElement('div')
-          div.appendChild(element)
+            gallery.appendChild(div)
+          })
+          .catch(function (err) {
+            console.error(err)
+          })
 
-          gallery.appendChild(div)
-        })
-        .catch(function (err) {
-          console.error(err)
-        })
+        media.appendChild(gallery)
+      } else {
+        console.log(`file not found: ${item.filename}`)
 
-      media.appendChild(gallery)
-    } else {
-      console.log('file not found: ' + item.filename)
+        media.appendChild(this.mediaError(item.filename))
+      }
+    })
 
-      media.appendChild(buildMediaError(item.filename))
-    }
-  })
+    return media
+  },
 
-  return media
-}
+  /**
+   * Build media file error
+   *
+   * @param {string} filename Media filename
+   * @returns
+   */
+  mediaError: function (filename) {
+    const error = document.createElement('div')
+    error.classList.add('error')
+    error.innerText = `File not found: ${filename}`
 
-function buildMediaError (filename) {
-  const error = document.createElement('div')
-  error.classList.add('error')
-  error.innerText = 'File not found: ' + filename
-
-  return error
+    return error
+  }
 }
