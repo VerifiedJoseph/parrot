@@ -8,6 +8,7 @@ import { filter } from './assets/js/filter.js'
 import { build } from './assets/js/build.js'
 
 import './assets/style.css'
+import './assets/images/meta-image.png'
 
 /**
  * Search the zip file for the required CSV file
