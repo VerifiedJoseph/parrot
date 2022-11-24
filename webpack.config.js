@@ -7,14 +7,21 @@ module.exports = {
   mode: 'development',
   output: {
     filename: 'app.js',
-    path: path.resolve(__dirname, './dist'),
-    clean: true
+    path: path.resolve(__dirname, './dist')
   },
   module: {
     rules: [
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        include: path.resolve(__dirname, './src'),
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]'
+        }
       }
     ]
   },
@@ -23,6 +30,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Parrot',
       description: 'Viewer for tweet archives created with the Twitter Media Downloader',
+      favicon: './src/assets/images/favicon.ico',
       template: './src/assets/index.html',
       inject: false
     })
