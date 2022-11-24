@@ -1,14 +1,19 @@
 <?php
-
-/**
- * Script for building the single file version
+/*
+ * Script for building the main and single file versions
  */
 
+/**
+ * @var array<string, string> $texts Text strings
+ */
 $texts = [
     'name' => 'Parrot',
     'description' => 'Viewer for tweet archives created with the Twitter Media Downloader'
 ];
 
+/**
+ * @var array<int, string> $jsFiles JavaScript file paths
+ */
 $jsFiles = [
     'libraries/jszip.min.js',
     'libraries/papaparse.min.js',
@@ -20,15 +25,31 @@ $jsFiles = [
     'script.js'
 ];
 
+/**
+ * @var array<int, string> $cssFiles CSS file paths
+ */
 $cssFiles = [
     'style.css'
 ];
 
+/**
+ * Output to terminal
+ * 
+ * @param string $text Text
+ */
 function output(string $text): void
 {
     echo $text . " \n";
 }
 
+/**
+ * Load file
+ * 
+ * @param string $path File path
+ * @return string File data
+ * 
+ * @throws Exception if file could not be loaded
+ */
 function loadfile($path): string
 {
     $page = file_get_contents($path);
@@ -40,7 +61,15 @@ function loadfile($path): string
     return $page;
 }
 
-function addCssFiles($page, array $files, bool $embed = false): string
+/**
+ * Add CSS files
+ * 
+ * @param string $page Page data
+ * @param array<int, string> $files CSS file paths
+ * @param bool $embed Embed file data into page
+ * @return string
+ */
+function addCssFiles(string $page, array $files, bool $embed = false): string
 {
     $data = '';
 
@@ -58,6 +87,14 @@ function addCssFiles($page, array $files, bool $embed = false): string
     return $page;
 }
 
+/**
+ * Add JavaScript files
+ * 
+ * @param string $page Page data
+ * @param array<int, string> $files JavaScript file paths
+ * @param bool $embed Embed file data into page
+ * @return string
+ */
 function addJsFiles($page, array $files, bool $embed = false): string
 {
     $data = '';
@@ -76,6 +113,13 @@ function addJsFiles($page, array $files, bool $embed = false): string
     return $page;
 }
 
+/**
+ * Add text
+ * 
+ * @param string $page Page data
+ * @param array<string, string> $texts Array of text strings
+ * @return string
+ */
 function addText($page, $texts): string
 {
     foreach ($texts as $id => $text) {
@@ -85,6 +129,12 @@ function addText($page, $texts): string
     return $page;
 }
 
+/**
+ * Add build details (commit id and current date)
+ * 
+ * @param string $page Page data
+ * @return string
+ */
 function addBuildDetails(string $page): string
 {
     exec('git rev-parse --verify HEAD', $output);
@@ -94,6 +144,14 @@ function addBuildDetails(string $page): string
     return $page;
 }
 
+/**
+ * Save page to disk
+ *
+ * @param string $page Page data
+ * @param string $path File path
+ * 
+ * @throws Exception if file could not be written
+ */
 function save(string $page, string $path): void
 {
     $status = file_put_contents($path, $page);
