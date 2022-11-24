@@ -225,5 +225,7 @@ document.getElementById('close-file').addEventListener('click', function (e) {
   dom.hide('error')
 })
 
+document.getElementById('zip-file').addEventListener('change', loadFile)
+
 dom.enableInput('zip-file')
 dom.enableInput('autoload')
