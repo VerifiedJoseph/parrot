@@ -6,7 +6,7 @@
 
 $texts = [
     'name' => 'Parrot',
-    'description' => 'A viewer for tweet archives created with the Twitter Media Downloader'
+    'description' => 'Viewer for tweet archives created with the Twitter Media Downloader'
 ];
 
 $jsFiles = [
