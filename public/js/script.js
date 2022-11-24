@@ -132,11 +132,11 @@ async function processCsvFile (filename, zip) {
 /**
  * Load a zip archive and display tweets
  */
-function loadFile (fileInput) {
+function loadFile (input) {
   dom.hideError()
   filter.clearUsernames()
 
-  if (fileInput === undefined) {
+  if (input.target.files === undefined) {
     return
   }
 
@@ -144,7 +144,7 @@ function loadFile (fileInput) {
   dom.show('loading')
   dom.enableInput('close-file')
 
-  console.log('File: ' + fileInput.files[0].name)
+  console.log('File: ' + input.target.files[0].name)
 
   const reader = new FileReader()
   reader.onload = function (ev) {
@@ -206,7 +206,7 @@ function loadFile (fileInput) {
     dom.displayError('Failed to read file.')
     console.error('Failed to read file', err)
   }
-  reader.readAsArrayBuffer(fileInput.files[0])
+  reader.readAsArrayBuffer(input.target.files[0])
 }
 
 document.getElementById('close-file').addEventListener('click', function (e) {
@@ -220,7 +220,7 @@ document.getElementById('close-file').addEventListener('click', function (e) {
 
   dom.disableInput('close-file')
   dom.clearTweets()
-  dom.clearFilterList()
+  filter.clearList()
   dom.show('about')
   dom.hide('error')
 })
