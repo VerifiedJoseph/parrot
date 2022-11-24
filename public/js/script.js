@@ -215,7 +215,7 @@ function loadFile(fileInput) {
 }
 
 document.getElementById('close-file').addEventListener('click', function(e) {
-    document.getElementById('myfile').value = '';
+    document.getElementById('zip-file').value = '';
 
     hide('username-filter-text');
     disableInput('username-filter-reset');
@@ -230,5 +230,5 @@ document.getElementById('close-file').addEventListener('click', function(e) {
     hide('error');
 });
 
-enableInput('myfile');
+enableInput('zip-file');
 enableInput('autoload');
