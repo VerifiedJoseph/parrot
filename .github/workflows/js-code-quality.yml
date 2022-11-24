@@ -1,0 +1,32 @@
+name: JS code quality
+
+on:
+  pull_request:
+    paths:
+      - "public/js/*.js"
+      - ".github/workflows/js-code-quality.yml"
+  push:
+    branches: main
+    paths:
+      - "public/js/*.js"
+      - ".github/workflows/js-code-quality.yml"
+
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Installing dependencies
+      run: npm ci
+
+    - name: Run ESLint
+      run: npm run lint
