@@ -1,5 +1,5 @@
 # Parrot 🦜
-![screenshot](public/meta-image.png)
+![screenshot](image.png)
 
 A browser-based viewer for tweet archives created with the [Twitter Media Downloader](https://github.com/furyutei/twMediaDownloader) browser extension.
 

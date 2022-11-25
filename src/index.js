@@ -1,4 +1,13 @@
-/* global Papa, JSZip, dom, build, helper, filter */
+import JSZip from 'JSZip'
+import Papa from 'papaparse'
+
+import { helper } from './assets/js/helper.js'
+import { dom } from './assets/js/dom.js'
+import { filter } from './assets/js/filter.js'
+import { build } from './assets/js/build.js'
+
+import './assets/style.css'
+import './assets/images/meta-image.png'
 
 /**
  * Search the zip file for the required CSV file
@@ -220,7 +229,7 @@ document.getElementById('close-file').addEventListener('click', function (e) {
 
   dom.disableInput('close-file')
   dom.clearTweets()
-  filter.clearList()
+  filter.clearUsernames()
   dom.show('about')
   dom.hide('error')
 })

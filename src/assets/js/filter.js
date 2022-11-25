@@ -1,6 +1,7 @@
-/* global dom, helper */
+import { helper } from './helper.js'
+import { dom } from './dom.js'
 
-const filter = { // eslint-disable-line no-unused-vars
+export const filter = {
   /**
    * Filter tweets
    *

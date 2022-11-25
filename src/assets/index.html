@@ -2,15 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>{name} - {description}</title>
-        <meta name="description" content="{description}">
+        <title><%= htmlWebpackPlugin.options.title %> - <%= htmlWebpackPlugin.options.description %></title>
+        <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
         <meta name="viewport" content="width=device-width" />
-        <meta property="og:title" content="{name}" />
-        <meta property="og:description" content="{description}" />
-        <meta property="og:image" content="meta-image.png" />
+        <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
+        <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
+        <meta property="og:image" content="images/meta-image.png" />
         <meta name="referrer" content="no-referrer">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob:; base-uri 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests; block-all-mixed-content;">
-        {css}
+        <link rel="stylesheet" type="text/css" href="main.css" />
     </head>
     <body>
     <div id="container">
@@ -75,7 +74,7 @@
             <strong>No.</strong> The viewer runs completely within your web browser and does not collect or transmit any data.</p>
 
             <p><i>Can I run it offline?</i><br>
-            <strong>Yes.</strong> The viewer can be run offline and a single file version is <a href="parrot-tweet-viewer.html">available</a> (right click -> save link as).</p>
+            <strong>Yes.</strong> The viewer can be run offline and a download is <a href="parrot-tweet-viewer.zip">available</a>.</p>
             
             <p><i>Does it use any third party JavaScript libraries?</i><br>
             <strong>Yes.</strong> The viewer uses three third party JavaScript libraries:</p>
@@ -89,12 +88,10 @@
             </p>
         </div>
         <div id="footer">
-            <small><a target="_blank" href="https://verifiedjoseph.github.io/parrot/">verifiedjoseph.github.io/parrot/</a>
-                <br>Commit: <a target="_blank" href="https://github.com/VerifiedJoseph/parrot/commit/{commit}">{commit}</a>
-                <br>Build date: {date}
+            <small>
+                <a target="_blank" href="https://verifiedjoseph.github.io/parrot/">verifiedjoseph.github.io/parrot/</a>
             </small>
         </div>
     </div>
-    {js}
 </body>
 </html>

@@ -1,7 +1,7 @@
 /**
  * Control DOM elements
  */
-const dom = { // eslint-disable-line no-unused-vars
+export const dom = {
   /**
    * Display error message
    *

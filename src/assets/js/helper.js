@@ -1,4 +1,4 @@
-const helper = { // eslint-disable-line no-unused-vars
+export const helper = {
   /**
    * Get the array index for a Tweet via its ID
    */

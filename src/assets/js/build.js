@@ -1,6 +1,9 @@
-/* global Autolinker, dom, helper */
+import Autolinker from 'autolinker'
 
-const build = { // eslint-disable-line no-unused-vars
+import { helper } from './helper.js'
+import { dom } from './dom.js'
+
+export const build = {
   /**
    * Build page
    *
