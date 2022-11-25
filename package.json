@@ -15,7 +15,7 @@
   },
   "scripts": {
     "lint": "eslint ./src",
-    "build": "webpack"
+    "build": "webpack --mode=production"
   },
   "dependencies": {
     "autolinker": "^4.0.0",
