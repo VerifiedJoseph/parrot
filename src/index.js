@@ -1,4 +1,4 @@
-import JSZip from 'JSZip'
+import JSZip from 'jszip'
 import Papa from 'papaparse'
 
 import { helper } from './assets/js/helper.js'
