@@ -33,7 +33,7 @@ module.exports = {
       description: 'Viewer for tweet archives created with the Twitter Media Downloader',
       favicon: './src/assets/images/favicon.ico',
       template: './src/assets/index.html',
-      inject: false
+      inject: true
     })
   ],
   devServer: {
