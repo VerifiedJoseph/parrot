@@ -1,7 +1,7 @@
 //
 // Create zip file of dist folder
 //
-const JSZip = require('JSZip')
+const JSZip = require('jszip')
 const fs = require('fs').promises
 
 const folder = './dist/'
