@@ -1,4 +1,3 @@
-/* global */
 import JSZip from 'JSZip'
 import Papa from 'papaparse'
 
