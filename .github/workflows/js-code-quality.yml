@@ -3,12 +3,12 @@ name: JS code quality
 on:
   pull_request:
     paths:
-      - "public/js/*.js"
+      - "**.js"
       - ".github/workflows/js-code-quality.yml"
   push:
     branches: main
     paths:
-      - "public/js/*.js"
+      - "**.js"
       - ".github/workflows/js-code-quality.yml"
 
 jobs:
