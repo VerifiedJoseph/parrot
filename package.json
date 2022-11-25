@@ -14,7 +14,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
-    "lint": "eslint ./public/js",
+    "lint": "eslint ./src",
     "build": "webpack"
   },
   "dependencies": {
