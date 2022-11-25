@@ -8,9 +8,10 @@ A browser-based viewer for tweet archives created with the [Twitter Media Downlo
 - [Papa Parse](https://github.com/mholt/PapaParse) (v5.3.2) - Fastest in-browser CSV parser for JavaScript.
 - [Autolinker.js](https://github.com/gregjacobs/Autolinker.js) (v4.0.0) - Utility to automatically link URLs.
 
-## Building
+## Requirements
 
-The script `build.php` is used to build the website. The script requires php7.4 or newer.
+- Node.js >= 18.0
+- npm
 
 ## License
 
