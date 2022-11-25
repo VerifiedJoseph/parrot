@@ -5,7 +5,7 @@ const JSZip = require('JSZip')
 const fs = require('fs').promises
 
 const folder = './dist/'
-const zipFilename = 'parrot.zip'
+const zipFilename = 'parrot-tweet-viewer.zip'
 
 const zip = new JSZip()
 
