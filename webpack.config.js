@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = (env, argv) => {
-  let cspValue = ''
+  let csp = ''
 
   if (argv.mode === 'production') {
-    cspValue = "default-src 'self' blob:; base-uri 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests; block-all-mixed-content;"
+    csp = "default-src 'self' blob:; base-uri 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests; block-all-mixed-content;"
   }
 
   return {
@@ -43,7 +43,7 @@ module.exports = (env, argv) => {
         meta: {
           'Content-Security-Policy': {
             'http-equiv': 'Content-Security-Policy',
-            content: cspValue
+            content: csp
           }
         },
         inject: true
