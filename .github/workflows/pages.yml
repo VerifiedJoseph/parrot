@@ -6,13 +6,11 @@ on:
 
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -30,18 +28,25 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v2
         
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          php-version: 8.1
+          node-version: 18
+          cache: 'npm'
 
-      - name: Build
-        run: php build.php
+      - name: Installing dependencies
+        run: npm ci
+
+      - name: Build webpack
+        run: npm run build
         
+      - name: Build zip
+        run: node build/zip.js
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './public'
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
