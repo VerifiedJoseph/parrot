@@ -2,6 +2,11 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const commitHash = require('child_process')
+  .execSync('git rev-parse --short HEAD')
+  .toString()
+  .trim()
+
 module.exports = (env, argv) => {
   let csp = ''
 
@@ -40,6 +45,8 @@ module.exports = (env, argv) => {
         description: 'Viewer for tweet archives created with the Twitter Media Downloader',
         favicon: './src/assets/images/favicon.ico',
         template: './src/assets/index.html',
+        gitCommitHash: commitHash,
+        gitCommitUrl: `https://github.com/VerifiedJoseph/parrot/commit/${commitHash}`,
         meta: {
           'Content-Security-Policy': {
             'http-equiv': 'Content-Security-Policy',
