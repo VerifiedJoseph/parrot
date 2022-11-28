@@ -1,9 +1,9 @@
 import Autolinker from 'autolinker'
 
-import { helper } from './helper.js'
-import { dom } from './dom.js'
+import { Helper } from './Helper.js'
+import { Dom } from './Dom.js'
 
-export const build = {
+export const Build = {
   /**
    * Build page
    *
@@ -15,11 +15,11 @@ export const build = {
     this.tweets(data.tweets, zip, autoload)
     this.filterList(data.users)
 
-    dom.innerText('username-filter-number', helper.formatNumber(data.stats.tweets))
-    dom.innerText('username-filter-name', helper.formatNumber(data.stats.users) + ' users')
+    Dom.innerText('username-filter-number', Helper.formatNumber(data.stats.tweets))
+    Dom.innerText('username-filter-name', Helper.formatNumber(data.stats.users) + ' users')
 
-    dom.show('username-filter-text')
-    dom.show('tweets')
+    Dom.show('username-filter-text')
+    Dom.show('tweets')
   },
 
   /**
@@ -35,7 +35,7 @@ export const build = {
     users.forEach(user => {
       opt = document.createElement('option')
       opt.value = user.username
-      opt.innerText = `${user.display_name} (${user.username}) - ${helper.formatNumber(user.tweets)} tweets`
+      opt.innerText = `${user.display_name} (${user.username}) - ${Helper.formatNumber(user.tweets)} tweets`
 
       select.appendChild(opt)
     })
@@ -97,7 +97,7 @@ export const build = {
 
       const stats = document.createElement('div')
       stats.classList.add('stats')
-      stats.innerText = `${helper.formatNumber(tweet.stats.replies)} Replies - ${helper.formatNumber(tweet.stats.retweets)} Retweets - ${helper.formatNumber(tweet.stats.likes)} Likes`
+      stats.innerText = `${Helper.formatNumber(tweet.stats.replies)} Replies - ${Helper.formatNumber(tweet.stats.retweets)} Retweets - ${Helper.formatNumber(tweet.stats.likes)} Likes`
 
       const name = document.createElement('div')
       name.classList.add('name')

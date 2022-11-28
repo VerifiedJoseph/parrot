@@ -1,4 +1,4 @@
-export const helper = {
+export const Helper = {
   /**
    * Get the array index for a Tweet via its ID
    */

@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
   }
 
   return {
-    entry: './src/index.js',
+    entry: './src/js/page/index.js',
     mode: 'development',
     output: {
       filename: 'app.js',
@@ -43,8 +43,8 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         title: 'Parrot',
         description: 'Viewer for tweet archives created with the Twitter Media Downloader',
-        favicon: './src/assets/images/favicon.ico',
-        template: './src/assets/index.html',
+        favicon: './src/images/favicon.ico',
+        template: './src/index.html',
         gitCommitHash: commitHash,
         gitCommitUrl: `https://github.com/VerifiedJoseph/parrot/commit/${commitHash}`,
         meta: {

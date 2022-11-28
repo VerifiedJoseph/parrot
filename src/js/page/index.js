@@ -1,13 +1,13 @@
 import JSZip from 'jszip'
 import Papa from 'papaparse'
 
-import { helper } from './assets/js/helper.js'
-import { dom } from './assets/js/dom.js'
-import { filter } from './assets/js/filter.js'
-import { build } from './assets/js/build.js'
+import { Helper } from '../Helper.js'
+import { Dom } from '../Dom.js'
+import { Filter } from '../Filter.js'
+import { Build } from '../Build.js'
 
-import './assets/style.css'
-import './assets/images/meta-image.png'
+import '../../css/style.css'
+import '../../images/meta-image.png'
 
 /**
  * Search the zip file for the required CSV file
@@ -59,7 +59,7 @@ async function processCsvFile (filename, zip) {
 
       results.data.forEach((row, index) => {
         if (index > rowsAfter) {
-          if (helper.getUserIndex(row[3], data.users) === -1) {
+          if (Helper.getUserIndex(row[3], data.users) === -1) {
             const user = {
               display_name: row[2],
               username: row[3],
@@ -70,9 +70,9 @@ async function processCsvFile (filename, zip) {
             data.users.push(user)
           }
 
-          const id = helper.getIdFromUrl(row[4])
-          const tweetIndex = helper.getTweetIndex(id, data.tweets)
-          const userIndex = helper.getUserIndex(row[3], data.users)
+          const id = Helper.getIdFromUrl(row[4])
+          const tweetIndex = Helper.getTweetIndex(id, data.tweets)
+          const userIndex = Helper.getUserIndex(row[3], data.users)
 
           if (tweetIndex === -1) {
             const tweet = {
@@ -142,16 +142,16 @@ async function processCsvFile (filename, zip) {
  * Load a zip archive and display tweets
  */
 function loadFile (input) {
-  dom.hideError()
-  filter.clearUsernames()
+  Dom.hideError()
+  Filter.clearUsernames()
 
   if (input.target.files === undefined) {
     return
   }
 
-  dom.clearTweets()
-  dom.show('loading')
-  dom.enableInput('close-file')
+  Dom.clearTweets()
+  Dom.show('loading')
+  Dom.enableInput('close-file')
 
   console.log('File: ' + input.target.files[0].name)
 
@@ -163,30 +163,30 @@ function loadFile (input) {
         const data = await processCsvFile(csvFilename, zip)
         const autoload = document.getElementById('autoload').checked
 
-        dom.hide('loading')
-        dom.hide('about')
+        Dom.hide('loading')
+        Dom.hide('about')
 
-        build.page(data, zip, autoload)
+        Build.page(data, zip, autoload)
 
-        dom.enableInput('media-filter-reset')
-        dom.enableInput('media-filter')
+        Dom.enableInput('media-filter-reset')
+        Dom.enableInput('media-filter')
 
         document.getElementById('username-filter').addEventListener('change', function (e) {
-          filter.run(data)
+          Filter.run(data)
         })
 
         document.getElementById('media-filter').addEventListener('change', function (e) {
-          filter.run(data)
+          Filter.run(data)
         })
 
         document.getElementById('username-filter-reset').addEventListener('click', function (e) {
           document.getElementById('username-filter').getElementsByTagName('option')[0].selected = 'selected'
-          filter.run(data)
+          Filter.run(data)
         })
 
         document.getElementById('media-filter-reset').addEventListener('click', function (e) {
           document.getElementById('media-filter').getElementsByTagName('option')[0].selected = 'selected'
-          filter.run(data)
+          Filter.run(data)
         })
 
         if (autoload === false) {
@@ -195,8 +195,8 @@ function loadFile (input) {
           for (let i = 0; i < placeholders.length; i++) {
             placeholders[i].addEventListener('click', function (e) {
               const id = e.target.getAttribute('data-tweet-id')
-              const index = helper.getTweetIndex(id, data.tweets)
-              const media = build.media(data.tweets[index].media, zip)
+              const index = Helper.getTweetIndex(id, data.tweets)
+              const media = Build.media(data.tweets[index].media, zip)
 
               e.target.parentNode.replaceChild(media, e.target)
             })
@@ -204,15 +204,15 @@ function loadFile (input) {
         }
       })
       .catch(function (err) {
-        dom.hide('loading')
-        dom.displayError('Failed to load tweets.')
-        dom.show('about')
+        Dom.hide('loading')
+        Dom.displayError('Failed to load tweets.')
+        Dom.show('about')
         console.error(err)
       })
   }
   reader.onerror = function (err) {
-    dom.hide('loading')
-    dom.displayError('Failed to read file.')
+    Dom.hide('loading')
+    Dom.displayError('Failed to read file.')
     console.error('Failed to read file', err)
   }
   reader.readAsArrayBuffer(input.target.files[0])
@@ -221,20 +221,20 @@ function loadFile (input) {
 document.getElementById('close-file').addEventListener('click', function (e) {
   document.getElementById('zip-file').value = ''
 
-  dom.hide('username-filter-text')
-  dom.disableInput('username-filter-reset')
-  dom.disableInput('username-filter')
-  dom.disableInput('media-filter-reset')
-  dom.disableInput('media-filter')
+  Dom.hide('username-filter-text')
+  Dom.disableInput('username-filter-reset')
+  Dom.disableInput('username-filter')
+  Dom.disableInput('media-filter-reset')
+  Dom.disableInput('media-filter')
 
-  dom.disableInput('close-file')
-  dom.clearTweets()
-  filter.clearUsernames()
-  dom.show('about')
-  dom.hide('error')
+  Dom.disableInput('close-file')
+  Dom.clearTweets()
+  Filter.clearUsernames()
+  Dom.show('about')
+  Dom.hide('error')
 })
 
 document.getElementById('zip-file').addEventListener('change', loadFile)
 
-dom.enableInput('zip-file')
-dom.enableInput('autoload')
+Dom.enableInput('zip-file')
+Dom.enableInput('autoload')
