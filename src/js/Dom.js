@@ -1,7 +1,7 @@
 /**
  * Control DOM elements
  */
-export const dom = {
+export const Dom = {
   /**
    * Display error message
    *

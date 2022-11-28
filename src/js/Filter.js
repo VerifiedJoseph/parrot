@@ -1,7 +1,7 @@
-import { helper } from './helper.js'
-import { dom } from './dom.js'
+import { Helper } from './Helper.js'
+import { Dom } from './Dom.js'
 
-export const filter = {
+export const Filter = {
   /**
    * Filter tweets
    *
@@ -47,15 +47,15 @@ export const filter = {
       return true
     })
 
-    dom.innerText('username-filter-number', helper.formatNumber(filtered.length))
+    Dom.innerText('username-filter-number', Helper.formatNumber(filtered.length))
 
     let name = userFilter
     if (userFilter !== 'none') {
       if (userFilter === 'all') {
-        name = helper.formatNumber(data.stats.users) + ' users'
+        name = Helper.formatNumber(data.stats.users) + ' users'
       }
 
-      dom.innerText('username-filter-name', name)
+      Dom.innerText('username-filter-name', name)
     }
   },
 
