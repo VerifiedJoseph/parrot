@@ -180,5 +180,7 @@ p {
 
 .tweet > .stats {
 	padding: 4px;
+	padding-top: 8px;
+	padding-bottom: 0px;
 }
 
