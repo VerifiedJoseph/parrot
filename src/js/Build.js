@@ -15,10 +15,10 @@ export const Build = {
     this.tweets(data.tweets, zip, autoload)
     this.filterList(data.users)
 
-    Dom.innerText('username-filter-number', Helper.formatNumber(data.stats.tweets))
-    Dom.innerText('username-filter-name', Helper.formatNumber(data.stats.users) + ' users')
+    Dom.innerText('filter-number', Helper.formatNumber(data.stats.tweets))
+    Dom.innerText('filter-name', Helper.formatNumber(data.stats.users) + ' users')
 
-    Dom.show('username-filter-text')
+    Dom.show('filter-text')
     Dom.show('tweets')
   },
 
