@@ -11,6 +11,11 @@ import '../../css/dark.css'
 import '../../images/meta-image.png'
 
 /**
+ * Tweets and users
+ */
+let data = {}
+
+/**
  * Load a zip archive and display tweets
  */
 function loadFile (input) {
@@ -31,8 +36,11 @@ function loadFile (input) {
   reader.onload = function (ev) {
     JSZip.loadAsync(ev.target.result)
       .then(async function (zip) {
-        const csvFilename = Csv.find(zip)
-        const data = await Csv.process(csvFilename, zip)
+        data = await Csv.process(
+          Csv.find(zip),
+          zip
+        )
+
         const autoload = document.getElementById('autoload').checked
 
         Dom.hide('loading')
@@ -45,33 +53,6 @@ function loadFile (input) {
         Dom.enableInput('search-input')
         Dom.enableInput('search')
         Dom.enableInput('search-reset')
-
-        document.getElementById('username-filter').addEventListener('change', function (e) {
-          Filter.run(data)
-        })
-
-        document.getElementById('media-filter').addEventListener('change', function (e) {
-          Filter.run(data)
-        })
-
-        document.getElementById('username-filter-reset').addEventListener('click', function (e) {
-          document.getElementById('username-filter').getElementsByTagName('option')[0].selected = 'selected'
-          Filter.run(data)
-        })
-
-        document.getElementById('search').addEventListener('click', function (e) {
-          Filter.run(data)
-        })
-
-        document.getElementById('search-reset').addEventListener('click', function (e) {
-          document.getElementById('search-input').value = ''
-          Filter.run(data)
-        })
-
-        document.getElementById('media-filter-reset').addEventListener('click', function (e) {
-          document.getElementById('media-filter').getElementsByTagName('option')[0].selected = 'selected'
-          Filter.run(data)
-        })
 
         if (autoload === false) {
           const placeholders = document.getElementsByClassName('placeholder')
@@ -102,6 +83,54 @@ function loadFile (input) {
   reader.readAsArrayBuffer(input.target.files[0])
 }
 
+/**
+ * Event listener for username filter change
+ */
+document.getElementById('username-filter').addEventListener('change', function (e) {
+  Filter.run(data)
+})
+
+/**
+ * Event listener for media type filter change
+ */
+document.getElementById('media-filter').addEventListener('change', function (e) {
+  Filter.run(data)
+})
+
+/**
+ * Event listener for username filter reset button
+ */
+document.getElementById('username-filter-reset').addEventListener('click', function (e) {
+  document.getElementById('username-filter').getElementsByTagName('option')[0].selected = 'selected'
+  Filter.run(data)
+})
+
+/**
+ * Event listener for media type filter reset button
+ */
+document.getElementById('media-filter-reset').addEventListener('click', function (e) {
+  document.getElementById('media-filter').getElementsByTagName('option')[0].selected = 'selected'
+  Filter.run(data)
+})
+
+/**
+ * Event listener for tweet search button
+ */
+document.getElementById('search').addEventListener('click', function (e) {
+  Filter.run(data)
+})
+
+/**
+ * Event listener for tweet search reset
+ */
+document.getElementById('search-reset').addEventListener('click', function (e) {
+  document.getElementById('search-input').value = ''
+  Filter.run(data)
+})
+
+/**
+ * Event listener for file close button
+ */
 document.getElementById('close-file').addEventListener('click', function (e) {
   document.getElementById('zip-file').value = ''
 
@@ -121,6 +150,9 @@ document.getElementById('close-file').addEventListener('click', function (e) {
   Dom.hide('error')
 })
 
+/**
+ * Event listener for zip file
+ */
 document.getElementById('zip-file').addEventListener('change', loadFile)
 
 Dom.enableInput('zip-file')

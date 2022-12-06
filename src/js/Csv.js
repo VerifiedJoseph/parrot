@@ -10,7 +10,7 @@ export const Csv = {
    * Find csv file in zip archive
    *
    * @param {*} zip
-   * @return {string|null} Filename
+   * @return {string} Filename
    */
   find: function (zip) {
     const regex = /\.csv$/
