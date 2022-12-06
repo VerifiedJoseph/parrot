@@ -8,7 +8,6 @@ import { Build } from '../Build.js'
 
 import '../../css/style.css'
 import '../../css/dark.css'
-import '../../images/meta-image.png'
 
 /**
  * Tweets and users
