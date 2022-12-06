@@ -39,7 +39,9 @@ module.exports = (env, argv) => {
       ]
     },
     plugins: [
-      new MiniCssExtractPlugin(),
+      new MiniCssExtractPlugin({
+        filename: 'app.css'
+      }),
       new HtmlWebpackPlugin({
         title: 'Parrot',
         description: 'Viewer for tweet archives created with the Twitter Media Downloader',
@@ -53,7 +55,7 @@ module.exports = (env, argv) => {
             content: csp
           }
         },
-        inject: true
+        inject: 'body'
       })
     ],
     devServer: {
