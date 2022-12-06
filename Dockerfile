@@ -1,11 +1,11 @@
 ARG NODE_VERSION=18.12.1-alpine3.16
 ARG NGINX_VERSION=1.23.2-alpine
 
+FROM node:${NODE_VERSION} as node
+
 LABEL org.opencontainers.image.description="Browser-based viewer for tweet archives created with the Twitter Media Downloader browser extension."
 LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.source=https://github.com/VerifiedJoseph/parrot
-
-FROM node:${NODE_VERSION} as node
 
 # Copy code
 COPY ./ /app
