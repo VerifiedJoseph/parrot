@@ -53,7 +53,7 @@ module.exports = (env, argv) => {
             content: csp
           }
         },
-        inject: true
+        inject: 'body'
       })
     ],
     devServer: {
