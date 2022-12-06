@@ -8,8 +8,11 @@ export const Filter = {
    * @param {array} data
    */
   run: function (data) {
+    const users = [] // Usernames of tweets filtered
+
     const userFilter = document.getElementById('username-filter').value
     const mediaFilter = document.getElementById('media-filter').value
+    const search = document.getElementById('search-input').value
 
     const elements = document.querySelectorAll('div.tweet')
     elements.forEach(function (element) {
@@ -18,6 +21,10 @@ export const Filter = {
 
     const filtered = data.tweets.filter(function (tweet) {
       if (userFilter !== 'all' && tweet.username !== userFilter) {
+        return false
+      }
+
+      if (search !== '' && tweet.text.search(search.trim()) === -1) {
         return false
       }
 
@@ -41,21 +48,29 @@ export const Filter = {
         }
       }
 
+      if (users.includes(tweet.username) === false) {
+        users.push(tweet.username)
+      }
+
       const element = document.querySelector('div[data-id="' + tweet.id + '"]')
       element.classList.remove('hide')
 
       return true
     })
 
-    Dom.innerText('username-filter-number', Helper.formatNumber(filtered.length))
+    Dom.innerText('filter-number', Helper.formatNumber(filtered.length))
 
     let name = userFilter
     if (userFilter !== 'none') {
       if (userFilter === 'all') {
-        name = Helper.formatNumber(data.stats.users) + ' users'
+        name = Helper.formatNumber(users.length) + ' users'
       }
 
-      Dom.innerText('username-filter-name', name)
+      if (search !== '') {
+        name += ` containing "${search}"`
+      }
+
+      Dom.innerText('filter-name', name)
     }
   },
 

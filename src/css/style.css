@@ -67,6 +67,10 @@ p {
 	width: 200px;
 }
 
+#search-input {
+	width: 144px;
+}
+
 #options > .item > button {
 	min-width: 50px;
 }
@@ -80,10 +84,6 @@ p {
 	width: 195px;
 }
 
-#username-filter-text {
-	margin-bottom: 0px;
-}
-
 #error {
 	background-color: red;
 	color: white;
@@ -94,18 +94,25 @@ p {
 	color: white;
 }
 
-#loading {
+#loading, #filter-text {
 	background-color: white;
 }
 
-#loading, #note, #error {
-	padding: 5px;
+#filter-number {
 	font-weight: bold;
+}
+
+#loading, #note, #error, #filter-text {
+	padding: 5px;
 	margin-bottom: 10px !important;
 	text-align: center;
 }
 
-#tweets, #error, #about, #loading, #note {
+#loading, #note, #error {
+	font-weight: bold;
+}
+
+#tweets, #error, #about, #loading, #note, #filter-text {
 	max-width: 600px;
 	margin: 0 auto;
 }

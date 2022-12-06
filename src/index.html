@@ -22,7 +22,7 @@
                     <span>Select a zip:</span>
                     <input type="file" id="zip-file" disabled accept=".zip"/>
                 </label>
-                <button id="close-file" disabled>Close file</button>
+                <button id="close-file" title="Close open tweet archive." disabled>Close file</button>
             </div>
             <div class="item">
                 <label>
@@ -37,9 +37,9 @@
                         <option disabled selected="" value="all" hidden="">Select a username</option>
                     </select>
                 </label>
-                <button id="username-filter-reset" disabled>Reset</button>
+                <button id="username-filter-reset" title="Reset user filter and show all." disabled>Reset</button>
             </div>
-            <div class="item last">
+            <div class="item">
                 <label>
                     <span>Filter media:</span>
                     <select id="media-filter" disabled>
@@ -49,12 +49,21 @@
                         <option value="videos">Videos</option>
                     </select>
                 </label>
-                <button id="media-filter-reset" disabled>Reset</button>
+                <button id="media-filter-reset" title="Reset media filter and show all." disabled>Reset</button>
             </div>
-            <p id="username-filter-text" class="hide">Showing 
-                <span id="username-filter-number">0</span> tweets from 
-                <span id="username-filter-name">all users</span>
-            </p>
+            <div class="item last">
+                <label>
+                    <span>Search:</span>
+                    <input type="input" id="search-input" disabled>
+                </label>
+                <button id="search" disabled>Search</button>
+                <button id="search-reset" title="Reset tweet search and show all." disabled>Reset</button>
+            </div>
+        </div>
+        <div id="filter-text" class="hide">
+            Showing 
+            </strong><span id="filter-number">0</span> tweets from 
+            <span id="filter-name">all users</span>
         </div>
         <div id="error" class="hide"></div>
         <div id="loading" class="hide">Loading...</div>
