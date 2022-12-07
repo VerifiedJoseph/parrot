@@ -182,6 +182,7 @@ p {
 .tweet > .media > .gallery {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	column-gap: 5px;
 }
 
 .tweet > .media > .gallery > div > a > img,
