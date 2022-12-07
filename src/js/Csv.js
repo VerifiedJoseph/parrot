@@ -8,7 +8,6 @@ import { Helper } from './Helper.js'
 export const Csv = {
   /**
    * Find csv file in zip archive
-   *
    * @param {object} zip JSZip object
    * @return {string} Filename
    */
@@ -32,10 +31,9 @@ export const Csv = {
 
   /**
    * Process csv file
-   *
    * @param {string} filename CSV filename
    * @param {object} zip JSZip object
-   * @returns {object} Tweets data
+   * @returns {object} Tweet and user data
    */
   process: async function (filename, zip) {
     return new Promise((resolve) => {
