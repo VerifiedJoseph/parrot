@@ -8,7 +8,6 @@ import { Tweet } from './Tweet.js'
 export const Build = {
   /**
    * Build page
-   *
    * @param {array} data
    * @param {object} zip JSZip object
    * @param {bool} autoload Media autoload status
@@ -26,7 +25,6 @@ export const Build = {
 
   /**
    * Build username filter list
-   *
    * @param {array} users
    */
   filterList: function (users) {
@@ -48,7 +46,6 @@ export const Build = {
 
   /**
    * Build tweets
-   *
    * @param {array} tweets
    * @param {object} zip JSZip object
    * @param {bool} autoload Media autoload status
