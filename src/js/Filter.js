@@ -4,7 +4,6 @@ import { Dom } from './Dom.js'
 export const Filter = {
   /**
    * Filter tweets
-   *
    * @param {array} data
    */
   run: function (data) {
