@@ -52,7 +52,7 @@ export const Filter = {
         users.push(tweet.username)
       }
 
-      const element = document.querySelector('div[data-id="' + tweet.id + '"]')
+      const element = document.querySelector(`div[data-id="${tweet.id}"]`)
       element.classList.remove('hide')
 
       return true
@@ -63,7 +63,7 @@ export const Filter = {
     let name = userFilter
     if (userFilter !== 'none') {
       if (userFilter === 'all') {
-        name = Helper.formatNumber(users.length) + ' users'
+        name = `${Helper.formatNumber(users.length)} users`
       }
 
       if (search !== '') {

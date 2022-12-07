@@ -18,7 +18,7 @@ export const Build = {
     this.filterList(data.users)
 
     Dom.innerText('filter-number', Helper.formatNumber(data.stats.tweets))
-    Dom.innerText('filter-name', Helper.formatNumber(data.stats.users) + ' users')
+    Dom.innerText('filter-name', `${Helper.formatNumber(data.stats.users)} users`)
 
     Dom.show('filter-text')
     Dom.show('tweets')

@@ -59,7 +59,7 @@ export class Tweet {
 
     const nameLink = document.createElement('a')
     nameLink.innerText = this.tweet.display_name
-    nameLink.setAttribute('href', 'https://twitter.com/' + this.tweet.username)
+    nameLink.setAttribute('href', `https://twitter.com/${this.tweet.username}`)
     nameLink.setAttribute('target', '_blank')
     name.appendChild(nameLink)
     name.appendChild(username)
@@ -177,7 +177,7 @@ export class Tweet {
         word = ' image'
       }
 
-      text += '(' + this.tweet.stats.images + word + ')'
+      text += `(${this.tweet.stats.images} ${word})`
     }
 
     if (this.tweet.stats.videos > 0) {
@@ -187,7 +187,7 @@ export class Tweet {
         word = ' video'
       }
 
-      text += '(' + this.tweet.stats.videos + word + ')'
+      text += `(${this.tweet.stats.videos} ${word})`
     }
 
     placeholder.innerText = text
