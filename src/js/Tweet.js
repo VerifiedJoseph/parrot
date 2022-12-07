@@ -8,7 +8,7 @@ import { Helper } from './Helper.js'
 export class Tweet {
   /**
    * @param {object} tweet Tweet data
-   * @param {*} zip Zip file
+   * @param {object} zip JSZip object
    * @param {bool} loadMedia Load media status
    */
   constructor (tweet, zip, loadMedia = false) {
