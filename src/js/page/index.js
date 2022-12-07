@@ -4,7 +4,8 @@ import { Helper } from '../Helper.js'
 import { Csv } from '../Csv.js'
 import { Dom } from '../Dom.js'
 import { Filter } from '../Filter.js'
-import { Build } from '../Build.js'
+import { Build } from '../Build/Build.js'
+import { Tweet } from '../Build/Tweet.js'
 
 import '../../css/style.css'
 import '../../css/dark.css'
@@ -60,9 +61,9 @@ function loadFile (input) {
             placeholders[i].addEventListener('click', function (e) {
               const id = e.target.getAttribute('data-tweet-id')
               const index = Helper.getTweetIndex(id, data.tweets)
-              const media = Build.media(data.tweets[index].media, zip)
+              const item = new Tweet(data.tweets[index], zip)
 
-              e.target.parentNode.replaceChild(media, e.target)
+              e.target.parentNode.replaceChild(item.media(), e.target)
             })
           }
         }
