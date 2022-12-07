@@ -8,7 +8,7 @@ import { Helper } from './Helper.js'
 export class Tweet {
   /**
    * @param {object} tweet Tweet data
-   * @param {*} zip Zip file
+   * @param {object} zip JSZip object
    * @param {bool} loadMedia Load media status
    */
   constructor (tweet, zip, loadMedia = false) {
@@ -19,6 +19,7 @@ export class Tweet {
 
   /**
    * Build tweet
+   * @returns {HTMLDivElement}
    */
   build () {
     const item = document.createElement('div')
@@ -45,6 +46,7 @@ export class Tweet {
 
   /**
    * Build tweet header
+   * @returns {HTMLDivElement}
    */
   header () {
     const header = document.createElement('div')
@@ -86,6 +88,7 @@ export class Tweet {
 
   /**
    * Build tweet body
+   * @returns {HTMLDivElement}
    */
   body () {
     const body = document.createElement('div')
@@ -97,6 +100,7 @@ export class Tweet {
 
   /**
    * Build media
+   * @returns {HTMLDivElement}
    */
   media () {
     const media = document.createElement('div')
@@ -157,6 +161,7 @@ export class Tweet {
 
   /**
    * Build media placeholder for tweet
+   * @returns {HTMLDivElement}
    */
   mediaPlaceholder () {
     const placeholder = document.createElement('button')
@@ -192,8 +197,8 @@ export class Tweet {
 
   /**
    * Build media file error
-   *
    * @param {string} filename Media filename
+   * @returns {HTMLDivElement}
    */
   mediaError (filename) {
     const error = document.createElement('div')
@@ -205,6 +210,7 @@ export class Tweet {
 
   /**
    * Build footer
+   * @returns {HTMLDivElement}
    */
   footer () {
     const replies = Helper.formatNumber(this.tweet.stats.replies)
@@ -220,8 +226,8 @@ export class Tweet {
 
   /**
    * Build links for tweet text
-   *
    * @param {string} text
+   * @returns {string}
    */
   links (text) {
     const autoLinker = new Autolinker({

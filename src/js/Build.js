@@ -8,9 +8,8 @@ import { Tweet } from './Tweet.js'
 export const Build = {
   /**
    * Build page
-   *
    * @param {array} data
-   * @param {*} zip
+   * @param {object} zip JSZip object
    * @param {bool} autoload Media autoload status
    */
   page: function (data, zip, autoload) {
@@ -26,7 +25,6 @@ export const Build = {
 
   /**
    * Build username filter list
-   *
    * @param {array} users
    */
   filterList: function (users) {
@@ -48,16 +46,13 @@ export const Build = {
 
   /**
    * Build tweets
-   *
    * @param {array} tweets
-   * @param {*} zip
+   * @param {object} zip JSZip object
    * @param {bool} autoload Media autoload status
    */
   tweets: function (tweets, zip, autoload) {
     const items = document.getElementById('tweets')
     items.innerHTML = ''
-
-    document.getElementById('tweets')
 
     tweets.forEach(tweet => {
       const item = new Tweet(

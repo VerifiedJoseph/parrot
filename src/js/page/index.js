@@ -27,6 +27,7 @@ function loadFile (input) {
   }
 
   Dom.clearTweets()
+  Dom.hide('filter-text')
   Dom.show('loading')
   Dom.enableInput('close-file')
 
