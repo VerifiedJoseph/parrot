@@ -105,58 +105,51 @@ export class Tweet {
     const gallery = document.createElement('div')
     gallery.classList.add('gallery')
 
-    this.tweet.media.forEach(item => {
-      if (this.zip.file(item.filename) !== null) {
-        this.zip.file(item.filename)
-          .async('arraybuffer')
-          .then(function (content) {
-            const buffer = new Uint8Array(content)
-            const blob = new Blob([buffer.buffer])
-            const url = URL.createObjectURL(blob)
+    const info = this.tweet.media
+    const promises = []
 
-            let element
-            if (item.type === 'Image') {
-              const image = new Image()
-              image.src = url
-              image.setAttribute('loading', 'lazy')
+    this.tweet.media.forEach(async item => {
+      promises.push(this.zip.file(item.filename).async('uint8array'))
+    })
 
-              const a = document.createElement('a')
-              a.setAttribute('href', url)
-              a.setAttribute('target', '_blank')
+    Promise.all(promises).then(function (result) {
+      result.forEach(async (content, index) => {
+        const buffer = new Uint8Array(content)
+        const blob = new Blob([buffer.buffer])
+        const url = URL.createObjectURL(blob)
 
-              a.appendChild(image)
+        let element
+        if (info[index].type === 'Image') {
+          const image = new Image()
+          image.src = url
+          image.setAttribute('loading', 'lazy')
 
-              element = a
-            } else if (item.type === 'Video' || item.type === 'GIF') {
-              const video = document.createElement('video')
-              video.src = url
-              video.controls = true
+          const a = document.createElement('a')
+          a.setAttribute('href', url)
+          a.setAttribute('target', '_blank')
 
-              if (item.type === 'GIF') {
-                video.loop = true
-                video.autoplay = true
-              }
+          a.appendChild(image)
 
-              element = video
-            }
+          element = a
+        } else if (info[index].type === 'Video' || info[index].type === 'GIF') {
+          const video = document.createElement('video')
+          video.src = url
+          video.controls = true
 
-            const div = document.createElement('div')
-            div.appendChild(element)
+          if (info[index].type === 'GIF') {
+            video.loop = true
+            video.autoplay = true
+          }
 
-            gallery.appendChild(div)
-          })
-          .catch(function (err) {
-            console.error(err)
-            media.appendChild(this.mediaError(item.filename))
-          })
-          .finally(function () {
-            media.appendChild(gallery)
-          })
-      } else {
-        console.log(`file not found: ${item.filename}`)
+          element = video
+        }
 
-        media.appendChild(this.mediaError(item.filename))
-      }
+        const div = document.createElement('div')
+        div.appendChild(element)
+        gallery.appendChild(div)
+      })
+
+      media.appendChild(gallery)
     })
 
     return media
