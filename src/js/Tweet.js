@@ -147,9 +147,11 @@ export class Tweet {
           })
           .catch(function (err) {
             console.error(err)
+            media.appendChild(this.mediaError(item.filename))
           })
-
-        media.appendChild(gallery)
+          .finally(function () {
+            media.appendChild(gallery)
+          })
       } else {
         console.log(`file not found: ${item.filename}`)
 
