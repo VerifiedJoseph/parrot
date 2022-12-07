@@ -1,9 +1,9 @@
 export const Helper = {
   /**
-   * Get the array index for a Tweet via its ID
-   *
-   * @param {string} Tweet id
+   * Get the array index for a Tweet via its identifier
+   * @param {string} id
    * @param {object} Tweets
+   * @returns {int} Array index for tweet
    */
   getTweetIndex: function (id, tweets) {
     const check = (element) => element.id === id
@@ -12,9 +12,9 @@ export const Helper = {
 
   /**
    * Get the array index for a User via its username
-   *
    * @param {string} Username
    * @param {object} Users
+   * @returns {int} Array index for user
    */
   getUserIndex: function (username, users) {
     const check = (element) => element.username === username
@@ -22,10 +22,9 @@ export const Helper = {
   },
 
   /**
-   * Extract tweet ID from tweet URL
-   *
+   * Extract tweet identifier from tweet URL
    * @param {string} url
-   * @return Tweet ID
+   * @returns {string} Tweet identifier
    */
   getIdFromUrl: function (url) {
     const regex = /https?:\/\/twitter\.com\/\w+\/status\/([0-9]+)/
@@ -35,9 +34,8 @@ export const Helper = {
 
   /**
    * Format a number
-   *
-   * @param {*} number
-   * @returns
+   * @param {(string|int)} number
+   * @returns {string}
    */
   formatNumber: function (number) {
     return new Intl.NumberFormat().format(number)
