@@ -1,7 +1,10 @@
 import Autolinker from 'autolinker'
 
-import { Helper } from '../Helper.js'
+import { Helper } from './Helper.js'
 
+/**
+ * Build a tweet
+ */
 export class Tweet {
   /**
    * @param {object} tweet Tweet data
