@@ -9,7 +9,7 @@ export const Csv = {
   /**
    * Find csv file in zip archive
    *
-   * @param {*} zip
+   * @param {object} zip JSZip object
    * @return {string} Filename
    */
   find: function (zip) {
@@ -34,7 +34,7 @@ export const Csv = {
    * Process csv file
    *
    * @param {string} filename CSV filename
-   * @param {*} zip
+   * @param {object} zip JSZip object
    * @returns {object} Tweets data
    */
   process: async function (filename, zip) {
