@@ -1,6 +1,9 @@
 export const Helper = {
   /**
    * Get the array index for a Tweet via its ID
+   *
+   * @param {string} Tweet id
+   * @param {object} Tweets
    */
   getTweetIndex: function (id, tweets) {
     const check = (element) => element.id === id
@@ -9,6 +12,9 @@ export const Helper = {
 
   /**
    * Get the array index for a User via its username
+   *
+   * @param {string} Username
+   * @param {object} Users
    */
   getUserIndex: function (username, users) {
     const check = (element) => element.username === username
