@@ -4,7 +4,6 @@
 export const Dom = {
   /**
    * Display error message
-   *
    * @param {string} text
    */
   displayError: function (text) {
@@ -30,7 +29,6 @@ export const Dom = {
 
   /**
    * Show an element
-   *
    * @param {string} element Element id
    */
   show: function (element) {
@@ -39,7 +37,6 @@ export const Dom = {
 
   /**
    * Hide an element
-   *
    * @param {string} element Element id
    */
   hide: function (element) {
@@ -48,7 +45,6 @@ export const Dom = {
 
   /**
    * Enable an input
-   *
    * @param {string} element Element id
    */
   enableInput: function (element) {
@@ -57,7 +53,6 @@ export const Dom = {
 
   /**
    * Disable an input
-   *
    * @param {string} element Element id
    */
   disableInput: function (element) {
@@ -66,7 +61,6 @@ export const Dom = {
 
   /**
    * Set inner text for element
-   *
    * @param {string} element Element id
    * @param {string} text Text
    */
