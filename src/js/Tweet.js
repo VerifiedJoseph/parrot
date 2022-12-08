@@ -112,8 +112,12 @@ export class Tweet {
     const info = this.tweet.media
     const promises = []
 
-    this.tweet.media.forEach(async item => {
-      promises.push(this.zip.file(item.filename).async('uint8array'))
+    this.tweet.media.forEach(item => {
+      if (this.zip.file(item.filename) !== null) {
+        promises.push(this.zip.file(item.filename).async('uint8array'))
+      } else {
+        media.appendChild(this.mediaError(item.filename))
+      }
     })
 
     Promise.all(promises).then(function (result) {
@@ -154,6 +158,9 @@ export class Tweet {
       })
 
       media.appendChild(gallery)
+    }).catch(function (err) {
+      console.error(err)
+      media.appendChild(this.mediaError())
     })
 
     return media
@@ -200,10 +207,16 @@ export class Tweet {
    * @param {string} filename Media filename
    * @returns {HTMLDivElement}
    */
-  mediaError (filename) {
+  mediaError (filename = '') {
+    let text = 'Error loading media'
     const error = document.createElement('div')
     error.classList.add('error')
-    error.innerText = `File not found: ${filename}`
+
+    if (filename !== '') {
+      text = `File not found: ${filename}`
+    }
+
+    error.innerText = text
 
     return error
   }
