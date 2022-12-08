@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.1](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.1) - 2021-12-09
+
+* Fixed image order in tweets. ([#36](https://github.com/VerifiedJoseph/parrot/pull/36), [`d2951bc`](https://github.com/VerifiedJoseph/parrot/commit/d2951bc17d005c8c765b74b15b7f23b08dda79be))
+
 ## [1.6.0](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.0) - 2021-12-06
 
 * Added tweet search. ([#26](https://github.com/VerifiedJoseph/parrot/pull/26), [`1c0209d`](https://github.com/VerifiedJoseph/parrot/commit/1c0209deb8411638993bcbedc31795bf4cd14e98))
