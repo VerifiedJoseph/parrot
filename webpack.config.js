@@ -9,9 +9,11 @@ const commitHash = require('child_process')
 
 module.exports = (env, argv) => {
   let csp = ''
+  let zipDownloadPath = 'parrot-tweet-viewer.zip'
 
   if (argv.mode === 'production') {
     csp = "default-src 'self' blob:; base-uri 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests; block-all-mixed-content;"
+    zipDownloadPath = 'https://verifiedjoseph.github.io/parrot/parrot-tweet-viewer.zip'
   }
 
   return {
@@ -49,6 +51,7 @@ module.exports = (env, argv) => {
         template: './src/index.html',
         gitCommitHash: commitHash,
         gitCommitUrl: `https://github.com/VerifiedJoseph/parrot/commit/${commitHash}`,
+        zipDownloadUrl: zipDownloadPath,
         meta: {
           'Content-Security-Policy': {
             'http-equiv': 'Content-Security-Policy',
