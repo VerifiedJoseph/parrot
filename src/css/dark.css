@@ -10,15 +10,30 @@
 
 	#error {
 		color: #c9d1d9;
-		background-color: #ae0707;
+		background-color: #8c0000;
 	}
 
-	#options, #about, .tweet, #loading {
+	#options, #about, .tweet, #loading, #filter-text {
 		background-color:#161b22;
 		color: #c9d1d9;
 	}
 
 	.placeholder {
 		background-color: #58a6ff;
+	}
+
+	#search-input {
+		background-color: #E9E9ED;
+		color: #000;
+		border: 1px solid #8F8F9D;
+	}
+
+	#search-input:disabled {
+		background-color: #808288;
+	}
+
+	.tweet > .media > .error {
+		background-color: #8c0000;
+		color: #c9d1d9;
 	}
 }
