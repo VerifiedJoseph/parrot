@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.2](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.2) - 2021-12-09
+
+* Fixed media error handling. ([#41](https://github.com/VerifiedJoseph/parrot/pull/41), [`1a32ca5`](https://github.com/VerifiedJoseph/parrot/commit/1a32ca581dc337ef60e78be05d67cb465586848b))
+* Updated dark mode ([#42](https://github.com/VerifiedJoseph/parrot/pull/42), [`11da732`](https://github.com/VerifiedJoseph/parrot/commit/11da732f00a67aa0b09eabe87246f87335cbbe23))
+
 ## [1.6.1](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.1) - 2021-12-09
 
 * Fixed image order in tweets. ([#36](https://github.com/VerifiedJoseph/parrot/pull/36), [`d2951bc`](https://github.com/VerifiedJoseph/parrot/commit/d2951bc17d005c8c765b74b15b7f23b08dda79be))
