@@ -17,11 +17,15 @@
         </div>
         <div id="options">
             <div class="item">
-                <label>
-                    <span>Select a zip:</span>
-                    <input type="file" id="zip-file" disabled accept=".zip"/>
+                <span class="option-text">Select file:</span>
+                <label for="zip-file" id="buttonlabel">
+                    <div class="file button" role="button" aria-controls="filename" tabindex="0">
+                      Browse...
+                    </div>
                 </label>
-                <button class="button" id="close-file" title="Close open tweet archive." disabled>Close file</button>
+                <input type="file" id="zip-file" disabled accept=".zip">
+                <span id="filename" class="filename">No file selected.</span>
+                <button class="button" id="close-file" title="Close tweet archive." disabled>Close file</button>
             </div>
             <div class="item">
                 <label>
@@ -31,7 +35,7 @@
             </div>
             <div class="item">
                 <label>
-                    <span>Filter user:</span>
+                    <span class="option-text">Filter user:</span>
                     <select class="select" id="username-filter" disabled>
                         <option disabled selected="" value="all" hidden="">Select a username</option>
                     </select>
@@ -40,7 +44,7 @@
             </div>
             <div class="item">
                 <label>
-                    <span>Filter media:</span>
+                    <span class="option-text">Filter media:</span>
                     <select class="select" id="media-filter" disabled>
                         <option disabled selected="" value="all" hidden="">Select a media type</option>
                         <option value="none">No media</option>
@@ -52,7 +56,7 @@
             </div>
             <div class="item last">
                 <label>
-                    <span>Search:</span>
+                    <span class="option-text">Search:</span>
                     <input class="search" type="input" placeholder="Query..." id="search-input" disabled>
                 </label>
                 <button class="button" id="search" disabled>Search</button>
