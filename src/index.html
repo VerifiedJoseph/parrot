@@ -21,7 +21,7 @@
                     <span>Select a zip:</span>
                     <input type="file" id="zip-file" disabled accept=".zip"/>
                 </label>
-                <button id="close-file" title="Close open tweet archive." disabled>Close file</button>
+                <button class="button" id="close-file" title="Close open tweet archive." disabled>Close file</button>
             </div>
             <div class="item">
                 <label>
@@ -31,32 +31,32 @@
             </div>
             <div class="item">
                 <label>
-                    <span>Filter user:</span> 
-                    <select id="username-filter" disabled>
+                    <span>Filter user:</span>
+                    <select class="select" id="username-filter" disabled>
                         <option disabled selected="" value="all" hidden="">Select a username</option>
                     </select>
                 </label>
-                <button id="username-filter-reset" title="Reset user filter and show all." disabled>Reset</button>
+                <button class="button" id="username-filter-reset" title="Reset user filter and show all." disabled>Reset</button>
             </div>
             <div class="item">
                 <label>
                     <span>Filter media:</span>
-                    <select id="media-filter" disabled>
+                    <select class="select" id="media-filter" disabled>
                         <option disabled selected="" value="all" hidden="">Select a media type</option>
                         <option value="none">No media</option>
                         <option value="images">Images (including GIFs)</option>
                         <option value="videos">Videos</option>
                     </select>
                 </label>
-                <button id="media-filter-reset" title="Reset media filter and show all." disabled>Reset</button>
+                <button class="button" id="media-filter-reset" title="Reset media filter and show all." disabled>Reset</button>
             </div>
             <div class="item last">
                 <label>
                     <span>Search:</span>
-                    <input type="input" placeholder="Query..." id="search-input" disabled>
+                    <input class="search" type="input" placeholder="Query..." id="search-input" disabled>
                 </label>
-                <button id="search" disabled>Search</button>
-                <button id="search-reset" title="Reset tweet search and show all." disabled>Reset</button>
+                <button class="button" id="search" disabled>Search</button>
+                <button class="button" id="search-reset" title="Reset tweet search and show all." disabled>Reset</button>
             </div>
         </div>
         <div id="filter-text" class="hide">

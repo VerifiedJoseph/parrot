@@ -63,17 +63,17 @@ p {
 	display: inline-block;
 }
 
-#options > .item > label > select {
+.select {
 	width: 200px;
 	height: 25px;
 }
 
-#search-input {
+.search {
 	width: 144px;
 	height: 25px;
 }
 
-#options > .item > button {
+.button {
 	min-width: 50px;
 	height: 25px;
 }
