@@ -7,7 +7,7 @@ import { Filter } from '../Filter.js'
 import { Build } from '../Build.js'
 import { Tweet } from '../Tweet.js'
 
-import '../../css/style.css'
+import '../../css/base.css'
 import '../../css/dark.css'
 
 /**
