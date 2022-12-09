@@ -22,14 +22,24 @@
 		background-color: #58a6ff;
 	}
 
-	#search-input {
-		background-color: #E9E9ED;
-		color: #000;
-		border: 1px solid #8F8F9D;
+	.select, .button, .search {
+		background-color: #0D1117;
+		color: #c9d1d9;
+		border: 1px solid #30363D;
 	}
 
-	#search-input:disabled {
-		background-color: #808288;
+	.button {
+		cursor: pointer;
+	}
+
+	.button:hover:enabled {
+		cursor: pointer;
+		border: 1px solid #c9d1d9;
+	}
+
+	.search:disabled, .button:disabled, .select:disabled {
+		color: #585A5C;
+		cursor: not-allowed;
 	}
 
 	.tweet > .media > .error {
