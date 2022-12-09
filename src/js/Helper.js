@@ -39,5 +39,17 @@ export const Helper = {
    */
   formatNumber: function (number) {
     return new Intl.NumberFormat().format(number)
+  },
+
+  /**
+   * Truncate text string
+   * @param {string} text
+   * @returns {string} Truncated text
+   */
+  truncateText: function (text) {
+    if (text.length > 22) {
+      return text.substring(0, 22) + '...'
+    }
+    return text
   }
 }
