@@ -18,13 +18,7 @@
 		color: #c9d1d9;
 	}
 
-	.tweet > .placeholder {
-		background-color: #0D1117;
-		color: #c9d1d9;
-		border: 1px solid #30363D;
-	}
-
-	.select, .button, .search {
+	.placeholder, .select, .button, .search {
 		background-color: #0D1117;
 		color: #c9d1d9;
 		border: 1px solid #30363D;
@@ -34,8 +28,9 @@
 		cursor: pointer;
 	}
 
-	.tweet > .placeholder:hover, .button:hover:enabled {
+	.placeholder:hover, .button:hover:enabled, .file:hover {
 		cursor: pointer;
+		background-color: #0D1117;
 		border: 1px solid #c9d1d9;
 	}
 

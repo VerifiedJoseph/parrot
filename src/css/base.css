@@ -85,7 +85,7 @@ p {
 }
 
 .search {
-	width: 146px;
+	width: 147px;
 	background-color: #FFF;
 }
 
@@ -191,7 +191,7 @@ p {
 	padding-bottom: 8px;
 }
 
-.tweet > .placeholder {
+.placeholder {
 	text-align: center;
 	font-weight: bold;
 	padding: 4px;
