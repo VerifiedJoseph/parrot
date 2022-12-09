@@ -165,7 +165,7 @@ p {
 	padding: 4px;
 	height: 26px;
 	width: 100%;
-	border: 0px;
+	border: 1px solid #6495ed;
 	background-color: #6495ed;
 	cursor: pointer;
 }
