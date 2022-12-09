@@ -66,5 +66,14 @@ export const Dom = {
    */
   innerText: function (element, text) {
     document.getElementById(element).innerText = text
+  },
+
+  /**
+   * Set title for element
+   * @param {string} element Element id
+   * @param {string} text Text
+   */
+  title: function (element, text) {
+    document.getElementById(element).title = text
   }
 }
