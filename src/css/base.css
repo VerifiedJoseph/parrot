@@ -63,19 +63,35 @@ p {
 	display: inline-block;
 }
 
+.select, .search, .button {
+	height: 30px;
+	border: 1px solid #8F8F9D;
+}
+
+.select, .button {
+	background-color: #E9E9ED;
+}
+
+.button:hover:enabled {
+	background-color: #D0D0D7;
+}
+
+.select:hover:enabled, .button:hover:enabled {
+	cursor: pointer;
+}
+
 .select {
-	width: 200px;
-	height: 25px;
+	width: 208px;
 }
 
 .search {
-	width: 144px;
-	height: 25px;
+	width: 146px;
+	background-color: #FFF;
 }
 
 .button {
 	min-width: 50px;
-	height: 25px;
+	padding: 0px 8px;
 }
 
 #close-file {
@@ -206,4 +222,3 @@ p {
 		display: block;
 	}
 }
-
