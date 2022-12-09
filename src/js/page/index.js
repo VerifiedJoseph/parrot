@@ -33,6 +33,9 @@ function loadFile (input) {
 
   console.log('File: ' + input.target.files[0].name)
 
+  Dom.innerText('filename', Helper.truncateText(input.target.files[0].name))
+  Dom.title('filename', input.target.files[0].name)
+
   const reader = new FileReader()
   reader.onload = function (ev) {
     JSZip.loadAsync(ev.target.result)
@@ -134,6 +137,9 @@ document.getElementById('search-reset').addEventListener('click', function (e) {
  */
 document.getElementById('close-file').addEventListener('click', function (e) {
   document.getElementById('zip-file').value = ''
+
+  Dom.innerText('filename', 'No file selected.')
+  Dom.title('filename', '')
 
   Dom.hide('filter-text')
   Dom.disableInput('username-filter-reset')
