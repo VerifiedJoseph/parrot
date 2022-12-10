@@ -20,7 +20,7 @@ RUN apk add git
 RUN npm ci
 
 # Build webpack
-RUN npm run build
+RUN npm run build:prod
 
 # Build zip
 RUN node build/zip.js
