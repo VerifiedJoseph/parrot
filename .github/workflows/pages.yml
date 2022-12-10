@@ -41,7 +41,7 @@ jobs:
         run: npm ci
 
       - name: Build webpack
-        run: npm run build
+        run: npm run build:prod
         
       - name: Build zip
         run: node build/zip.js
