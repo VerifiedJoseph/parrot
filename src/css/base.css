@@ -239,14 +239,18 @@ p {
 	}
 
 	.select {
-		width: calc(100% - 64px);
+		width: calc(100% - 58px);
 	}
 
 	.search {
-		width: calc(100% - 128px);
+		width: calc(100% - 124px);
 	}
 
-	#username-filter-reset, #media-filter-reset, #search, #search-reset {
-		width: 60px;
+	.button {
+		padding: 0px 10px;
+	}
+
+	.file {
+		padding: 5px 10px;
 	}
 }
