@@ -101,10 +101,8 @@
         <div id="footer">
             <small>
                 <a target="_blank" href="https://verifiedjoseph.github.io/parrot/">verifiedjoseph.github.io/parrot/</a>
-                <br>Commit: 
-                <a target="_blank" href="<%= htmlWebpackPlugin.options.gitCommitUrl %>">
-                    <%= htmlWebpackPlugin.options.gitCommitHash %>
-                </a>
+                <br>
+                <%= htmlWebpackPlugin.options.version %>-<a target="_blank" href="<%= htmlWebpackPlugin.options.gitCommitUrl %>"><%= htmlWebpackPlugin.options.gitCommitHash %></a>
             </small>
         </div>
     </div>
