@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.4](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.4) - 2021-12-10
+
+* Included version number in webpack html. ([#53](https://github.com/VerifiedJoseph/parrot/pull/53), [`7b43f20`](https://github.com/VerifiedJoseph/parrot/commit/7b43f20d593d105cfa1bec6d641a31664ad09e3c))
+* Reworked inputs on small screens. ([#50](https://github.com/VerifiedJoseph/parrot/pull/50), [`11123cc`](https://github.com/VerifiedJoseph/parrot/commit/11123cc3dc15d5018a0fda05871c39782562f667))
+* Removed 'unsafe-inline' keyword from content security policy. ([#51](https://github.com/VerifiedJoseph/parrot/pull/51), [`35433a0`](https://github.com/VerifiedJoseph/parrot/commit/35433a08a5200aab91e846618a8a7171c6b477f3))
+* Added custom file input css. ([#47](https://github.com/VerifiedJoseph/parrot/pull/47), [`5d66b01`](https://github.com/VerifiedJoseph/parrot/commit/5d66b014a869e27584b85324c33727202f2a4e64))
+
 ## [1.6.3](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.3) - 2021-12-09
 
 * Updated light and dark mode CSS. ([#44](https://github.com/VerifiedJoseph/parrot/pull/44), [#45](https://github.com/VerifiedJoseph/parrot/pull/45), [`97c3d3c`](https://github.com/VerifiedJoseph/parrot/commit/97c3d3ccf8f9f9738d9139e29b9bf00cd12f6469), [`b966b9f`](https://github.com/VerifiedJoseph/parrot/commit/b966b9f5918be6bbd73b1633292aa923d8206043))
