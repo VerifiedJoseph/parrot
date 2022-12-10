@@ -41,6 +41,13 @@ p {
 	margin: 10px;
 }
 
+#header > p {
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+	margin: 0px;
+}
+
 #options {
 	position: relative;
 	max-width: 600px;
