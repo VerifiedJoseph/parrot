@@ -52,6 +52,7 @@ module.exports = (env, argv) => {
         gitCommitHash: commitHash,
         gitCommitUrl: `https://github.com/VerifiedJoseph/parrot/commit/${commitHash}`,
         zipDownloadUrl: zipDownloadPath,
+        version: process.env.PARROT_VERSION || 'dev',
         meta: {
           'Content-Security-Policy': {
             'http-equiv': 'Content-Security-Policy',
