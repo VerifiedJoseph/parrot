@@ -233,8 +233,20 @@ p {
 	padding-bottom: 0px;
 }
 
-@media only screen and (max-width: 360px) {
-	#options > .item > label > span {
+@media only screen and (max-width: 450px) {
+	.option-text {
 		display: block;
+	}
+
+	.select {
+		width: calc(100% - 64px);
+	}
+
+	.search {
+		width: calc(100% - 128px);
+	}
+
+	#username-filter-reset, #media-filter-reset, #search, #search-reset {
+		width: 60px;
 	}
 }
