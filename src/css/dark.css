@@ -36,7 +36,6 @@
 
 	.search:disabled, .button:disabled, .select:disabled {
 		color: #585A5C;
-		cursor: not-allowed;
 	}
 
 	.tweet > .media > .error {

@@ -87,18 +87,22 @@ p {
 	cursor: pointer;
 }
 
+.select:disabled, .button:disabled, .search:disabled {
+	cursor: not-allowed;
+}
+
 .select {
-	width: 208px;
+	width: 300px;
 }
 
 .search {
-	width: 147px;
+	width: 234px;
 	background-color: #FFF;
 }
 
 .button {
 	min-width: 50px;
-	padding: 0px 8px;
+	padding: 0px 10px;
 }
 
 #zip-file {
@@ -108,7 +112,7 @@ p {
 .file {
 	text-align: center;
 	display: inline-block;
-	padding: 5px 8px;
+	padding: 5px 10px;
 }
 
 .filename {
@@ -240,8 +244,16 @@ p {
 	padding-bottom: 0px;
 }
 
-@media only screen and (max-width: 360px) {
-	#options > .item > label > span {
+@media only screen and (max-width: 500px) {
+	.option-text {
 		display: block;
+	}
+
+	.select {
+		width: calc(100% - 61px);
+	}
+
+	.search {
+		width: calc(100% - 129px);
 	}
 }
