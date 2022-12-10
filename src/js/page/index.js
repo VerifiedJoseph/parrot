@@ -118,6 +118,15 @@ document.getElementById('media-filter-reset').addEventListener('click', function
 })
 
 /**
+ * Event listener for Enter key pass on tweet search
+ */
+document.getElementById('search-input').addEventListener('keyup', function (e) {
+  if (e.key === 'Enter') {
+    Filter.run(data)
+  }
+})
+
+/**
  * Event listener for tweet search button
  */
 document.getElementById('search').addEventListener('click', function (e) {
@@ -161,6 +170,15 @@ document.getElementById('close-file').addEventListener('click', function (e) {
  * Event listener for zip file
  */
 document.getElementById('zip-file').addEventListener('change', loadFile)
+
+/**
+ * Event listener for zip file enter key pass
+ */
+document.getElementById('file-button').addEventListener('keyup', function (e) {
+  if (e.key === 'Enter') {
+    document.getElementById('zip-file').click()
+  }
+})
 
 Dom.enableInput('zip-file')
 Dom.enableInput('autoload')
