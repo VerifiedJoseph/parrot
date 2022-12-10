@@ -47,8 +47,8 @@ export const Helper = {
    * @returns {string} Truncated text
    */
   truncateText: function (text) {
-    if (text.length > 22) {
-      return text.substring(0, 22) + '...'
+    if (text.length > 30) {
+      return text.substring(0, 30) + '...'
     }
     return text
   }
