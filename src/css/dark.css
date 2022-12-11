@@ -34,8 +34,13 @@
 		border: 1px solid #c9d1d9;
 	}
 
-	.search:disabled, .button:disabled, .select:disabled {
+	.search::placeholder {
+		opacity: .7;
+	}
+
+	.search:disabled, .button:disabled, .select:disabled, .search::placeholder {
 		color: #585A5C;
+		background-color: #10141A;
 	}
 
 	.tweet > .media > .error {
