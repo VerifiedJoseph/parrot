@@ -127,7 +127,7 @@ p {
 	padding: 5px 10px;
 }
 
-.filename {
+.filename, .checkbox-text {
 	margin-top: 6px;
 	margin-left: 5px;
 	width: 250px;
