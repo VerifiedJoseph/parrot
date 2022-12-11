@@ -14,7 +14,6 @@ body {
 	padding: 0px;
 }
 
-
 h1, h3 {
 	margin: 0px;
 }
@@ -59,15 +58,26 @@ p {
 
 #options > .item {
 	margin-bottom: 8px;
+	display: flex;
+}
+
+#options > .item > .text {
+	width: 80px;
+	height: 30px;
+	padding-top: 6px;
+}
+
+#options > .item > .inputs {
+	display: flex;
+	width: 360px;
+}
+
+#options > .item > .inputs > .button {
+	margin-left: 5px;
 }
 
 #options > .item.last {
 	margin-bottom: 0px;
-}
-
-.option-text {
-	width: 80px;
-	display: inline-block;
 }
 
 .select, .search, .button {
@@ -89,6 +99,7 @@ p {
 
 .select:disabled, .button:disabled, .search:disabled {
 	cursor: not-allowed;
+	background-color: #F5F5F5;
 }
 
 .select {
@@ -96,7 +107,7 @@ p {
 }
 
 .search {
-	width: 234px;
+	width: 233px;
 	background-color: #FFF;
 }
 
@@ -115,13 +126,15 @@ p {
 	padding: 5px 10px;
 }
 
-.filename {
-	display: inline-block;
+.filename, .checkbox-text {
+	margin-top: 6px;
+	margin-left: 5px;
 	width: 250px;
 }
 
 #close-file {
 	position: absolute;
+	padding-top: 1px;
 	right: 10px;
 }
 
@@ -201,6 +214,10 @@ p {
 	padding-bottom: 8px;
 }
 
+.tweet > .body > a {
+	word-break: break-all;
+}
+
 .placeholder {
 	text-align: center;
 	font-weight: bold;
@@ -248,11 +265,21 @@ p {
 		display: block;
 	}
 
-	.select {
-		width: calc(100% - 61px);
+	#options > .item {
+		display: block;
 	}
 
-	.search {
-		width: calc(100% - 129px);
+	#options > .item > .text {
+		padding-top: 0px;
+		height: unset;
+	}
+
+	#options > .item > .inputs {
+		width: 100%;
+	}
+
+	.select, .search {
+		flex: auto;
+		min-width: 100px;
 	}
 }

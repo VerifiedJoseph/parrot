@@ -17,50 +17,67 @@
         </div>
         <div id="options">
             <div class="item">
-                <span class="option-text">Select file:</span>
-                <label for="zip-file" id="buttonlabel">
-                    <div class="file button" id="file-button" role="button" aria-controls="filename" tabindex="0">
-                      Browse...
-                    </div>
-                </label>
-                <input type="file" id="zip-file" disabled accept=".zip">
-                <span id="filename" class="filename">No file selected.</span>
-                <button class="button" id="close-file" title="Close tweet archive." disabled>Close file</button>
+                <div class="text">
+                    Select file:
+                </div>
+                <div class="inputs">
+                    <label for="zip-file" id="buttonlabel">
+                        <div class="file button" id="file-button" role="button" aria-controls="filename" tabindex="0">
+                          Browse...
+                        </div>
+                    </label>
+                    <input type="file" id="zip-file" disabled accept=".zip">
+                    <span id="filename" class="filename">No file selected.</span>
+                    <button class="button" id="close-file" title="Close tweet archive." disabled>Close file</button>
+                </div>
             </div>
             <div class="item">
-                <label>
-                    Auto load media: 
-                    <input type="checkbox" id="autoload" name="autoload" disabled> (high RAM usage)
-                </label>
+                <div class="text"></div>
+                <div class="inputs">
+                    <input type="checkbox" id="autoload" name="autoload" disabled>
+                    <label for="autoload" class="checkbox-text">Auto load media (high RAM usage)</label>
+                </div>
             </div>
             <div class="item">
-                <label>
-                    <span class="option-text">Filter user:</span>
+                <div class="text">
+                    <label for="username-filter">
+                        Filter user:
+                    </label>
+                </div>
+                <div class="inputs">
                     <select class="select" id="username-filter" disabled>
                         <option disabled selected="" value="all" hidden="">Select a username</option>
                     </select>
-                </label>
-                <button class="button" id="username-filter-reset" title="Reset user filter and show all." disabled>Reset</button>
+                    <button class="button" id="username-filter-reset" title="Reset user filter and show all." disabled>Reset</button>
+                </div>
             </div>
             <div class="item">
-                <label>
-                    <span class="option-text">Filter media:</span>
+                <div class="text">
+                    <label for="media-filter">
+                        Filter media:
+                    </label>
+                </div>
+                <div class="inputs">
                     <select class="select" id="media-filter" disabled>
                         <option disabled selected="" value="all" hidden="">Select a media type</option>
                         <option value="none">No media</option>
                         <option value="images">Images (including GIFs)</option>
                         <option value="videos">Videos</option>
                     </select>
-                </label>
-                <button class="button" id="media-filter-reset" title="Reset media filter and show all." disabled>Reset</button>
+                    <button class="button" id="media-filter-reset" title="Reset media filter and show all." disabled>Reset</button>
+                </div>
             </div>
             <div class="item last">
-                <label>
-                    <span class="option-text">Search:</span>
+                <div class="text">
+                    <label for="search-input">
+                        Search:
+                    </label>
+                </div>
+                <div class="inputs">
                     <input class="search" type="input" placeholder="Query..." id="search-input" disabled>
-                </label>
-                <button class="button" id="search" disabled>Search</button>
-                <button class="button" id="search-reset" title="Reset tweet search and show all." disabled>Reset</button>
+                    <button class="button" id="search" disabled>Search</button>
+                    <button class="button" id="search-reset" title="Reset tweet search and show all." disabled>Reset</button>
+                </div>
             </div>
         </div>
         <div id="filter-text" class="hide">
