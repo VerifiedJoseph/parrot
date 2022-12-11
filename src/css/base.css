@@ -89,6 +89,7 @@ p {
 
 .select:disabled, .button:disabled, .search:disabled {
 	cursor: not-allowed;
+	background-color: #F5F5F5;
 }
 
 .select {
@@ -122,6 +123,7 @@ p {
 
 #close-file {
 	position: absolute;
+	padding-top: 1px;
 	right: 10px;
 }
 
