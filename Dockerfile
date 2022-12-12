@@ -2,7 +2,7 @@ ARG NODE_VERSION=18.12.1-alpine3.16
 ARG NGINX_VERSION=1.23.2-alpine
 
 FROM node:${NODE_VERSION} as node
-ENV PARROT_VERSION=1.6.4
+ENV PARROT_VERSION=1.6.5
 
 LABEL org.opencontainers.image.description="Browser-based viewer for tweet archives created with the Twitter Media Downloader browser extension."
 LABEL org.opencontainers.image.licenses=MIT

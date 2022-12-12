@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.5](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.5) - 2021-12-12
+
+* Rewrote options CSS to use display flex. ([#58](https://github.com/VerifiedJoseph/parrot/pull/58), [`6c074db`](https://github.com/VerifiedJoseph/parrot/commit/6c074db13cc2b0c5568ce4d2c4fad30e31fbd1d0))
+* Added event listeners for enter key. ([#55](https://github.com/VerifiedJoseph/parrot/pull/55), [`6bfe3af`](https://github.com/VerifiedJoseph/parrot/commit/6bfe3af6c50b9ce80fc5c20ed3897e595e9e673e))
+* Changed filename box width. ([#56](https://github.com/VerifiedJoseph/parrot/pull/56), [`9c6f4b0`](https://github.com/VerifiedJoseph/parrot/commit/9c6f4b0e9d2967eb36d4d52b2faa402f1ae47577))
+
 ## [1.6.4](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.4) - 2021-12-10
 
 * Included version number in webpack html. ([#53](https://github.com/VerifiedJoseph/parrot/pull/53), [`7b43f20`](https://github.com/VerifiedJoseph/parrot/commit/7b43f20d593d105cfa1bec6d641a31664ad09e3c))
