@@ -47,7 +47,7 @@ jobs:
         run: node build/zip.js
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1.0.5
+        uses: actions/upload-pages-artifact@v1.0.6
         with:
           path: './dist'
 
