@@ -43,11 +43,11 @@ module.exports = (env, argv) => {
     },
     optimization: {
       minimizer: [
+        '...',
         new CssMinimizerPlugin()
       ]
     },
     plugins: [
-      new MiniCssExtractPlugin(),
       new MiniCssExtractPlugin({
         filename: 'app.css'
       }),
