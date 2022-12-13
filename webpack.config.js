@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const commitHash = require('child_process')
   .execSync('git rev-parse --short HEAD')
@@ -40,7 +41,13 @@ module.exports = (env, argv) => {
         }
       ]
     },
+    optimization: {
+      minimizer: [
+        new CssMinimizerPlugin()
+      ]
+    },
     plugins: [
+      new MiniCssExtractPlugin(),
       new MiniCssExtractPlugin({
         filename: 'app.css'
       }),
