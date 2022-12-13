@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.6](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.6) - 2021-12-13
+
+* Added css-minimizer-webpack-plugin to optimize and minify CSS. ([#64](https://github.com/VerifiedJoseph/parrot/pull/64), [`40f0b33`](https://github.com/VerifiedJoseph/parrot/commit/40f0b33a40a1d07542b61300cc4fed6e274caa66))
+
 ## [1.6.5](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.5) - 2021-12-12
 
 * Rewrote options CSS to use display flex. ([#58](https://github.com/VerifiedJoseph/parrot/pull/58), [`6c074db`](https://github.com/VerifiedJoseph/parrot/commit/6c074db13cc2b0c5568ce4d2c4fad30e31fbd1d0))
