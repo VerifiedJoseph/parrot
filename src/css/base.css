@@ -102,6 +102,11 @@ p {
 	background-color: #F5F5F5;
 }
 
+#autoload:disabled + label {
+	color: #999999;
+	cursor: not-allowed;
+  }
+
 .select {
 	width: 300px;
 }
