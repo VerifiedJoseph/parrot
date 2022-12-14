@@ -180,6 +180,10 @@ document.getElementById('file-button').addEventListener('keyup', function (e) {
   }
 })
 
+document.getElementById('file-button').addEventListener('click', function (e) {
+  document.getElementById('zip-file').click()
+})
+
 Dom.enableInput('file-button')
 Dom.enableInput('zip-file')
 Dom.enableInput('autoload')
