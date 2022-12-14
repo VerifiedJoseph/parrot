@@ -180,5 +180,6 @@ document.getElementById('file-button').addEventListener('keyup', function (e) {
   }
 })
 
+Dom.enableInput('file-button')
 Dom.enableInput('zip-file')
 Dom.enableInput('autoload')
