@@ -76,6 +76,10 @@ p {
 	margin-left: 5px;
 }
 
+#options > .item > .inputs > .button.no-margin {
+	margin: 0px;
+}
+
 #options > .item.last {
 	margin-bottom: 0px;
 }
