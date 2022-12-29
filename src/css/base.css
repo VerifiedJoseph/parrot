@@ -106,7 +106,7 @@ p {
 	background-color: #F5F5F5;
 }
 
-#autoload:disabled + label {
+#autoload:disabled + label, #file-button:disabled + span {
 	color: #999999;
 	cursor: not-allowed;
   }
