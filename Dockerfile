@@ -1,7 +1,4 @@
-ARG NODE_VERSION=18.12.1-alpine3.16
-ARG NGINX_VERSION=1.23.2-alpine
-
-FROM node:${NODE_VERSION} as node
+FROM node:18.12.1-alpine3.16 as node
 ENV PARROT_VERSION=1.6.7
 
 LABEL org.opencontainers.image.description="Browser-based viewer for tweet archives created with the Twitter Media Downloader browser extension."
@@ -25,7 +22,7 @@ RUN npm run build:prod
 # Build zip
 RUN node build/zip.js
 
-FROM nginx:${NGINX_VERSION}
+FROM nginx:1.23.1-alpine
 
 # Copy nginx config
 COPY --from=node /app/config/nginx.conf /etc/nginx/nginx.conf
