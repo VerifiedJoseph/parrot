@@ -68,6 +68,17 @@ module.exports = (env, argv) => {
         },
         inject: 'body'
       })
-    ]
+    ],
+    devServer: {
+      static: {
+        directory: path.join(__dirname, 'dist')
+      },
+      compress: true,
+      port: 9000
+    },
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
   }
 }
