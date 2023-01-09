@@ -1,0 +1,10 @@
+services:
+    workspace:
+        build:
+            context: ./docker/workspace
+        tty: true
+        volumes:
+            - ../:/parrot
+        ports:
+            - 9000:9000
+        working_dir: /parrot
