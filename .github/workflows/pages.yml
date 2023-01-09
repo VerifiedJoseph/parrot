@@ -34,7 +34,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: 19.3.0
+          node-version: 19.4
           cache: 'npm'
 
       - name: Installing dependencies
