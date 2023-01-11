@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.8](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.8) - 2023-01-11
+
+* Minor css input changes. ([#75](https://github.com/VerifiedJoseph/parrot/pull/75), [`34c2cc4`](https://github.com/VerifiedJoseph/parrot/commit/34c2cc4b91055d60e29af227280e8fdfe8c285ba))
+
 ## [1.6.7](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.7) - 2022-12-28
 
 * Improved button accessibility. ([#68](https://github.com/VerifiedJoseph/parrot/pull/68) [#73](https://github.com/VerifiedJoseph/parrot/pull/73), [`dbf9f59`](https://github.com/VerifiedJoseph/parrot/commit/dbf9f59333796c72027453faa3f81c3b848372ad), [`846002d`](https://github.com/VerifiedJoseph/parrot/commit/846002dc784eadbc56c19560f771ace3c017af6d))
