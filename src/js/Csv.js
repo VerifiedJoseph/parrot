@@ -48,15 +48,21 @@ export const Csv = {
             tweets: 0,
             images: 0,
             videos: 0
-          }
+          },
+          error: false,
+          errorMessage: null
         }
 
-        let rowsAfter = 0
+        let rowsAfter = null
         for (let index = 0; index < results.data.length; index++) {
-          if (results.data[index][0] === 'Tweet date') {
+          if (results.data[index].includes('Tweet date') === true) {
             rowsAfter = index
             break
           }
+        }
+
+        if (rowsAfter === null) {
+          throw new Error('Failed to find required data in csv file')
         }
 
         results.data.forEach((row, index) => {
@@ -134,6 +140,12 @@ export const Csv = {
             }
           }
         })
+
+        resolve(data)
+      }).catch(function (err) {
+        const data = {}
+        data.error = true
+        data.errorMessage = err
 
         resolve(data)
       })
