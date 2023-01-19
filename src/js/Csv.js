@@ -143,11 +143,10 @@ export const Csv = {
 
         resolve(data)
       }).catch(function (err) {
-        const data = {}
-        data.error = true
-        data.errorMessage = err
-
-        resolve(data)
+        resolve({
+          error: true,
+          errorMessage: err
+        })
       })
     })
   }
