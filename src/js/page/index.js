@@ -45,6 +45,10 @@ function loadFile (input) {
           zip
         )
 
+        if (data.error === true) {
+          throw new Error(data.errorMessage)
+        }
+
         const autoload = document.getElementById('autoload').checked
 
         Dom.hide('loading')
