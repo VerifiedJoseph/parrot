@@ -120,6 +120,12 @@ p {
 	background-color: #FFF;
 }
 
+.checkbox {
+	width: 20px;
+	height: 20px;
+	margin-left: 0px;
+}
+
 .button {
 	min-width: calc(50px + 10px);
 	padding: 0px 10px;
@@ -139,6 +145,10 @@ p {
 	margin-top: 6px;
 	margin-left: 5px;
 	width: 250px;
+}
+
+.checkbox-text {
+	margin-top: 4px;
 }
 
 #close-file {
