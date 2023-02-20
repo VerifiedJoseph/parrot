@@ -5,10 +5,14 @@
     ],
     "service": "workspace",
     "workspaceFolder": "/parrot",
-    "extensions": [
-        "EditorConfig.EditorConfig",
-        "streetsidesoftware.code-spell-checker",
-        "dbaeumer.vscode-eslint",
-    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "EditorConfig.EditorConfig",
+                "streetsidesoftware.code-spell-checker",
+                "dbaeumer.vscode-eslint"
+            ]
+        }
+    },
     "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && npm install"
 }
