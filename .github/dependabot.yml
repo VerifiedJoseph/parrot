@@ -11,7 +11,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
   - package-ecosystem: "docker"
     directory: "/.devcontainer/docker/workspace/"
     schedule:
