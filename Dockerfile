@@ -22,7 +22,7 @@ RUN npm run build:prod
 # Build zip
 RUN node build/zip.js
 
-FROM nginx:1.23.3-alpine-slim
+FROM nginx:1.23.4-alpine-slim
 
 # Copy nginx config
 COPY --from=node /app/config/nginx.conf /etc/nginx/nginx.conf
