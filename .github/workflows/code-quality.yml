@@ -11,6 +11,9 @@ on:
       - "**.js"
       - ".github/workflows/js-code-quality.yml"
 
+permissions:
+  contents: read
+
 jobs:
   eslint:
     name: ESLint
