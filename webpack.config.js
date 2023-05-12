@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
   let zipDownloadPath = 'parrot-tweet-viewer.zip'
 
   if (argv.mode === 'production') {
-    csp = "default-src 'self' blob:; base-uri 'self'; style-src 'self'; script-src 'self'; upgrade-insecure-requests; block-all-mixed-content;"
+    csp = "default-src 'self' blob:; base-uri 'self'; style-src 'self'; script-src 'self'; upgrade-insecure-requests;"
     zipDownloadPath = 'https://verifiedjoseph.github.io/parrot/parrot-tweet-viewer.zip'
   }
 
