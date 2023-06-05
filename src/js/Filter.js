@@ -1,12 +1,12 @@
 import { Helper } from './Helper.js'
 import { Dom } from './Dom.js'
 
-export const Filter = {
+export class Filter {
   /**
    * Filter tweets
    * @param {array} data
    */
-  run: function (data) {
+  static run (data) {
     const users = [] // Usernames of tweets filtered
 
     const userFilter = document.getElementById('username-filter').value
@@ -71,12 +71,12 @@ export const Filter = {
 
       Dom.innerText('filter-name', name)
     }
-  },
+  }
 
   /**
    * Remove username options from user filter list
    */
-  clearUsernames: function () {
+  static clearUsernames () {
     const f = document.getElementById('username-filter')
 
     f.querySelectorAll('option').forEach(function (element, index) {
