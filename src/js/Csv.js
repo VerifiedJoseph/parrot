@@ -5,13 +5,13 @@ import { Helper } from './Helper.js'
 /**
  * Work with CSV files
  */
-export const Csv = {
+export class Csv {
   /**
    * Find csv file in zip archive
    * @param {object} zip JSZip object
    * @return {string} Filename
    */
-  find: function (zip) {
+  static find (zip) {
     const regex = /\.csv$/
     let filename = null
 
@@ -27,7 +27,7 @@ export const Csv = {
     }
 
     return filename
-  },
+  }
 
   /**
    * Process csv file
@@ -35,7 +35,7 @@ export const Csv = {
    * @param {object} zip JSZip object
    * @returns {object} Tweet and user data
    */
-  process: async function (filename, zip) {
+  static async process (filename, zip) {
     return new Promise((resolve) => {
       zip.file(filename).async('text').then(function (content) {
         const results = Papa.parse(content)
