@@ -5,29 +5,29 @@ import { Tweet } from './Tweet.js'
 /**
  * Build page and its parts
  */
-export const Build = {
+export class Build {
   /**
    * Build page
    * @param {array} data
    * @param {object} zip JSZip object
    * @param {bool} autoload Media autoload status
    */
-  page: function (data, zip, autoload) {
-    this.tweets(data.tweets, zip, autoload)
-    this.filterList(data.users)
+  page (data, zip, autoload) {
+    this.#tweets(data.tweets, zip, autoload)
+    this.#filterList(data.users)
 
     Dom.innerText('filter-number', Helper.formatNumber(data.stats.tweets))
     Dom.innerText('filter-name', `${Helper.formatNumber(data.stats.users)} users`)
 
     Dom.show('filter-text')
     Dom.show('tweets')
-  },
+  }
 
   /**
    * Build username filter list
    * @param {array} users
    */
-  filterList: function (users) {
+  #filterList (users) {
     const select = document.getElementById('username-filter')
     const button = document.getElementById('username-filter-reset')
     let opt
@@ -42,7 +42,7 @@ export const Build = {
 
     select.disabled = false
     button.disabled = false
-  },
+  }
 
   /**
    * Build tweets
@@ -50,7 +50,7 @@ export const Build = {
    * @param {object} zip JSZip object
    * @param {bool} autoload Media autoload status
    */
-  tweets: function (tweets, zip, autoload) {
+  #tweets (tweets, zip, autoload) {
     const items = document.getElementById('tweets')
     items.innerHTML = ''
 

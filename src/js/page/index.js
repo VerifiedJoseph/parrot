@@ -54,7 +54,8 @@ function loadFile (input) {
         Dom.hide('loading')
         Dom.hide('about')
 
-        Build.page(data, zip, autoload)
+        const build = new Build()
+        build.page(data, zip, autoload)
 
         Dom.enableInput('media-filter-reset')
         Dom.enableInput('media-filter')

@@ -6,15 +6,19 @@ import { Helper } from './Helper.js'
  * Build a tweet
  */
 export class Tweet {
+  #tweet = {}
+  #zip
+  #loadMedia = false
+
   /**
    * @param {object} tweet Tweet data
    * @param {object} zip JSZip object
    * @param {bool} loadMedia Load media status
    */
   constructor (tweet, zip, loadMedia = false) {
-    this.tweet = tweet
-    this.zip = zip
-    this.loadMedia = loadMedia
+    this.#tweet = tweet
+    this.#zip = zip
+    this.#loadMedia = loadMedia
   }
 
   /**
@@ -24,22 +28,22 @@ export class Tweet {
   build () {
     const item = document.createElement('div')
     item.classList.add('tweet')
-    item.setAttribute('data-username', this.tweet.username)
-    item.setAttribute('data-id', this.tweet.id)
-    item.setAttribute('data-timestamp', this.tweet.date)
+    item.setAttribute('data-username', this.#tweet.username)
+    item.setAttribute('data-id', this.#tweet.id)
+    item.setAttribute('data-timestamp', this.#tweet.date)
 
-    item.appendChild(this.header())
-    item.appendChild(this.body())
+    item.appendChild(this.#header())
+    item.appendChild(this.#body())
 
-    if (this.tweet.media.length !== 0) {
-      if (this.loadMedia === true) {
+    if (this.#tweet.media.length !== 0) {
+      if (this.#loadMedia === true) {
         item.appendChild(this.media())
       } else {
-        item.appendChild(this.mediaPlaceholder())
+        item.appendChild(this.#mediaPlaceholder())
       }
     }
 
-    item.appendChild(this.footer())
+    item.appendChild(this.#footer())
 
     return item
   }
@@ -48,7 +52,7 @@ export class Tweet {
    * Build tweet header
    * @returns {HTMLDivElement}
    */
-  header () {
+  #header () {
     const header = document.createElement('div')
     header.classList.add('header')
 
@@ -57,11 +61,11 @@ export class Tweet {
 
     const username = document.createElement('div')
     username.classList.add('username')
-    username.innerText = this.tweet.username
+    username.innerText = this.#tweet.username
 
     const nameLink = document.createElement('a')
-    nameLink.innerText = this.tweet.display_name
-    nameLink.setAttribute('href', `https://twitter.com/${this.tweet.username}`)
+    nameLink.innerText = this.#tweet.display_name
+    nameLink.setAttribute('href', `https://twitter.com/${this.#tweet.username}`)
     nameLink.setAttribute('target', '_blank')
     name.appendChild(nameLink)
     name.appendChild(username)
@@ -70,8 +74,8 @@ export class Tweet {
     date.classList.add('date')
 
     const dateLink = document.createElement('a')
-    dateLink.innerText = this.tweet.date
-    dateLink.setAttribute('href', this.tweet.url)
+    dateLink.innerText = this.#tweet.date
+    dateLink.setAttribute('href', this.#tweet.url)
     dateLink.setAttribute('target', '_blank')
 
     date.appendChild(dateLink)
@@ -90,10 +94,10 @@ export class Tweet {
    * Build tweet body
    * @returns {HTMLDivElement}
    */
-  body () {
+  #body () {
     const body = document.createElement('div')
     body.classList.add('body')
-    body.innerHTML = this.links(this.tweet.text)
+    body.innerHTML = this.#links(this.#tweet.text)
 
     return body
   }
@@ -109,14 +113,14 @@ export class Tweet {
     const gallery = document.createElement('div')
     gallery.classList.add('gallery')
 
-    const info = this.tweet.media
+    const info = this.#tweet.media
     const promises = []
 
-    this.tweet.media.forEach(item => {
-      if (this.zip.file(item.filename) !== null) {
-        promises.push(this.zip.file(item.filename).async('uint8array'))
+    this.#tweet.media.forEach(item => {
+      if (this.#zip.file(item.filename) !== null) {
+        promises.push(this.#zip.file(item.filename).async('uint8array'))
       } else {
-        media.appendChild(this.mediaError(item.filename))
+        media.appendChild(this.#mediaError(item.filename))
       }
     })
 
@@ -170,31 +174,31 @@ export class Tweet {
    * Build media placeholder for tweet
    * @returns {HTMLDivElement}
    */
-  mediaPlaceholder () {
+  #mediaPlaceholder () {
     const placeholder = document.createElement('button')
     placeholder.classList.add('placeholder')
-    placeholder.setAttribute('data-tweet-id', this.tweet.id)
+    placeholder.setAttribute('data-tweet-id', this.#tweet.id)
 
     let text = 'Load media '
 
-    if (this.tweet.stats.images > 0) {
+    if (this.#tweet.stats.images > 0) {
       let word = ' images'
 
-      if (this.tweet.stats.images === 1) {
+      if (this.#tweet.stats.images === 1) {
         word = ' image'
       }
 
-      text += `(${this.tweet.stats.images} ${word})`
+      text += `(${this.#tweet.stats.images} ${word})`
     }
 
-    if (this.tweet.stats.videos > 0) {
+    if (this.#tweet.stats.videos > 0) {
       let word = ' videos'
 
-      if (this.tweet.stats.videos === 1) {
+      if (this.#tweet.stats.videos === 1) {
         word = ' video'
       }
 
-      text += `(${this.tweet.stats.videos} ${word})`
+      text += `(${this.#tweet.stats.videos} ${word})`
     }
 
     placeholder.innerText = text
@@ -207,7 +211,7 @@ export class Tweet {
    * @param {string} filename Media filename
    * @returns {HTMLDivElement}
    */
-  mediaError (filename = '') {
+  #mediaError (filename = '') {
     let text = 'Error loading media'
     const error = document.createElement('div')
     error.classList.add('error')
@@ -225,10 +229,10 @@ export class Tweet {
    * Build footer
    * @returns {HTMLDivElement}
    */
-  footer () {
-    const replies = Helper.formatNumber(this.tweet.stats.replies)
-    const retweets = Helper.formatNumber(this.tweet.stats.retweets)
-    const likes = Helper.formatNumber(this.tweet.stats.likes)
+  #footer () {
+    const replies = Helper.formatNumber(this.#tweet.stats.replies)
+    const retweets = Helper.formatNumber(this.#tweet.stats.retweets)
+    const likes = Helper.formatNumber(this.#tweet.stats.likes)
 
     const stats = document.createElement('div')
     stats.classList.add('stats')
@@ -242,7 +246,7 @@ export class Tweet {
    * @param {string} text
    * @returns {string}
    */
-  links (text) {
+  #links (text) {
     const autoLinker = new Autolinker({
       urls: {
         schemeMatches: true,
