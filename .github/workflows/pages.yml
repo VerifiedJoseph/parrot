@@ -27,14 +27,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
-        
+
       - name: Setup Pages
         uses: actions/configure-pages@v3.0.6
-        
+
       - name: Setup node
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: 19.4
+          node-version: 20.3
           cache: 'npm'
 
       - name: Installing dependencies
@@ -42,7 +42,7 @@ jobs:
 
       - name: Build webpack
         run: npm run build:prod
-        
+
       - name: Build zip
         run: node build/zip.js
 
