@@ -65,7 +65,7 @@ export class Tweet {
 
     const nameLink = document.createElement('a')
     nameLink.innerText = this.#tweet.display_name
-    nameLink.setAttribute('href', `https://twitter.com/${this.#tweet.username}`)
+    nameLink.setAttribute('href', `https://twitter.com/${this.#tweet.username.substring(1)}`)
     nameLink.setAttribute('target', '_blank')
     name.appendChild(nameLink)
     name.appendChild(username)
