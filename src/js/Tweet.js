@@ -28,9 +28,7 @@ export class Tweet {
   build () {
     const item = document.createElement('div')
     item.classList.add('tweet')
-    item.setAttribute('data-username', this.#tweet.username)
     item.setAttribute('data-id', this.#tweet.id)
-    item.setAttribute('data-timestamp', this.#tweet.date)
 
     item.appendChild(this.#header())
     item.appendChild(this.#body())
