@@ -44,7 +44,17 @@ export class Dom {
   }
 
   /**
-   * Enable an input
+   * Enable an array of inputs
+   * @param {array} elements Element ids
+   */
+  static enableInputs (elements) {
+    Array.from(elements).forEach(element => {
+      Dom.enableInput(element)
+    })
+  }
+
+  /**
+   * Enable a single input
    * @param {string} element Element id
    */
   static enableInput (element) {
@@ -52,7 +62,17 @@ export class Dom {
   }
 
   /**
-   * Disable an input
+   * Disable an array of inputs
+   * @param {array} elements Element ids
+   */
+  static disableInputs (elements) {
+    Array.from(elements).forEach(element => {
+      Dom.disableInput(element)
+    })
+  }
+
+  /**
+   * Disable a single input
    * @param {string} element Element id
    */
   static disableInput (element) {
