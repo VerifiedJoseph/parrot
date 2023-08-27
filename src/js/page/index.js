@@ -57,11 +57,10 @@ function loadFile (input) {
         const build = new Build()
         build.page(data, zip, autoload)
 
-        Dom.enableInput('media-filter-reset')
-        Dom.enableInput('media-filter')
-        Dom.enableInput('search-input')
-        Dom.enableInput('search')
-        Dom.enableInput('search-reset')
+        Dom.enableInputs([
+          'media-filter-reset', 'media-filter',
+          'search-input', 'search', 'search-reset'
+        ])
 
         if (autoload === false) {
           const placeholders = document.getElementsByClassName('placeholder')
@@ -156,15 +155,11 @@ document.getElementById('close-file').addEventListener('click', function (e) {
   Dom.title('filename', '')
 
   Dom.hide('filter-text')
-  Dom.disableInput('username-filter-reset')
-  Dom.disableInput('username-filter')
-  Dom.disableInput('media-filter-reset')
-  Dom.disableInput('media-filter')
-  Dom.disableInput('search-input')
-  Dom.disableInput('search')
-  Dom.disableInput('search-reset')
+  Dom.disableInputs([
+    'username-filter-reset', 'username-filter', 'media-filter-reset', 'media-filter',
+    'search-input', 'search', 'search-reset', 'close-file'
+  ])
 
-  Dom.disableInput('close-file')
   Dom.clearTweets()
   Filter.clearUsernames()
   Dom.show('about')
@@ -192,6 +187,4 @@ document.getElementById('file-button').addEventListener('click', function (e) {
   document.getElementById('zip-file').click()
 })
 
-Dom.enableInput('file-button')
-Dom.enableInput('zip-file')
-Dom.enableInput('autoload')
+Dom.enableInputs(['file-button', 'zip-file', 'autoload'])
