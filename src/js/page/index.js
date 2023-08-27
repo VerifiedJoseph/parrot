@@ -28,7 +28,7 @@ function loadFile (input) {
   Dom.clearTweets()
   Dom.hide('filter-text')
   Dom.show('loading')
-  Dom.enableInput('close-file')
+  Dom.disableInput('file-button')
 
   console.log('File: ' + input.target.files[0].name)
 
@@ -51,6 +51,8 @@ function loadFile (input) {
 
         Dom.hide('loading')
         Dom.hide('about')
+        Dom.enableInput('file-button')
+        Dom.enableInput('close-file')
 
         const build = new Build()
         build.page(data, jszip, document.getElementById('autoload').checked)
@@ -64,6 +66,9 @@ function loadFile (input) {
         Dom.hide('loading')
         Dom.displayError('Failed to load tweets.')
         Dom.show('about')
+        Dom.enableInput('close-file')
+        Dom.enableInput('file-button')
+
         console.error(err)
       })
   }
@@ -77,8 +82,7 @@ function loadFile (input) {
 
 /** Close open zip file */
 function closeFile () {
-  document.getElementById('zip-file').value = ''
-
+  Dom.value('zip-file', '')
   Dom.innerText('filename', 'No file selected.')
   Dom.title('filename', '')
 
