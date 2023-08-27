@@ -103,8 +103,6 @@ function handlePlaceholder (event) {
 }
 
 function clickHandler (event) {
-  console.log(event)
-
   switch (event.target.id || event.target.className) {
     case 'username-filter-reset':
       Filter.resetFilter('username')
@@ -139,9 +137,7 @@ function clickHandler (event) {
 }
 
 function changeHandler (event) {
-  const input = event.target
-
-  switch (input.id) {
+  switch (event.target.id) {
     case 'username-filter':
     case 'media-filter':
       Filter.run(data)
@@ -154,9 +150,7 @@ function changeHandler (event) {
 }
 
 function keyupHandler (event) {
-  const input = event.target
-
-  switch (input.id) {
+  switch (event.target.id) {
     case 'search-input':
       if (event.key === 'Enter') {
         Filter.run(data)
