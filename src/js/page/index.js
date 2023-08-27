@@ -10,14 +10,13 @@ import { Tweet } from '../Tweet.js'
 import '../../css/base.css'
 import '../../css/dark.css'
 
-/**
- * Tweets and users
- */
+/** Tweets and users */
 let data = {}
 
-/**
- * Load a zip archive and display tweets
- */
+/** JSzip Object */
+let zip
+
+/** Load a zip archive and display tweets */
 function loadFile (input) {
   Dom.hideError()
   Filter.resetState()
@@ -29,7 +28,7 @@ function loadFile (input) {
   Dom.clearTweets()
   Dom.hide('filter-text')
   Dom.show('loading')
-  Dom.enableInput('close-file')
+  Dom.disableInput('file-button')
 
   console.log('File: ' + input.target.files[0].name)
 
@@ -39,47 +38,37 @@ function loadFile (input) {
   const reader = new FileReader()
   reader.onload = function (ev) {
     JSZip.loadAsync(ev.target.result)
-      .then(async function (zip) {
+      .then(async function (jszip) {
+        zip = jszip
+
         data = await Csv.process(
-          Csv.find(zip),
-          zip
+          Csv.find(jszip), jszip
         )
 
         if (data.error === true) {
           throw new Error(data.errorMessage)
         }
 
-        const autoload = document.getElementById('autoload').checked
-
         Dom.hide('loading')
         Dom.hide('about')
+        Dom.enableInput('file-button')
+        Dom.enableInput('close-file')
 
         const build = new Build()
-        build.page(data, zip, autoload)
+        build.page(data, jszip, document.getElementById('autoload').checked)
 
         Dom.enableInputs([
           'media-filter-reset', 'media-filter',
           'search-input', 'search', 'search-reset'
         ])
-
-        if (autoload === false) {
-          const placeholders = document.getElementsByClassName('placeholder')
-
-          for (let i = 0; i < placeholders.length; i++) {
-            placeholders[i].addEventListener('click', function (e) {
-              const id = e.target.getAttribute('data-tweet-id')
-              const index = Helper.getTweetIndex(id, data.tweets)
-              const item = new Tweet(data.tweets[index], zip)
-
-              e.target.parentNode.replaceChild(item.media(), e.target)
-            })
-          }
-        }
       })
       .catch(function (err) {
         Dom.hide('loading')
         Dom.displayError('Failed to load tweets.')
         Dom.show('about')
+        Dom.enableInput('close-file')
+        Dom.enableInput('file-button')
+
         console.error(err)
       })
   }
@@ -91,66 +80,9 @@ function loadFile (input) {
   reader.readAsArrayBuffer(input.target.files[0])
 }
 
-/**
- * Event listener for username filter change
- */
-document.getElementById('username-filter').addEventListener('change', function (e) {
-  Filter.run(data)
-})
-
-/**
- * Event listener for media type filter change
- */
-document.getElementById('media-filter').addEventListener('change', function (e) {
-  Filter.run(data)
-})
-
-/**
- * Event listener for username filter reset button
- */
-document.getElementById('username-filter-reset').addEventListener('click', function (e) {
-  Filter.resetFilter('username')
-  Filter.run(data)
-})
-
-/**
- * Event listener for media type filter reset button
- */
-document.getElementById('media-filter-reset').addEventListener('click', function (e) {
-  Filter.resetFilter('media')
-  Filter.run(data)
-})
-
-/**
- * Event listener for Enter key pass on tweet search
- */
-document.getElementById('search-input').addEventListener('keyup', function (e) {
-  if (e.key === 'Enter') {
-    Filter.run(data)
-  }
-})
-
-/**
- * Event listener for tweet search button
- */
-document.getElementById('search').addEventListener('click', function (e) {
-  Filter.run(data)
-})
-
-/**
- * Event listener for tweet search reset
- */
-document.getElementById('search-reset').addEventListener('click', function (e) {
-  Filter.clearSearch()
-  Filter.run(data)
-})
-
-/**
- * Event listener for file close button
- */
-document.getElementById('close-file').addEventListener('click', function (e) {
-  document.getElementById('zip-file').value = ''
-
+/** Close open zip file */
+function closeFile () {
+  Dom.value('zip-file', '')
   Dom.innerText('filename', 'No file selected.')
   Dom.title('filename', '')
 
@@ -164,27 +96,82 @@ document.getElementById('close-file').addEventListener('click', function (e) {
   Filter.resetState()
   Dom.show('about')
   Dom.hide('error')
-})
+}
 
-/**
- * Event listener for zip file
- */
-document.getElementById('zip-file').addEventListener('change', loadFile)
+function handlePlaceholder (event) {
+  const id = event.target.getAttribute('data-tweet-id')
+  const index = Helper.getTweetIndex(id, data.tweets)
+  const item = new Tweet(data.tweets[index], zip)
 
-/**
- * Event listener for zip file enter key pass
- */
-document.getElementById('file-button').addEventListener('keyup', function (e) {
-  if (e.key === 'Enter') {
-    document.getElementById('zip-file').click()
+  event.target.parentNode.replaceChild(item.media(), event.target)
+}
+
+function clickHandler (event) {
+  switch (event.target.id || event.target.className) {
+    case 'username-filter-reset':
+      Filter.resetFilter('username')
+      Filter.run(data)
+      break
+
+    case 'media-filter-reset':
+      Filter.resetFilter('media')
+      Filter.run(data)
+      break
+
+    case 'search':
+      Filter.run(data)
+      break
+
+    case 'search-reset':
+      Filter.clearSearch()
+      Filter.run(data)
+      break
+
+    case 'file-button':
+      document.getElementById('zip-file').click()
+      break
+
+    case 'close-file':
+      closeFile()
+      break
+
+    case 'placeholder':
+      handlePlaceholder(event)
   }
-})
+}
 
-/**
- * Event listener for file button click
- */
-document.getElementById('file-button').addEventListener('click', function (e) {
-  document.getElementById('zip-file').click()
-})
+function changeHandler (event) {
+  switch (event.target.id) {
+    case 'username-filter':
+    case 'media-filter':
+      Filter.run(data)
+      break
+
+    case 'zip-file':
+      loadFile(event)
+      break
+  }
+}
+
+function keyupHandler (event) {
+  switch (event.target.id) {
+    case 'search-input':
+      if (event.key === 'Enter') {
+        Filter.run(data)
+      }
+      break
+
+    case 'file-button':
+      if (event.key === 'Enter') {
+        document.getElementById('zip-file').click()
+      }
+      break
+  }
+}
+
+const body = document.querySelector('body')
+body.addEventListener('click', clickHandler)
+body.addEventListener('change', changeHandler)
+body.addEventListener('keyup', keyupHandler)
 
 Dom.enableInputs(['file-button', 'zip-file', 'autoload'])

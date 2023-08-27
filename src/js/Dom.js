@@ -96,4 +96,13 @@ export class Dom {
   static title (element, text) {
     document.getElementById(element).title = text
   }
+
+  /**
+   * Set value for element
+   * @param {string} element Element id
+   * @param {string} value Value
+   */
+  static value (element, value) {
+    document.getElementById(element).value = value
+  }
 }
