@@ -20,7 +20,7 @@ let data = {}
  */
 function loadFile (input) {
   Dom.hideError()
-  Filter.clearUsernames()
+  Filter.resetState()
 
   if (input.target.files === undefined) {
     return
@@ -110,7 +110,7 @@ document.getElementById('media-filter').addEventListener('change', function (e) 
  * Event listener for username filter reset button
  */
 document.getElementById('username-filter-reset').addEventListener('click', function (e) {
-  document.getElementById('username-filter').getElementsByTagName('option')[0].selected = 'selected'
+  Filter.resetFilter('username')
   Filter.run(data)
 })
 
@@ -118,7 +118,7 @@ document.getElementById('username-filter-reset').addEventListener('click', funct
  * Event listener for media type filter reset button
  */
 document.getElementById('media-filter-reset').addEventListener('click', function (e) {
-  document.getElementById('media-filter').getElementsByTagName('option')[0].selected = 'selected'
+  Filter.resetFilter('media')
   Filter.run(data)
 })
 
@@ -142,7 +142,7 @@ document.getElementById('search').addEventListener('click', function (e) {
  * Event listener for tweet search reset
  */
 document.getElementById('search-reset').addEventListener('click', function (e) {
-  document.getElementById('search-input').value = ''
+  Filter.clearSearch()
   Filter.run(data)
 })
 
@@ -166,7 +166,7 @@ document.getElementById('close-file').addEventListener('click', function (e) {
 
   Dom.disableInput('close-file')
   Dom.clearTweets()
-  Filter.clearUsernames()
+  Filter.resetState()
   Dom.show('about')
   Dom.hide('error')
 })
