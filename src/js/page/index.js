@@ -16,9 +16,7 @@ let data = {}
 /** JSzip Object */
 let zip
 
-/**
- * Load a zip archive and display tweets
- */
+/** Load a zip archive and display tweets */
 function loadFile (input) {
   Dom.hideError()
   Filter.resetState()
@@ -51,13 +49,11 @@ function loadFile (input) {
           throw new Error(data.errorMessage)
         }
 
-        const autoload = document.getElementById('autoload').checked
-
         Dom.hide('loading')
         Dom.hide('about')
 
         const build = new Build()
-        build.page(data, jszip, autoload)
+        build.page(data, jszip, document.getElementById('autoload').checked)
 
         Dom.enableInputs([
           'media-filter-reset', 'media-filter',
@@ -79,9 +75,7 @@ function loadFile (input) {
   reader.readAsArrayBuffer(input.target.files[0])
 }
 
-/**
- * Close open zip file
- */
+/** Close open zip file */
 function closeFile () {
   document.getElementById('zip-file').value = ''
 
