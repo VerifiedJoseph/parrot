@@ -84,7 +84,29 @@ export class Filter {
         element.parentNode.removeChild(element)
       }
     })
+  }
 
-    f.getElementsByTagName('option')[0].selected = 'selected'
+  /**
+   * Reset filter to default option
+   */
+  static resetFilter (name) {
+    document.getElementById(`${name}-filter`).getElementsByTagName('option')[0].selected = 'selected'
+  }
+
+  /**
+   * Clear query from search box
+   */
+  static clearSearch () {
+    document.getElementById('search-input').value = ''
+  }
+
+  /**
+   * Reset filters to default state
+   */
+  static resetState () {
+    Filter.clearUsernames()
+    Filter.clearSearch()
+    Filter.resetFilter('username')
+    Filter.resetFilter('media')
   }
 }
