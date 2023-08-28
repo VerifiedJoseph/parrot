@@ -1,4 +1,4 @@
-FROM node:20.5-alpine3.17
+FROM node:18.17.1-alpine3.17
 EXPOSE 9000/tcp
 
 # Install git
