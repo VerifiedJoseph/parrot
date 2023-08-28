@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.7.1](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.7.1) - 2023-08-28
+
+* Downgraded node version to 18.17 ([#208](https://github.com/VerifiedJoseph/parrot/pull/208), [`886d0cb`](https://github.com/VerifiedJoseph/parrot/commit/886d0cb90282b1777a793aa9ad4ec18e0d3297da))
+
 ## [1.7.0](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.7.0) - 2023-08-28
 
 * Bump papaparse from 5.3.2 to 5.4.1 ([#125](https://github.com/VerifiedJoseph/parrot/pull/125), [`b83074b`](https://github.com/VerifiedJoseph/parrot/commit/b83074b03cd886b2725417d24a52e5523d352d07))
