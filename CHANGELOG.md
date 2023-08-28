@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.7.0](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.7.0) - 2023-08-28
+
+* Bump papaparse from 5.3.2 to 5.4.1 ([#125](https://github.com/VerifiedJoseph/parrot/pull/125), [`b83074b`](https://github.com/VerifiedJoseph/parrot/commit/b83074b03cd886b2725417d24a52e5523d352d07))
+* Improve CSV detection ([#99](https://github.com/VerifiedJoseph/parrot/pull/99), [`63f3151`](https://github.com/VerifiedJoseph/parrot/commit/63f3151c9a79cdaafda30883fff6f594c63e0a0d))
+* Rewrite event handling ([#206](https://github.com/VerifiedJoseph/parrot/pull/206), [`efea30a`](https://github.com/VerifiedJoseph/parrot/commit/efea30a796154183b5dfbcb2c298ea240e8ea993))
+
 ## [1.6.8](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.6.8) - 2023-01-11
 
 * Minor css input changes. ([#75](https://github.com/VerifiedJoseph/parrot/pull/75), [`34c2cc4`](https://github.com/VerifiedJoseph/parrot/commit/34c2cc4b91055d60e29af227280e8fdfe8c285ba))
