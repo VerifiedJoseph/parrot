@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: ghcr.io/verifiedjoseph/parrot:1.7.0
+    image: ghcr.io/verifiedjoseph/parrot:1.7.1
     container_name: Parrot
     ports:
       - '8080:80'
