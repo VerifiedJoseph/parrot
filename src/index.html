@@ -10,114 +10,119 @@
         <meta name="referrer" content="no-referrer">
     </head>
     <body>
-    <div id="container">
-        <div id="header">
-            <h1>Parrot 🦜</h1>
-            <p>Viewer for tweet archives created with the <a target="_blank" href="https://github.com/furyutei/twMediaDownloader">Twitter Media Downloader</a></p>
-        </div>
-        <div id="options">
-            <div class="item">
-                <div class="text">
-                    Select file:
+        <div id="container">
+            <div id="header">
+                <h1>Parrot 🦜</h1>
+                <p>Viewer for tweet archives created with the <a target="_blank" href="https://web.archive.org/web/20230906164425/https://github.com/furyutei/twMediaDownloader">Twitter Media Downloader</a></p>
+            </div>
+            <div id="options">
+                <div class="item">
+                    <div class="text">
+                        Select file:
+                    </div>
+                    <div class="inputs">
+                        <button class="file button no-margin" id="file-button" disabled> Browse...</button>
+                        <span id="filename" class="filename">No file selected.</span>
+                        <input type="file" id="zip-file" disabled accept=".zip">
+                        <button class="button no-margin" id="close-file" title="Close tweet archive." disabled>Close file</button>
+                    </div>
                 </div>
-                <div class="inputs">
-                    <button class="file button no-margin" id="file-button" disabled> Browse...</button>
-                    <span id="filename" class="filename">No file selected.</span>
-                    <input type="file" id="zip-file" disabled accept=".zip">
-                    <button class="button no-margin" id="close-file" title="Close tweet archive." disabled>Close file</button>
+                <div class="item">
+                    <div class="text"></div>
+                    <div class="inputs">
+                        <input type="checkbox" class="checkbox" id="autoload" name="autoload" disabled>
+                        <label for="autoload" class="checkbox-text">Auto load media (high RAM usage)</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="text">
+                        <label for="username-filter">
+                            Filter user:
+                        </label>
+                    </div>
+                    <div class="inputs">
+                        <select class="select" id="username-filter" disabled>
+                            <option disabled selected="" value="all" hidden="">Select a username</option>
+                        </select>
+                        <button class="button" id="username-filter-reset" title="Reset user filter and show all." disabled>Reset</button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="text">
+                        <label for="media-filter">
+                            Filter media:
+                        </label>
+                    </div>
+                    <div class="inputs">
+                        <select class="select" id="media-filter" disabled>
+                            <option disabled selected="" value="all" hidden="">Select a media type</option>
+                            <option value="none">No media</option>
+                            <option value="images">Images (including GIFs)</option>
+                            <option value="videos">Videos</option>
+                        </select>
+                        <button class="button" id="media-filter-reset" title="Reset media filter and show all." disabled>Reset</button>
+                    </div>
+                </div>
+                <div class="item last">
+                    <div class="text">
+                        <label for="search-input">
+                            Search:
+                        </label>
+                    </div>
+                    <div class="inputs">
+                        <input class="search" type="input" placeholder="Query..." id="search-input" disabled>
+                        <button class="button" id="search" disabled>Search</button>
+                        <button class="button" id="search-reset" title="Reset tweet search and show all." disabled>Reset</button>
+                    </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="text"></div>
-                <div class="inputs">
-                    <input type="checkbox" class="checkbox" id="autoload" name="autoload" disabled>
-                    <label for="autoload" class="checkbox-text">Auto load media (high RAM usage)</label>
-                </div>
+            <div id="filter-text" class="hide">
+                Showing 
+                </strong><span id="filter-number">0</span> tweets from 
+                <span id="filter-name">all users</span>
             </div>
-            <div class="item">
-                <div class="text">
-                    <label for="username-filter">
-                        Filter user:
-                    </label>
-                </div>
-                <div class="inputs">
-                    <select class="select" id="username-filter" disabled>
-                        <option disabled selected="" value="all" hidden="">Select a username</option>
-                    </select>
-                    <button class="button" id="username-filter-reset" title="Reset user filter and show all." disabled>Reset</button>
-                </div>
+            <div id="error" class="hide"></div>
+            <div id="loading" class="hide">Loading...</div>
+            <div id="tweets"></div>
+            <noscript>
+                <div id="note">Enable JavaScript to use this tool</div>
+            </noscript>
+            <div id="about">
+                <h3>🦜 About</h3>
+                <p>Parrot is a browser-based program for viewing tweets from zip archives created with the <a target="_blank" href="https://web.archive.org/web/20230906164425/https://github.com/furyutei/twMediaDownloader">Twitter Media Downloader</a> browser extension.</p>
+                
+                <h3>📖 How to</h3>
+                <p>Select a zip archive created with the Twitter Media Downloader by clicking the 'browse' button above and the viewer will generate a twitter style interface for viewing the tweets.</p>
+                
+                <h3>❓ Q & A</h3>
+                <p>
+                    <i>Is any data upload from my device?</i><br>
+                    <strong>No.</strong> The viewer runs completely within your web browser and does not collect or transmit any data.
+                </p>
+                <p>
+                    <i>Can I run it offline?</i><br>
+                    <strong>Yes.</strong> The viewer can be run offline and a download is <a href="<%= htmlWebpackPlugin.options.zipDownloadUrl %>">available</a>.
+                </p>
+                <p>
+                    <i>Does it use any third party JavaScript libraries?</i><br>
+                    <strong>Yes.</strong> The viewer uses three third party JavaScript libraries:
+                </p>
+                <ul>
+                    <li><a target="_blank" href="https://github.com/Stuk/jszip">JSZip</a> (v3.10.1) - JavaScript class for generating and reading zip files.</li>
+                    <li><a target="_blank" href="https://github.com/mholt/PapaParse">Papa Parse</a> (v5.4.1) - Fastest in-browser CSV parser for JavaScript.</li>
+                    <li><a target="_blank" href="https://github.com/gregjacobs/Autolinker.js">Autolinker.js</a> (v4.0.0) - Utility to automatically link URLs.</li>
+                </ul>
+                <p>
+                    <i>Source Code?</i><br>
+                    The source code is <a target="_blank" href="https://github.com/VerifiedJoseph/Parrot">available</a> on Github under the MIT license.
+                </p>
             </div>
-            <div class="item">
-                <div class="text">
-                    <label for="media-filter">
-                        Filter media:
-                    </label>
-                </div>
-                <div class="inputs">
-                    <select class="select" id="media-filter" disabled>
-                        <option disabled selected="" value="all" hidden="">Select a media type</option>
-                        <option value="none">No media</option>
-                        <option value="images">Images (including GIFs)</option>
-                        <option value="videos">Videos</option>
-                    </select>
-                    <button class="button" id="media-filter-reset" title="Reset media filter and show all." disabled>Reset</button>
-                </div>
-            </div>
-            <div class="item last">
-                <div class="text">
-                    <label for="search-input">
-                        Search:
-                    </label>
-                </div>
-                <div class="inputs">
-                    <input class="search" type="input" placeholder="Query..." id="search-input" disabled>
-                    <button class="button" id="search" disabled>Search</button>
-                    <button class="button" id="search-reset" title="Reset tweet search and show all." disabled>Reset</button>
-                </div>
+            <div id="footer">
+                <small>
+                    <a target="_blank" href="https://verifiedjoseph.github.io/parrot/">verifiedjoseph.github.io/parrot/</a><br>
+                    <%= htmlWebpackPlugin.options.version %>-<a target="_blank" href="<%= htmlWebpackPlugin.options.gitCommitUrl %>"><%= htmlWebpackPlugin.options.gitCommitHash %></a>
+                </small>
             </div>
         </div>
-        <div id="filter-text" class="hide">
-            Showing 
-            </strong><span id="filter-number">0</span> tweets from 
-            <span id="filter-name">all users</span>
-        </div>
-        <div id="error" class="hide"></div>
-        <div id="loading" class="hide">Loading...</div>
-        <div id="tweets"></div>
-        <noscript>
-            <div id="note">Enable JavaScript to use this tool</div>
-        </noscript>
-        <div id="about">
-            <h3>🦜 About</h3>
-            <p>Parrot is a browser-based program for viewing tweets from zip archives created with the <a target="_blank" href="https://github.com/furyutei/twMediaDownloader">Twitter Media Downloader</a> browser extension.</p>
-            <h3>📖 How to</h3>
-            <p>Simply select a zip created with the Twitter Media Downloader by clicking the 'browse' button above and the viewer will generate a twitter style interface for viewing the tweets.</p>
-            <h3>❓ Q & A</h3>
-
-            <p><i>Is any data upload from my device?</i><br>
-            <strong>No.</strong> The viewer runs completely within your web browser and does not collect or transmit any data.</p>
-
-            <p><i>Can I run it offline?</i><br>
-            <strong>Yes.</strong> The viewer can be run offline and a download is <a href="<%= htmlWebpackPlugin.options.zipDownloadUrl %>">available</a>.</p>
-            
-            <p><i>Does it use any third party JavaScript libraries?</i><br>
-            <strong>Yes.</strong> The viewer uses three third party JavaScript libraries:</p>
-            <ul>
-                <li><a target="_blank" href="https://github.com/Stuk/jszip">JSZip</a> (v3.10.1) - JavaScript class for generating and reading zip files.</li>
-                <li><a target="_blank" href="https://github.com/mholt/PapaParse">Papa Parse</a> (v5.4.1) - Fastest in-browser CSV parser for JavaScript.</li>
-                <li><a target="_blank" href="https://github.com/gregjacobs/Autolinker.js">Autolinker.js</a> (v4.0.0) - Utility to automatically link URLs.</li>
-            </ul>
-            <p><i>Source Code?</i><br>
-                The source code is <a target="_blank" href="https://github.com/VerifiedJoseph/Parrot">available</a> on Github under the MIT license.
-            </p>
-        </div>
-        <div id="footer">
-            <small>
-                <a target="_blank" href="https://verifiedjoseph.github.io/parrot/">verifiedjoseph.github.io/parrot/</a>
-                <br>
-                <%= htmlWebpackPlugin.options.version %>-<a target="_blank" href="<%= htmlWebpackPlugin.options.gitCommitUrl %>"><%= htmlWebpackPlugin.options.gitCommitHash %></a>
-            </small>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
