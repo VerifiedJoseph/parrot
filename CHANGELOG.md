@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.7.3](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.7.3) - 2023-09-09
+
+* docker-build: Fixed adding multi-arch image description ([#224](https://github.com/VerifiedJoseph/parrot/pull/224), [`1289eda`](https://github.com/VerifiedJoseph/parrot/commit/1289edad224d4a7c2ab0f4635a52ab1cba3423b3))
+
 ## [1.7.2](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.7.2) - 2023-09-09
 
 * Docker: Changed Nginx port to 8080 ([#219](https://github.com/VerifiedJoseph/parrot/pull/219), [`445d30c`](https://github.com/VerifiedJoseph/parrot/commit/445d30ce7d7a5d94ae7fed5613362e4d54174591))
