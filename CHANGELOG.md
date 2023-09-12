@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [1.7.3](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.7.3) - 2023-09-09
+## [1.7.4](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.7.4) - 2023-09-12
 
 * Updated docker-compose to drop all capabilities and set `no-new-privileges`. ([#229](https://github.com/VerifiedJoseph/parrot/pull/229), [`a07ff62`](https://github.com/VerifiedJoseph/parrot/commit/a07ff624027e5fc46ccedc724bb7ff89ad6f1fec))
 * Dockerfile: Updated Nginx to run as user nobody. ([#229](https://github.com/VerifiedJoseph/parrot/pull/229), [`a07ff62`](https://github.com/VerifiedJoseph/parrot/commit/a07ff624027e5fc46ccedc724bb7ff89ad6f1fec))
