@@ -4,7 +4,7 @@ All notable changes to this project are documented in this file.
 
 ## [1.7.4](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.7.4) - 2023-09-12
 
-* Updated docker-compose to drop all capabilities and set `no-new-privileges`. ([#229](https://github.com/VerifiedJoseph/parrot/pull/229), [`a07ff62`](https://github.com/VerifiedJoseph/parrot/commit/a07ff624027e5fc46ccedc724bb7ff89ad6f1fec))
+* Updated docker-compose to drop all capabilities and set `no-new-privileges`. ([#230](https://github.com/VerifiedJoseph/parrot/pull/230), [`8436675`](https://github.com/VerifiedJoseph/parrot/commit/843667509c17503b01f721f070bf14eae048d253))
 * Dockerfile: Updated Nginx to run as user nobody. ([#229](https://github.com/VerifiedJoseph/parrot/pull/229), [`a07ff62`](https://github.com/VerifiedJoseph/parrot/commit/a07ff624027e5fc46ccedc724bb7ff89ad6f1fec))
 * Dockerfile: Updated Nginx to 1.25.2-alpine3.18-slim. ([#228](https://github.com/VerifiedJoseph/parrot/pull/228), [`928181d`](https://github.com/VerifiedJoseph/parrot/commit/928181d1e198d60f10cccf3a349c88741b6aa8e8))
 * Dockerfile: Updated Node.js to 18.17.1-alpine3.17. ([#227](https://github.com/VerifiedJoseph/parrot/pull/227), [`9c2f149`](https://github.com/VerifiedJoseph/parrot/commit/9c2f149bdc13035c84568f3f570100a4abab09b8))
