@@ -1,7 +1,7 @@
 # Parrot 🦜
 ![screenshot](image.png)
 
-A browser-based viewer for tweet archives created with the [Twitter Media Downloader](https://github.com/furyutei/twMediaDownloader) browser extension.
+A browser-based viewer for tweet archives created with the [Twitter Media Downloader](https://web.archive.org/web/20230906164425/https://github.com/furyutei/twMediaDownloader) browser extension.
 
 ## Dependencies
 - [JSZip](https://github.com/Stuk/jszip) (v3.10.1) - JavaScript class for generating and reading zip files.
