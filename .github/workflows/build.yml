@@ -47,3 +47,30 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=${{ env.DESCRIPTION }}
+
+  zip:
+    name: Zip archive
+    runs-on: ubuntu-22.04
+    env:
+      PARROT_VERSION: ${{ github.REF_NAME }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+
+      - name: Setup node
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
+        with:
+          node-version: 18.18.0
+          cache: 'npm'
+
+      - name: Installing dependencies
+        run: npm ci
+
+      - name: Build webpack
+        run: npm run build:prod
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3.1.3
+        with:
+          name: parrot-tweet-viewer-${{ github.REF_NAME }}
+          path: ./dist
