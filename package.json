@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "build": "node ./esbuild/build.js",
-    "watch": "node ./esbuild/watch.js",
+    "watch": "node ./esbuild/watch.js"
   },
   "dependencies": {
     "autolinker": "^4.0.0",
