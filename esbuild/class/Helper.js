@@ -5,6 +5,12 @@ const fsExtra = require('fs-extra')
 const replace = require('replace-in-file')
 
 module.exports = class Helper {
+  /**
+   * Replace tag in file
+   * @param {string} filepath Filepath
+   * @param {string} tag Tag name
+   * @param {string} replacement Replacement string
+   */
   async replaceTagInFile (filepath, tag, replacement) {
     try {
       await replace({
