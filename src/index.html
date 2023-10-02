@@ -2,12 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title><%= htmlWebpackPlugin.options.title %> - <%= htmlWebpackPlugin.options.description %></title>
-        <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
+        <title>Parrot - Viewer for tweet archives created with the Twitter Media Downloader</title>
+        <meta name="description" content="Viewer for tweet archives created with the Twitter Media Downloader">
         <meta name="viewport" content="width=device-width" />
-        <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
-        <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
+        <meta property="og:title" content="Parrot" />
+        <meta property="og:description" content="Viewer for tweet archives created with the Twitter Media Downloader" />
         <meta name="referrer" content="no-referrer">
+		<link rel="stylesheet" type="text/css" href="app.css" />
     </head>
     <body>
         <div id="container">
@@ -124,5 +125,6 @@
                 </small>
             </div>
         </div>
+        <script type="module" src="app.js"></script>
     </body>
 </html>
