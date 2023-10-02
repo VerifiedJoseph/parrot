@@ -1,14 +1,11 @@
 import JSZip from 'jszip'
 
-import { Helper } from '../Helper.js'
-import { Csv } from '../Csv.js'
-import { Dom } from '../Dom.js'
-import { Filter } from '../Filter.js'
-import { Build } from '../Build.js'
-import { Tweet } from '../Tweet.js'
-
-import '../../css/base.css'
-import '../../css/dark.css'
+import { Helper } from './class/Helper.js'
+import { Csv } from './class/Csv.js'
+import { Dom } from './class/Dom.js'
+import { Filter } from './class/Filter.js'
+import { Build } from './class/Build.js'
+import { Tweet } from './class/Tweet.js'
 
 /** Tweets and users */
 let data = {}
