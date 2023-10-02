@@ -1,5 +1,4 @@
 const esbuild = require('esbuild')
-
 const Helper = require('./class/Helper.js')
 
 const helper = new Helper()
