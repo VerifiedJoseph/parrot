@@ -19,7 +19,7 @@ updates:
         update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "docker"
-    directory: "/.devcontainer/docker/workspace/"
+    directory: "/.devcontainer/workspace/"
     schedule:
       interval: "monthly"
     ignore:
