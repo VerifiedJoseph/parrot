@@ -10,6 +10,7 @@
   },
   "scripts": {
     "lint": "eslint ./src",
+    "build": "node ./esbuild/build.js",
     "build:prod": "webpack --mode=production",
     "build:dev": "webpack --mode=development",
     "dev-server": "webpack serve"
