@@ -2,12 +2,15 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title><%= htmlWebpackPlugin.options.title %> - <%= htmlWebpackPlugin.options.description %></title>
-        <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
+        <title><%= title %> - <%= description %></title>
+        <meta name="description" content="<%= description %>">
         <meta name="viewport" content="width=device-width" />
-        <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
-        <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
+        <meta property="og:title" content="<%= title %>" />
+        <meta property="og:description" content="<%= description %>" />
         <meta name="referrer" content="no-referrer">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob:; base-uri 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; upgrade-insecure-requests;">
+        <link rel="icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="app.css" />
     </head>
     <body>
         <div id="container">
@@ -101,7 +104,7 @@
                 </p>
                 <p>
                     <i>Can I run it offline?</i><br>
-                    <strong>Yes.</strong> The viewer can be run offline and a download is <a href="<%= htmlWebpackPlugin.options.zipDownloadUrl %>">available</a>.
+                    <strong>Yes.</strong> The viewer can be run offline and a download is <a href="https://github.com/VerifiedJoseph/Parrot/releases/latest">available</a>.
                 </p>
                 <p>
                     <i>Does it use any third party JavaScript libraries?</i><br>
@@ -120,9 +123,10 @@
             <div id="footer">
                 <small>
                     <a target="_blank" href="https://verifiedjoseph.github.io/parrot/">verifiedjoseph.github.io/parrot/</a><br>
-                    <%= htmlWebpackPlugin.options.version %>-<a target="_blank" href="<%= htmlWebpackPlugin.options.gitCommitUrl %>"><%= htmlWebpackPlugin.options.gitCommitHash %></a>
+                    <%= version %>-<a target="_blank" href="https://github.com/VerifiedJoseph/parrot/commit/<%= gitCommit %>"><%= gitCommit %></a>
                 </small>
             </div>
         </div>
+        <script type="module" src="app.js"></script>
     </body>
 </html>

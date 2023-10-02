@@ -17,10 +17,7 @@ RUN apk add git
 RUN npm ci
 
 # Build webpack
-RUN npm run build:prod
-
-# Build zip
-RUN node build/zip.js
+RUN npm run build
 
 FROM nginx:1.25.2-alpine3.18-slim
 
