@@ -41,10 +41,7 @@ jobs:
         run: npm ci
 
       - name: Build webpack
-        run: npm run build:prod
-
-      - name: Build zip
-        run: node build/zip.js
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@a753861a5debcf57bf8b404356158c8e1e33150c # v2.0.0
