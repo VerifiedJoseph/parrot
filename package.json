@@ -13,9 +13,6 @@
     "lint": "eslint ./src",
     "build": "node ./esbuild/build.js",
     "watch": "node ./esbuild/watch.js",
-    "build:prod": "webpack --mode=production",
-    "build:dev": "webpack --mode=development",
-    "dev-server": "webpack serve"
   },
   "dependencies": {
     "autolinker": "^4.0.0",
