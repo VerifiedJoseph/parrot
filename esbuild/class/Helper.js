@@ -2,23 +2,19 @@ const path = require('path')
 const fs = require('fs')
 const fsp = require('fs/promises')
 const fsExtra = require('fs-extra')
+const replace = require('replace-in-file')
 
 module.exports = class Helper {
-  async replaceInFile (filepath, subject, replacement) {
-    fs.readFile(filepath, 'utf8', function (err, data) {
-      if (err) {
-        return console.log(err)
-      }
-
-      const result = data.replace(
-        new RegExp(subject, 'g'),
-        replacement
-      )
-
-      fs.writeFile(filepath, result, 'utf8', function (err) {
-        if (err) return console.log(err)
+  async replaceTagInFile (filepath, tag, replacement) {
+    try {
+      await replace({
+        files: filepath,
+        from: new RegExp('<%= ' + tag + ' %>', 'g'),
+        to: replacement
       })
-    })
+    } catch (error) {
+      throw new Error('Error occurred:', error)
+    }
   }
 
   /**

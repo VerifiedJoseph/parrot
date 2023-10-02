@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>{title} - Viewer for tweet archives created with the Twitter Media Downloader</title>
-        <meta name="description" content="Viewer for tweet archives created with the Twitter Media Downloader">
+        <title><%= title %> - <%= description %></title>
+        <meta name="description" content="<%= description %>">
         <meta name="viewport" content="width=device-width" />
-        <meta property="og:title" content="{title}" />
-        <meta property="og:description" content="Viewer for tweet archives created with the Twitter Media Downloader" />
+        <meta property="og:title" content="<%= title %>" />
+        <meta property="og:description" content="<%= description %>" />
         <meta name="referrer" content="no-referrer">
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob:; base-uri 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; upgrade-insecure-requests;">
         <link rel="icon" href="favicon.ico">
@@ -123,7 +123,7 @@
             <div id="footer">
                 <small>
                     <a target="_blank" href="https://verifiedjoseph.github.io/parrot/">verifiedjoseph.github.io/parrot/</a><br>
-                    <%= htmlWebpackPlugin.options.version %>-<a target="_blank" href="<%= htmlWebpackPlugin.options.gitCommitUrl %>"><%= htmlWebpackPlugin.options.gitCommitHash %></a>
+                    <%= version %>-<a target="_blank" href=""><%= gitCommit %></a>
                 </small>
             </div>
         </div>
