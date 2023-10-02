@@ -4,6 +4,23 @@ const fsp = require('fs/promises')
 const fsExtra = require('fs-extra')
 
 module.exports = class Helper {
+  async replaceInFile (filepath, subject, replacement) {
+    fs.readFile(filepath, 'utf8', function (err, data) {
+      if (err) {
+        return console.log(err)
+      }
+
+      const result = data.replace(
+        new RegExp(subject, 'g'),
+        replacement
+      )
+
+      fs.writeFile(filepath, result, 'utf8', function (err) {
+        if (err) return console.log(err)
+      })
+    })
+  }
+
   /**
    * Copy file or folder
    * @param {string} source Source

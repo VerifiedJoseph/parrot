@@ -2,12 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Parrot - Viewer for tweet archives created with the Twitter Media Downloader</title>
+        <title>{title} - Viewer for tweet archives created with the Twitter Media Downloader</title>
         <meta name="description" content="Viewer for tweet archives created with the Twitter Media Downloader">
         <meta name="viewport" content="width=device-width" />
-        <meta property="og:title" content="Parrot" />
+        <meta property="og:title" content="{title}" />
         <meta property="og:description" content="Viewer for tweet archives created with the Twitter Media Downloader" />
         <meta name="referrer" content="no-referrer">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob:; base-uri 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; upgrade-insecure-requests;">
+        <link rel="icon" href="favicon.ico">
 		<link rel="stylesheet" type="text/css" href="app.css" />
     </head>
     <body>
