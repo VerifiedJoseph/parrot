@@ -25,3 +25,8 @@ updates:
     ignore:
       - dependency-name: "node"
         update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "docker"
+    directory: "/.devcontainer/nginx/"
+    schedule:
+      interval: "monthly"
