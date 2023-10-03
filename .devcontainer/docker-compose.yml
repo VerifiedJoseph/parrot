@@ -1,10 +1,16 @@
 services:
-    workspace:
-        build:
-            context: ./workspace
-        tty: true
-        volumes:
-            - ../:/parrot
-        ports:
-            - 9000:9000
-        working_dir: /parrot
+  workspace:
+    build:
+      context: ./workspace
+    tty: true
+    volumes:
+      - ../:/parrot
+    working_dir: /parrot
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - 8080:8080
+    volumes:
+      - ../dist:/var/www/html:ro
