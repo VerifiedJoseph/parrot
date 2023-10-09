@@ -19,16 +19,19 @@ RUN npm ci
 # Build webpack
 RUN npm run build
 
-FROM nginx:1.25.2-alpine3.18-slim
+FROM alpine:3.18.4
+
+# Install nginx
+RUN apk add --no-cache nginx
 
 # Copy nginx config
 COPY --chown=nobody --from=node /app/config/nginx.conf /etc/nginx/nginx.conf
 
 # Copy code
-COPY --chown=nobody  --from=node /app/dist/ /var/www/html/
+COPY --chown=nobody --from=node /app/dist/ /var/www/html/
 
 # Make files accessable to nobody user
-RUN chown -R nobody.nobody /run /var/www/html/
+RUN chown -R nobody.nobody /run /var/www/html/ /var/lib/nginx /var/log/nginx
 
 USER nobody
 CMD nginx -g 'daemon off;'
