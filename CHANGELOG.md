@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.8.1](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.1) - 2023-10-09
+
+- Fixed running locally via `file:///`. ([#250](https://github.com/VerifiedJoseph/parrot/pull/250), [`921cf90`](https://github.com/VerifiedJoseph/parrot/commit/921cf9055ca0aabe8e922ff6e8d05d5c25d9b3df))
+
 ## [1.8.0](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.0) - 2023-10-09
 
 * Replaced [Webpack](https://webpack.js.org/) with [esbuild](https://esbuild.github.io/). ([#243](https://github.com/VerifiedJoseph/parrot/pull/243), [`d1edb21`](https://github.com/VerifiedJoseph/parrot/commit/d1edb21148b233a4fe1f2d059b8ee37ed1d057fd))
