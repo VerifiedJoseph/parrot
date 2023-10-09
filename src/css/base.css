@@ -135,12 +135,6 @@ p {
 	display: none;
 }
 
-.file {
-	text-align: center;
-	display: inline-block;
-	padding: 5px 10px;
-}
-
 .filename, .checkbox-text {
 	margin-top: 6px;
 	margin-left: 5px;
