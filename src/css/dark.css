@@ -28,7 +28,7 @@
 		cursor: pointer;
 	}
 
-	.placeholder:hover, .button:hover:enabled, .file:hover {
+	.placeholder:hover, .button:hover:enabled {
 		cursor: pointer;
 		background-color: #0D1117;
 		border: 1px solid #c9d1d9;
@@ -45,6 +45,10 @@
 
 	.tweet > .media > .error {
 		background-color: #8c0000;
+		color: #c9d1d9;
+	}
+
+	#note {
 		color: #c9d1d9;
 	}
 }
