@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## [1.8.0](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.0) - 2023-10-09
 
+- Fixed running locally via `file:///`. ([#250](https://github.com/VerifiedJoseph/parrot/pull/250), [`921cf90`](https://github.com/VerifiedJoseph/parrot/commit/921cf9055ca0aabe8e922ff6e8d05d5c25d9b3df))
+
+## [1.8.0](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.0) - 2023-10-09
+
 * Replaced [Webpack](https://webpack.js.org/) with [esbuild](https://esbuild.github.io/). ([#243](https://github.com/VerifiedJoseph/parrot/pull/243), [`d1edb21`](https://github.com/VerifiedJoseph/parrot/commit/d1edb21148b233a4fe1f2d059b8ee37ed1d057fd))
 * Updated node.js from 18.17.1 to 18.18.0. ([#234](https://github.com/VerifiedJoseph/parrot/pull/234), [`b211955`](https://github.com/VerifiedJoseph/parrot/commit/b211955009c1bf4bf95cc49f31690971ad1d7127))
 * README: Updated link for Twitter Media Downloader. ([#233](https://github.com/VerifiedJoseph/parrot/pull/233), [`3a73090`](https://github.com/VerifiedJoseph/parrot/commit/3a730900f4376b4badcf4776c09eb63ca4ea8e7e))
