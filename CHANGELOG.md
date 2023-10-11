@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.8.2](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.2) - 2023-10-11
+
+- Fixed browse button CSS. ([#253](https://github.com/VerifiedJoseph/parrot/pull/253), [`5319e54`](https://github.com/VerifiedJoseph/parrot/commit/5319e54bf0ba63c92bd4af73fc61848a5e4c5acc))
+- Dockerfile: Build on alpine3.18 base image. ([#252](https://github.com/VerifiedJoseph/parrot/pull/252), [`a413aca`](https://github.com/VerifiedJoseph/parrot/commit/a413aca5205fe30dd95ecd9462943c58341acfc9))
+
 ## [1.8.1](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.1) - 2023-10-09
 
 - Fixed running locally via `file:///`. ([#250](https://github.com/VerifiedJoseph/parrot/pull/250), [`921cf90`](https://github.com/VerifiedJoseph/parrot/commit/921cf9055ca0aabe8e922ff6e8d05d5c25d9b3df))
