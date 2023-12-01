@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.8.3](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.3) - 2023-12-01
+
+- Updated alpine from 3.18.4 to 3.18.5 ([#272](https://github.com/VerifiedJoseph/parrot/pull/272), [`781a635`](https://github.com/VerifiedJoseph/parrot/commit/781a63503d68e349e66c04a350d76dbbfdf661a1))
+- Updated node from 18.18.2 to 20.10.0 ([#265](https://github.com/VerifiedJoseph/parrot/pull/265), [`c229b8a`](https://github.com/VerifiedJoseph/parrot/commit/c229b8ade64bb5c069537337f965189f21e2d4be))
+
 ## [1.8.2](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.2) - 2023-10-11
 
 - Fixed browse button CSS. ([#253](https://github.com/VerifiedJoseph/parrot/pull/253), [`5319e54`](https://github.com/VerifiedJoseph/parrot/commit/5319e54bf0ba63c92bd4af73fc61848a5e4c5acc))
