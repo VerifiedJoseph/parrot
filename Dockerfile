@@ -1,5 +1,5 @@
 FROM node:20.10.0-alpine3.18 as node
-ENV PARROT_VERSION=1.8.2
+ENV PARROT_VERSION=1.8.3
 
 LABEL org.opencontainers.image.description="Browser-based viewer for tweet archives created with the Twitter Media Downloader browser extension."
 LABEL org.opencontainers.image.licenses=MIT
