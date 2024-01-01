@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.8.4](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.4) - 2024-01-01
+
+- Updated alpine from 3.18.5 to 3.19.0 ([#284](https://github.com/VerifiedJoseph/parrot/pull/284), [`f9c577d`](https://github.com/VerifiedJoseph/parrot/commit/f9c577d3efeb1af5e77f5fa6a72ff0f17c9929b0))
+
 ## [1.8.3](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.3) - 2023-12-01
 
 - Updated alpine from 3.18.4 to 3.18.5 ([#272](https://github.com/VerifiedJoseph/parrot/pull/272), [`781a635`](https://github.com/VerifiedJoseph/parrot/commit/781a63503d68e349e66c04a350d76dbbfdf661a1))
