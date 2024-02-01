@@ -19,7 +19,7 @@ RUN npm ci
 # Build webpack
 RUN npm run build
 
-FROM alpine:3.19.0
+FROM alpine:3.19.1
 
 # Install nginx
 RUN apk add --no-cache nginx
