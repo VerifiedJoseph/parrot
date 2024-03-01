@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.8.6](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.6) - 2024-03-01
+
+- Dockerfile: Update node from 20.11.0-alpine3.19 to 20.11.1-alpine3.19 ([#297](https://github.com/VerifiedJoseph/parrot/pull/297), [`885362f`](https://github.com/VerifiedJoseph/parrot/commit/885362faa2587ab0e9603e6104cfc1298fdae29f))
+
 ## [1.8.5](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.5) - 2024-02-01
 
 - Dockerfile: Update alpine from 3.19.0 to 3.19.1 ([#289](https://github.com/VerifiedJoseph/parrot/pull/289), [`8b57561`](https://github.com/VerifiedJoseph/parrot/commit/8b57561f67f8b0b274f07afb61445a1f65e39d61))
