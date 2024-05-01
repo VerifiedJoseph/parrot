@@ -5,6 +5,7 @@ services:
     tty: true
     volumes:
       - ../:/parrot
+      - node_modules:/parrot/node_modules
     working_dir: /parrot
 
   nginx:
@@ -14,3 +15,6 @@ services:
       - 8080:8080
     volumes:
       - ../:/parrot:ro
+
+volumes:
+  node_modules:
