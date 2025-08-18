@@ -16,5 +16,6 @@
     "autolinker": "^4.0.0",
     "jszip": "^3.10.1",
     "papaparse": "^5.4.1"
-  }
+  },
+  "type": "module"
 }
