@@ -10,7 +10,7 @@ A browser-based viewer for tweet archives created with the [Twitter Media Downlo
 
 ## Requirements
 
-- Node.js >= 18.0
+- Node.js >= 22.0
 - npm
 
 ## License
