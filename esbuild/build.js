@@ -1,11 +1,11 @@
-const esbuild = require('esbuild')
-const Helper = require('./class/Helper.js')
-const helper = new Helper()
+import esbuild from 'esbuild'
+import childProcess from 'child_process'
+import * as helper from './class/Helper.js'
 
 const title = 'Parrot'
 const description = 'Viewer for tweet archives created with the Twitter Media Downloader'
 const version = process.env.PARROT_VERSION || 'dev'
-const gitCommit = require('child_process')
+const gitCommit = childProcess
   .execSync('git rev-parse --short HEAD')
   .toString()
   .trim()

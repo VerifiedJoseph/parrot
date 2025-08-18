@@ -1,6 +1,5 @@
-const esbuild = require('esbuild')
-const Helper = require('./class/Helper.js')
-const helper = new Helper()
+import esbuild from 'esbuild'
+import * as helper from './class/Helper.js'
 
 async function setup () {
   // Remove and recreate dist folder
