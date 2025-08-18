@@ -1,6 +1,5 @@
 const esbuild = require('esbuild')
 const Helper = require('./class/Helper.js')
-
 const helper = new Helper()
 
 const title = 'Parrot'
@@ -17,8 +16,8 @@ async function setup () {
   await helper.createFolder('./dist')
 
   console.log('Copying files...')
-  helper.copy('./src/images/favicon.ico', './dist/favicon.ico')
-  await helper.copy('./src/index.html', './dist/index.html')
+  helper.copyFile('./src/images/favicon.ico', './dist/favicon.ico')
+  await helper.copyFile('./src/index.html', './dist/index.html')
 
   await helper.replaceTagInFile('./dist/index.html', 'title', title)
   await helper.replaceTagInFile('./dist/index.html', 'description', description)
