@@ -1,7 +1,6 @@
 const path = require('path')
 const fs = require('fs')
 const fsp = require('fs/promises')
-const fsExtra = require('fs-extra')
 const replace = require('replace-in-file')
 
 module.exports = class Helper {
@@ -28,16 +27,16 @@ module.exports = class Helper {
    * @param {string} source Source
    * @param {string} destination Destination
    */
-  async copy (source, destination) {
-    source = path.resolve(source)
-    destination = path.resolve(destination)
-
-    console.log(`Copying ${source} to ${destination}`)
-
+  async copyFile (source, destination) {
     try {
-      await fsExtra.copy(source, destination)
-    } catch (err) {
-      throw new Error('Copy failed', { cause: err })
+      source = path.resolve(source)
+      destination = path.resolve(destination)
+
+      console.log(`Copying ${source} to ${destination}`)
+
+      await fsp.copyFile(source, destination);
+    } catch {
+      throw new Error(`Failed to copy file`);
     }
   }
 
