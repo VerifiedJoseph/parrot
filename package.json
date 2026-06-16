@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.28.1",
     "eslint": "^9.2.0",
     "@eslint/js": "^9.4.0",
     "fs-extra": "^11.2.0",
