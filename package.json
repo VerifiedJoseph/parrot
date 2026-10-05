@@ -6,7 +6,8 @@
     "replace-in-file": "^7.1.0"
   },
   "scripts": {
-    "lint": "eslint ./src",
+    "lint": "oxlint ./src/js ./esbuild",
+    "lint:fix": "oxlint ./src/js ./esbuild --fix",
     "build": "node ./esbuild/build.js",
     "watch": "node ./esbuild/watch.js"
   },
