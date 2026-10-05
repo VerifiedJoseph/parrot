@@ -10,7 +10,7 @@
             "extensions": [
                 "EditorConfig.EditorConfig",
                 "streetsidesoftware.code-spell-checker",
-                "dbaeumer.vscode-eslint"
+                "oxc.oxc-vscode"
             ]
         }
     },
