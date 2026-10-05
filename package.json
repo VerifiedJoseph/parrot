@@ -15,7 +15,7 @@
     "autolinker": "^4.0.0",
     "jszip": "^3.10.1",
     "oxlint": "^1.87.0",
-    "papaparse": "^5.4.1"
+    "papaparse": "^5.7.0"
   },
   "type": "module"
 }
