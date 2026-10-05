@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.8.7](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.7) - 2026-10-05
+
+- Updated autolinker from 4.0.0 to 4.1.5 ([#361](https://github.com/VerifiedJoseph/parrot/pull/361), [`9f0e647`](https://github.com/VerifiedJoseph/parrot/commit/9f0e6470614820fe304fe1765cff39738e0e625a))
+- Updated jszip from 3.10.1 to 3.10.2 ([#362](https://github.com/VerifiedJoseph/parrot/pull/362), [`0c9b89d`](https://github.com/VerifiedJoseph/parrot/commit/0c9b89d06f4fc526993a0f16d130c4bd01326ab4))
+- Updated papaparse from 5.4.1 to 5.7.0 ([#366](https://github.com/VerifiedJoseph/parrot/pull/366), [`17fb18d`](https://github.com/VerifiedJoseph/parrot/commit/17fb18d4c96ffe05b4c553b961271135daf0d680))
+
 ## [1.8.6](https://github.com/VerifiedJoseph/parrot/releases/tag/v1.8.6) - 2024-03-01
 
 - Dockerfile: Update node from 20.11.0-alpine3.19 to 20.11.1-alpine3.19 ([#297](https://github.com/VerifiedJoseph/parrot/pull/297), [`885362f`](https://github.com/VerifiedJoseph/parrot/commit/885362faa2587ab0e9603e6104cfc1298fdae29f))
