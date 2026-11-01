@@ -1,7 +1,6 @@
 import path from 'path';
 import fs from 'fs';
 import fsp from 'fs/promises';
-import replace from 'replace-in-file';
 
 /**
  * Replace tag in file
