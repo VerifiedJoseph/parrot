@@ -10,15 +10,12 @@ import replace from 'replace-in-file';
  * @param {string} replacement Replacement string
   */
 export async function replaceTagInFile (filepath, tag, replacement) {
-  try {
-    await replace({
-      files: filepath,
-      from: new RegExp('<%= ' + tag + ' %>', 'g'),
-      to: replacement
-    })
-  } catch (error) {
-    throw new Error('Error occurred:', error)
-  }
+	let data = fs.readFileSync(filepath, 'utf8');
+
+	let search = `<%= ${tag} %>`
+	data = data.replaceAll(search, replacement)
+
+	fs.writeFileSync(filepath, data)
 }
 
 /**
