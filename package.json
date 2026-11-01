@@ -3,7 +3,7 @@
     "esbuild": "^0.28.2",
     "fs-extra": "^11.2.0",
     "globals": "^17.13.0",
-    "replace-in-file": "^7.1.0"
+    "replace-in-file": "^9.0.0"
   },
   "scripts": {
     "lint": "oxlint ./src/js ./esbuild",
